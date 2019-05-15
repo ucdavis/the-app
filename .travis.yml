@@ -10,11 +10,11 @@ before_install:
 
 install:
   # install all of the dependencies you need here
+  - ./gradlew clean jar
 
 before_script:
   # execute all of the commands which need to be executed
   # before running actual tests
-  - ./gradlew clean jar
 
 script:
   # execute all of the commands which should make the build pass or fail
