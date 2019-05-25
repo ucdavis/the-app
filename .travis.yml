@@ -2,8 +2,16 @@ language: java
 jdk:
   - oraclejdk8
 
+# Had a look how this was done by Lecturer
 env:
-  - COVERAGE=0.3
+    - COVERAGE=0.057 BUILD_TARGET=./monolithic/ui
+    - COVERAGE=0.148 BUILD_TARGET=./monolithic/service/cart
+    - COVERAGE=0.0 BUILD_TARGET=./monolithic/service/user
+    - COVERAGE=0.397 BUILD_TARGET=./monolithic/repository/order
+    - COVERAGE=0.0 BUILD_TARGET=./monolithic/repository/cart
+    - COVERAGE=0.124 BUILD_TARGET=./monolithic/repository/product
+    - COVERAGE=0.318 BUILD_TARGET=./monolithic/repository/user
+
 
 before_install:
   # execute all of the commands which need to be executed
@@ -21,14 +29,7 @@ before_script:
 
 script:
   # execute all of the commands which should make the build pass or fail
-  - COVERAGE=0.057 ./gradlew -p ./monolithic/ui check
-  - COVERAGE=0.148 ./gradlew -p ./monolithic/service/cart check
-  - COVERAGE=0.0 ./gradlew -p ./monolithic/service/user check
-  - COVERAGE=0.397 ./gradlew -p ./monolithic/repository/order check
-  - COVERAGE=0.0 ./gradlew -p ./monolithic/repository/cart check
-  - COVERAGE=0.124 ./gradlew -p ./monolithic/repository/product check
-  - COVERAGE=0.318 ./gradlew -p ./monolithic/repository/user check
+  - ./gradlew -p $BUILD_TARGET check
 
 after_success:
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
-
