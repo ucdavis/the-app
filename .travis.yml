@@ -1,6 +1,9 @@
-anguage: java
+language: java
 jdk:
   - oraclejdk8
+
+env:
+  - COVERAGE=0.35
 
 before_install:
   # execute all of the commands which need to be executed
