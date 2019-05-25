@@ -29,12 +29,12 @@ after_success:
 
 #  If before_anything phase returns a non-zero exit code, the build is errored and stops immediately.
 before_deploy:
-  - ./gradlew jacocoTestCoverageVerification
+  - ./gradlew test jacocoTestCoverageVerification
 
 # branch: name of the branch. If omitted, this defaults to the app-specific branch, or master.
 # If the branch name is not known ahead of time, you can specify  all_branches: true
 deploy:
-  - provider: script
-      script: echo 'WIP'
-      on:
-        all_branches: true
+  provider: script
+  script: echo 'WIP'
+  on:
+    all_branches: true
