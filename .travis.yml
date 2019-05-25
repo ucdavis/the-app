@@ -24,9 +24,14 @@ after_success:
   - ./gradlew jacocoTestReport
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
 
+#  If before_anything phase returns a non-zero exit code, the build is errored and stops immediately.
+before_deploy:
+  - ./gradlew jacocoTestCoverageVerification
 
-# If any of the commands in the first four phases of the job lifecycle return a non-zero exit code, the build is broken:
-#
-#  If before_install, install or before_script returns a non-zero exit code, the build is errored and stops immediately.
-#  If script returns a non-zero exit code, the build is failed, but continues to run before being marked as failed.
-#  The exit code of after_success, after_failure, after_script, after_deploy and subsequent stages do not affect the build result. However, if one of these stages times out, the build is marked as failed.
+# branch: name of the branch. If omitted, this defaults to the app-specific branch, or master.
+# If the branch name is not known ahead of time, you can specify  all_branches: true
+deploy:
+  - provider: script
+      script: echo 'WIP'
+      on:
+        all_branches: true
