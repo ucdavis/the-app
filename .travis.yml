@@ -11,12 +11,27 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-script:
-  - ./gradlew clean jar && COVERAGE=0.3 ./gradlew test jacocoTestCoverageVerification
+install:
+  - ./gradlew clean jar 
+
+matrix:
+  include:
+  - env: COVERAGE=0.4
+    script: ./gradlew test ./monolith/ui_check
+  - env: COVERAGE=0.4
+    script: ./gradlew test ./monolith/service/cart_check
+  - env: COVERAGE=0.4
+    script: ./gradlew test ./monolith/service/ui_check
+  - env: COVERAGE=0.4
+    script: ./gradlew test ./monolith/repository/order_check
+  - env: COVERAGE=0.4
+    script: ./gradlew test ./monolith/repository/cart_check
+  - env: COVERAGE=0.4
+    script: ./gradlew test ./monolith/repository/product_check
+  - env: COVERAGE=0.4
+    script: ./gradlew test ./monolith/repository/user_check
 
 after_success:
-  - ./gradlew jacocoTestReport
-  - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
 
 deploy:
   provider: script
