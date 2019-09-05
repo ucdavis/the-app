@@ -12,7 +12,7 @@ cache:
     - $HOME/.gradle/wrapper/
 
 script:
-  - ./gradlew clean jar && ./gradlew test jacocoTestCoverageVerification
+  - ./gradlew clean jar && COVERAGE=0.3 ./gradlew test jacocoTestCoverageVerification
 
 after_success:
   - ./gradlew jacocoTestReport
