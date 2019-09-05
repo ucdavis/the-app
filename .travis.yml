@@ -1,6 +1,5 @@
 dist: trusty
 language: java
-jdk: oraclejdk8
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -14,22 +13,26 @@ cache:
 install:
   - ./gradlew clean jar 
 
+jdk: 
+  - oraclejdk8
+  - oraclejdk9
+
 matrix:
   include:
   - env: COVERAGE=0.4
-    script: ./gradlew test ./monolith/ui_check
+    script: ./gradlew test ./monolithic/ui_check
   - env: COVERAGE=0.4
-    script: ./gradlew test ./monolith/service/cart_check
+    script: ./gradlew test ./monolithic/service/cart_check
   - env: COVERAGE=0.4
-    script: ./gradlew test ./monolith/service/ui_check
+    script: ./gradlew test ./monolithic/service/ui_check
   - env: COVERAGE=0.4
-    script: ./gradlew test ./monolith/repository/order_check
+    script: ./gradlew test ./monolithic/repository/order_check
   - env: COVERAGE=0.4
-    script: ./gradlew test ./monolith/repository/cart_check
+    script: ./gradlew test ./monolithic/repository/cart_check
   - env: COVERAGE=0.4
-    script: ./gradlew test ./monolith/repository/product_check
+    script: ./gradlew test ./monolithic/repository/product_check
   - env: COVERAGE=0.4
-    script: ./gradlew test ./monolith/repository/user_check
+    script: ./gradlew test ./monolithic/repository/user_check
 
 after_success:
 
