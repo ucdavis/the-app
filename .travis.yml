@@ -4,13 +4,13 @@ jdk: oraclejdk8
 dist: trusty
 
 env:
-  - COVERAGE=$COVERAGE_UI TARGET=ui
-  - COVERAGE=$COVERAGE_SERVICE_CART TARGET=service/cart
-  - COVERAGE=$COVERAGE_SERVICE_USER TARGET=service/user
-  - COVERAGE=$COVERAGE_REPOSITORY_ORDER TARGET=repository/order
-  - COVERAGE=$COVERAGE_REPOSITORY_CART TARGET=repository/cart
-  - COVERAGE=$COVERAGE_REPOSITORY_PRODUCT TARGET=repository/product
-  - COVERAGE=$COVERAGE_REPOSITORY_USER TARGET=repository/user
+  - COVERAGE=0.5 TARGET=ui
+  - COVERAGE=0.5 TARGET=service/cart
+  - COVERAGE=0.5 TARGET=service/user
+  - COVERAGE=0.39 TARGET=repository/order
+  - COVERAGE=0.5 TARGET=repository/cart
+  - COVERAGE=0.5 TARGET=repository/product
+  - COVERAGE=0.31 TARGET=repository/user
 
 install:
   - "./gradlew clean jar"
