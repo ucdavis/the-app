@@ -4,19 +4,36 @@ jdk: oraclejdk8
 dist: trusty
 
 env:
-  - COVERAGE=0.5 TARGET=ui
-  - COVERAGE=0.5 TARGET=service/cart
-  - COVERAGE=0.5 TARGET=service/user
-  - COVERAGE=0.39 TARGET=repository/order
-  - COVERAGE=0.5 TARGET=repository/cart
-  - COVERAGE=0.5 TARGET=repository/product
-  - COVERAGE=0.31 TARGET=repository/user
+  - JDK_VERSION=oraclejdk8
+  - JDK_VERSION=oraclejdk9
 
 install:
   - "./gradlew clean jar"
 
-script:
-  - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check"
+stages:
+  - test
+
+jobs:
+  include:
+    - stage: test
+      name: "Check jdk8 - ui"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check"
+      env:
+        - JDK_VERSION=oraclejdk8
+        - COVERAGE=0.5
+        - TARGET=ui
+    - stage: test
+      name: "Check jdk8 - service/cart"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check"
+      env:
+        - JDK_VERSION=oraclejdk8
+        - COVERAGE=0.5
+        - TARGET=service/cart
+
 
 deploy:
   - provider: script
