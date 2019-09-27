@@ -1,6 +1,5 @@
 sudo: required
 language: java
-jdk: oraclejdk8
 dist: trusty
 
 env:
@@ -19,7 +18,7 @@ jobs:
       name: "Check jdk8 - ui"
       install: skip
       script:
-      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check"
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
       env:
         - JDK_VERSION=oraclejdk8
         - COVERAGE=0.5
@@ -28,12 +27,119 @@ jobs:
       name: "Check jdk8 - service/cart"
       install: skip
       script:
-      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check"
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
       env:
         - JDK_VERSION=oraclejdk8
         - COVERAGE=0.5
         - TARGET=service/cart
-
+    - stage: test
+      name: "Check jdk8 - service/user"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk8
+        - COVERAGE=0.5
+        - TARGET=service/user
+    - stage: test
+      name: "Check jdk8 - repository/order"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk8
+        - COVERAGE=0.39
+        - TARGET=repository/order
+    - stage: test
+      name: "Check jdk8 - repository/cart"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk8
+        - COVERAGE=0.5
+        - TARGET=repository/cart
+    - stage: test
+      name: "Check jdk8 - repository/product"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk8
+        - COVERAGE=0.5
+        - TARGET=repository/product
+    - stage: test
+      name: "Check jdk8 - repository/user"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk8
+        - COVERAGE=0.31
+        - TARGET=repository/user
+    - stage: test
+      name: "Check jdk9 - ui"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk9
+        - COVERAGE=0.5
+        - TARGET=ui
+    - stage: test
+      name: "Check jdk9 - service/cart"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk9
+        - COVERAGE=0.5
+        - TARGET=service/cart
+    - stage: test
+      name: "Check jdk9 - service/user"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk9
+        - COVERAGE=0.5
+        - TARGET=service/user
+    - stage: test
+      name: "Check jdk9 - repository/order"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk9
+        - COVERAGE=0.39
+        - TARGET=repository/order
+    - stage: test
+      name: "Check jdk9 - repository/cart"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk9
+        - COVERAGE=0.5
+        - TARGET=repository/cart
+    - stage: test
+      name: "Check jdk9 - repository/product"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk9
+        - COVERAGE=0.5
+        - TARGET=repository/product
+    - stage: test
+      name: "Check jdk9 - repository/user"
+      install: skip
+      script:
+      - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/${TARGET} check"
+      env:
+        - JDK_VERSION=oraclejdk9
+        - COVERAGE=0.31
+        - TARGET=repository/user
 
 deploy:
   - provider: script
