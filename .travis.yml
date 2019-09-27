@@ -2,8 +2,6 @@ sudo: required
 language: java
 jdk: openjdk8
 
-install:
-  - "./gradelew clean jar"
-
 script:
+  - "./gradelew clean jar"
   - echo 'testing comming soon'
