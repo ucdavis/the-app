@@ -4,19 +4,19 @@ jdk: oraclejdk8
 dist: trusty
 
 env:
-  - TARGET=ui
-  - TARGET=service/cart
-  - TARGET=service/user
-  - TARGET=repository/order
-  - TARGET=repository/cart
-  - TARGET=repository/product
-  - TARGET=repository/user
+  - COVERAGE=$COVERAGE_UI TARGET=ui
+  - COVERAGE=$COVERAGE_SERVICE_CART TARGET=service/cart
+  - COVERAGE=$COVERAGE_SERVICE_USER TARGET=service/user
+  - COVERAGE=$COVERAGE_REPOSITORY_ORDER TARGET=repository/order
+  - COVERAGE=$COVERAGE_REPOSITORY_CART TARGET=repository/cart
+  - COVERAGE=$COVERAGE_REPOSITORY_PRODUCT TARGET=repository/product
+  - COVERAGE=$COVERAGE_REPOSITORY_USER TARGET=repository/user
 
 install:
   - "./gradlew clean jar"
 
 script:
-  - "COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check"
+  - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check"
 
 deploy:
   - provider: script
