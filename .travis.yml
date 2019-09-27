@@ -9,7 +9,7 @@ env:
   - COVERAGE=0.5 TARGET=ui
   - COVERAGE=0.5 TARGET=service/cart
   - COVERAGE=0.5 TARGET=service/user
-  - COVERAGE=0.39 TARGET=repository/order
+  - COVERAGE=0.36 TARGET=repository/order
   - COVERAGE=0.5 TARGET=repository/cart
   - COVERAGE=0.5 TARGET=repository/product
   - COVERAGE=0.31 TARGET=repository/user
@@ -18,7 +18,7 @@ install:
   - "./gradlew clean jar"
 
 script:
-  - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check"
+  - "COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check"
 
 deploy:
   - provider: script
