@@ -4,4 +4,4 @@ jdk: oraclejdk8
 install:
   - ./gradelew clean jar
 script:
-  - echo 'testing comming soon'
+   - echo 'testing comming soon'
