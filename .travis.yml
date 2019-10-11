@@ -5,3 +5,6 @@ dist: trusty
 
 install:
   - "./gradlew clean jar"
+
+script:
+  - echo 'testing comming soon'
