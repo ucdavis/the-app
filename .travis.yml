@@ -3,5 +3,3 @@ jdk: openjdk8
 
 install:
   - ./gradelew clean jar
-script:
-   - echo 'testing comming soon'
