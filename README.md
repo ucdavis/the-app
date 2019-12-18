@@ -1,4 +1,6 @@
 # Microservice Phone Shop Application and CD pipeline
+[![Build Status](https://travis-ci.com/cen24/WEB1066-the-app.svg?branch=master)](https://travis-ci.com/cen24/WEB1066-the-app)
+
 
 ## Introduction
 This application and its continuous delivery pipeline is used as training
