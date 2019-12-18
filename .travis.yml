@@ -11,8 +11,3 @@ install:
 
 script:
   - echo 'testing coming soon'
-
-branches:
-  only:
-   - master
-   - development
