@@ -1,6 +1,9 @@
 language: java
 jdk:
   - oraclejdk9
+  
+env:
+  - COVERAGE=0.3
 
 before_install:
   - pwd
