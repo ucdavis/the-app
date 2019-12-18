@@ -2,6 +2,8 @@ language: java
 jdk:
   - openjdk10
   - oraclejdk9
+services:
+- docker
   
 env:
   - COVERAGE=0.057 BUILD_TARGET=./monolithic/ui
@@ -11,6 +13,9 @@ env:
   - COVERAGE=0.0 BUILD_TARGET=./monolithic/repository/cart
   - COVERAGE=0.124 BUILD_TARGET=./monolithic/repository/product
   - COVERAGE=0.318 BUILD_TARGET=./monolithic/repository/user
+global:
+  - DOCKER_LOGIN=rohitambre
+  - secure: kGsE63Zn7kmVrg3iISDMPMnzu99PdMK1wk3VgPi/UaBLbuNeIBYxYnoJB0ITDad76CAYNB6wNCFKjdaUlItSLo+9x4tiMvr+va3LWL0WJD7gerP+3XVKJYjs2Wd6prHYNZdjHEHkgsbYsaiQ27/l6BUky/0k3dIWlqdJqfV3rmCVjJ5tnhqFGwPOXfMcKbhNfwO/QPhBT43NEoU0EDCKqrXMTMdXGtO5fyE6veEaNS8lC2sCJg5p+5q6mYvKA2UQGI6C7W9YcB3TtKFtfjSxFoesGCoCiurCzirOyFM+4UQ3pYQOM4OkCcqhMWBhfXeedJzBTc5Kzw3qh+K8T4IHqqGrtV2t3SRo+Kdh/DoKJeAgqxuMuS4P5nLMDpwNleX4xxgsS4/mA3MeEWz9Du0jUb60uKauiFbijrOTBw8WUqrMxeD3K6T1ln1Y/qyFYMSdR3IMQUKm4rI0JS/UG0oKC3A44y6sZwjBsOWdCqlAOtiUusNtmxG/4ECFWIysxPw7JJoilK0ebsXM0rRxXpbaZj+3yPxNqPUR5jlRqCnXKg6TwYzedbR4Bp72kxz+D1LVgXBF2A28uI9QkJ+xwSwGcL1qy7Q87G1DcjWhA4+mkBGhHFxWpqjbu9xwiIX0RlZ4TYYYDkGlbFpN62E2dA8MdJkpVSppPDLgZBCOAd7FR9w=
   
 install:
   - ./gradlew clean jar
@@ -21,3 +26,10 @@ script:
 after_success:
   - ./gradlew jacocoTestReport
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+ 
+deploy:
+  provider: script
+  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
+    --password-stdin ;"
+  on:
+    all_branches: true
