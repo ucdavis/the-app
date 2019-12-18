@@ -26,10 +26,10 @@ after_success:
 
 before_deploy:
   - ./gradlew -p ./monolithic/ui packageToContainer
-
+  
 deploy:
   provider: script
-  script: chmod +x ./script/deploy.sh && ./script/deploy.sh
+  script: ./script/deploy.sh
   on:
     all_branches: true
     condition: $TRAVIS_BRANCH = master && $BUILD_TARGET = ./monolithic/ui 
