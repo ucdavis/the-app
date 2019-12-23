@@ -1,5 +1,4 @@
-language: Java
-jdk: Oraclejdk8
+language: java
 install: "pip install -r requirements.txt"
 
 script:
