@@ -1,10 +1,33 @@
-language: python
-install: "pip install -r requirements.txt"
+language: java
+jdk:
+  - openjdk10
+  - oraclejdk9
+services:
+- docker
+  
+env:
+  - COVERAGE=0.057 BUILD_TARGET=./monolithic/ui
+  - COVERAGE=0.148 BUILD_TARGET=./monolithic/service/cart
+  - COVERAGE=0.0 BUILD_TARGET=./monolithic/service/user
+  - COVERAGE=0.36 BUILD_TARGET=./monolithic/repository/order
+  - COVERAGE=0.0 BUILD_TARGET=./monolithic/repository/cart
+  - COVERAGE=0.124 BUILD_TARGET=./monolithic/repository/product
+  - COVERAGE=0.318 BUILD_TARGET=./monolithic/repository/user
+global:
+  - DOCKER_LOGIN=cen24
+  - secure: fbofAdyWPEKrV8ez2jyLfuQFe3WxAF968nDJ3E7fs8Jqp7N92jaubGBg0WrPsXPW4+oHcvXb5X4c45vHTPTN97+N6/iU+3MHYnb7NYl0cixYn8//5ON9QZCON9y5XyA+BZCoOXq1ObYPtOcx+Ljn70LdTKM79pjmpq8SFp+k/B1Rfv7/NNGd6UAMbAbubN+hn+ltl57wzPF8qik4USJ2nhZDfaghSGRV9AbZTaTKCo7YRLovysfaaUYTllYAHi27Wvn2vq9xVPMxHiiGUV3qmS6eAKlRF+c4/iEz8hktx8Ltkonce0y1cJtFfN+v3uSrZckcB1LARx67y7jkDVt5pisVkBA2soHrqZYeOrbQIF3Xiob6qU9g9zXPFClgzRaWOZkBP1W15J48Mt+I5fuGhlPah5wf2UGftH3sNiH4Sx9c4IehNwmsG/ZRmKnlNJwIFghhLfDukXYMFP4Zmz4rb0kNfdm488b/YCinGJuHMzZbidzrkkqCrYPUzwZgjlA23CgthWAG5zEfhMKIn46RC2ZMBfUmVFSQcSlvrKog94d2rI4CIf4iBsr0+Y7UxwXRbQdY9tWyBPShxNkM3SqLAEMXP7EXel9gE8GkhFy7w8TTLAoNerwd35C2GxeCXX1mm4EbnwotmvWq9NZtGnWwF3h5MYGl8kutC7hZOYq+PxU=
 
+install:
+- "./gradlew clean jar"
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+- "./gradlew -p $BUILD_TARGET check"
+after_success:
+- "./gradlew jacocoTestReport"
+- find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+deploy:
+  provider: script
+  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
+    --password-stdin ;"
+  on:
+    all_branches: true
+
