@@ -2,6 +2,6 @@ language: python
 jdk: oraclejdk8
 
 script:
-- ./gradlew clean jar
+- gradlew clean jar
 
 echo 'testing coming soon'
