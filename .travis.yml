@@ -20,4 +20,3 @@ cache:
           install: skip
           script:
             - echo 'testing coming soon'
-    
