@@ -11,3 +11,13 @@ cache:
   directories:
     - $HOME/.gradle/caches/modules-2/
     - $HOME/.gradle/wrapper/dists/
+    stages:
+      - test
+    jobs:
+      include:
+        - stage: test
+          name: test-not-ready
+          install: skip
+          script:
+            - echo 'testing coming soon'
+    
