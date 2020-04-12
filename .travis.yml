@@ -3,8 +3,6 @@ jdk: oraclejdk8
 
 script:
   - ./gradlew clean jar
-  - ./gradlew test
-
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 
@@ -17,8 +15,8 @@ cache:
     jobs:
       include:
         - stage: test
-          name: test-not-ready
+          name: unit-test
           install: skip
           script:
-            - echo 'testing coming soon'
+            - ./gradlew test
     
