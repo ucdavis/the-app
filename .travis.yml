@@ -16,7 +16,6 @@ cache:
       include:
         - stage: test
           name: unit-test
-          install: skip
           script:
             - ./gradlew test
-    
+  
