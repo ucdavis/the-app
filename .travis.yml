@@ -16,4 +16,4 @@ include:
 name: test-not-ready
 install: skip
 script:
-- echo 'testing coming soon’
+- echo 'testing coming soon.’
