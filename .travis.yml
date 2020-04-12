@@ -5,11 +5,12 @@ script:
   - ./gradlew clean jar
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
     - $HOME/.gradle/caches/modules-2/
     - $HOME/.gradle/wrapper/dists/
+
     stages:
       - test
     jobs:
@@ -19,4 +20,13 @@ cache:
           install: skip
           script:
             - ./gradlew test
+        - stage: test
+          name: coverage-test
+          install: skip
+          script:
+             - ./gradlew build
+          after_success:
+              - ./gradlew jacocoTestReport
+              - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+
     
