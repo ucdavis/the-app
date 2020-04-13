@@ -36,3 +36,4 @@ cache:
             - docker pull cen24/monolithic
             - docker tag zutherb/monolithic-shop:latest ${DOCKER_LOGIN}/monolithic:latest	docker tag cen24/monolithic:latest ${DOCKER_LOGIN}/monolithic:latest
             - docker push ${DOCKER_LOGIN}/monolithic:latest	docker push ${DOCKER_LOGIN}/monolithic:latest
+            - chmod +x ./script/deploy.sh
