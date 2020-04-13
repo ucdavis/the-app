@@ -1,10 +1,39 @@
-language: python
-install: "pip install -r requirements.txt"
+language: java
+jdk: oraclejdk8
+env:
+  - COVERAGE=0.0 BUILD_TARGET=./monolithic/service/ui
+  - COVERAGE=0.397 TEST_TARGET=./monolithic/repository/cart
+  - COVERAGE=0.124 TEST_TARGET=./monolithic/repository/user
+  - COVERAGE=0.148 TEST_TARGET=./monolithic/service/order
+  - COVERAGE=0.148 TEST_TARGET=./monolithic/service/cart
+  - COVERAGE=0.148 TEST_TARGET=./monolithic/service/product
+  - COVERAGE=0.148 TEST_TARGET=./monolithic/service/user
+
+  - COVERAGE=0.35 ./gradlew test jacocoTestCoverageVerification
 
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+  - ./gradlew clean jar
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/modules-2/
+    - $HOME/.gradle/wrapper/dists/
+
+    stages:
+      - test
+    jobs:
+      include:
+        - stage: test
+          name: unit-test
+          install: skip
+          script:
+            - ./gradlew $TEST_TARGET check
+        -stage: deploy
+          script:
+            set -e
+            - docker pull cen24/monolithic
+            - docker tag zutherb/monolithic-shop:latest ${DOCKER_LOGIN}/monolithic:latest	docker tag cen24/monolithic:latest ${DOCKER_LOGIN}/monolithic:latest
+            - docker push ${DOCKER_LOGIN}/monolithic:latest	docker push ${DOCKER_LOGIN}/monolithic:latest
+            - chmod +x ./script/deploy.sh
