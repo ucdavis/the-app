@@ -32,7 +32,7 @@ cache:
             - ./gradlew $TEST_TARGET check
         -stage: deploy
           script:
-            -  bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
-            --password-stdin ;"	    --password-stdin ;"
-          on:
-            all_branches: true
+            set -e
+            - docker pull cen24/monolithic
+            - docker tag zutherb/monolithic-shop:latest ${DOCKER_LOGIN}/monolithic:latest	docker tag cen24/monolithic:latest ${DOCKER_LOGIN}/monolithic:latest
+            - docker push ${DOCKER_LOGIN}/monolithic:latest	docker push ${DOCKER_LOGIN}/monolithic:latest
