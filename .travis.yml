@@ -9,8 +9,9 @@ stages:
 - test
 - deploy
 
+install: ./gradlew clean jar
+
 jobs:
   include:
     - stage: test
-	  install: ./gradlew clean jar
 	  script: echo 'test'
