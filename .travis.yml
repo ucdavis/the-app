@@ -15,9 +15,9 @@ stages:
 jobs:
   include:
     - stage: test
-	  script: ./gradlew -p
+	  script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
 	- stage: test
-	  script: ./gradlew -p
+	  script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/cart check
 	   # name:"coverage = 0.5"
 		#install: skip
 #		env:
