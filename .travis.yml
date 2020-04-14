@@ -14,7 +14,8 @@ stages:
 jobs:
   include:
     - stage: test
-	    script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
+	    name:"coverage = 0.5"
+#	    script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
 #	    env:
 #	    - COVERAGE=0.5
 
