@@ -7,7 +7,7 @@ env:
 
 jobs:
   include:
-    - stage: test
+    - stage: build
 	  env: COVERAGE=0.5
 	  install: 
 	  - ./gradlew clean jar
