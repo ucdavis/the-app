@@ -7,13 +7,9 @@ stages:
 - test
 - deploy
 
-env:
-- COVERAGE=0.35
-- COVERAGE=0.5
-
 jobs:
   include:
     - stage: test
-	  script: echo 'test'
+	  script: ./gradlew test
 	- stage: deploy
-	  script: echo 'test'
+	  script: echo 'deploy'
