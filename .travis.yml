@@ -14,11 +14,9 @@ stages:
 jobs:
   include:
     - stage: test
-	    script: 
-		- ./gradlew -p 
-		- ./monolithic/ui check
-	    env:
-	    - COVERAGE=0.5
+	    script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
+#	    env:
+#	    - COVERAGE=0.5
 
 after_success:
 #- find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
