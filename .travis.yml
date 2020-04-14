@@ -1,15 +1,23 @@
 language: java
 jdk: oraclejdk9
 
-install: 
-- ./gradlew clean jar
+env:
+- COVERAGE=0.35
+- COVERAGE=0.5
 
-stages:
-- test
-- npm-targets
+install:
+- ./gradlew clean jar
 
 jobs:
   include:
-    - stage: npm-targets
-	  script: 
-	  - echo 'testing coming soon'
+    - stage: test
+	  script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
+
+after_success:
+- find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+
+deploy:
+  provider: script
+  script: echo 'WIP'
+  on:
+    all_branches: true
