@@ -5,11 +5,11 @@ env:
 - COVERAGE=0.35
 - COVERAGE=0.5
 
+install: ./gradlew clean jar
+
 stages:
 - test
 - deploy
-
-install: ./gradlew clean jar
 
 jobs:
   include:
