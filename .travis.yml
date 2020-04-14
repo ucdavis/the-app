@@ -11,6 +11,8 @@ install:
 jobs:
   include:
     - stage: test
-	  nev: COVERAGE=0.5
-	  install: ./gradlew clean jar
-	  script: ./gradlew test
+	  env: COVERAGE=0.5
+	  install: 
+	  - ./gradlew clean jar
+	  script: 
+	  - ./gradlew test
