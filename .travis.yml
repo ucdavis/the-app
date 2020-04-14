@@ -15,12 +15,13 @@ stages:
 jobs:
   include:
     - stage: test
-	    name:"coverage = 0.5"
-		install: skip
+	  script: ./gradlew -p
+	   # name:"coverage = 0.5"
+		#install: skip
 #		env:
 #	    - COVERAGE=0.5
-#	    script:
-#		- ./gradlew -p ./monolithic/ui check
+
+	  # ./monolithic/ui check
 
 
 #after_success:
