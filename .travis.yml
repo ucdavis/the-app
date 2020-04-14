@@ -1,17 +1,19 @@
 language: java
 jdk: oraclejdk9
 
-env:
-- COVERAGE=0.35
-- COVERAGE=0.5
-
 install: ./gradlew clean jar
 
 stages:
 - test
 - deploy
 
+env:
+- COVERAGE=0.35
+- COVERAGE=0.5
+
 jobs:
   include:
     - stage: test
+	  script: echo 'test'
+	- stage: deploy
 	  script: echo 'test'
