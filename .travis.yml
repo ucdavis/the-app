@@ -8,6 +8,9 @@ env:
 install:
 - ./gradlew clean jar
 
+stages:
+- test
+
 jobs:
   include:
     - stage: test
