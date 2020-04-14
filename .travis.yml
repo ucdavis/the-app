@@ -1,9 +1,9 @@
 language: java
 jdk: oraclejdk9
 
-env:
-- COVERAGE=0.35
-- COVERAGE=0.5
+#env:
+#- COVERAGE=0.35
+#- COVERAGE=0.5
 
 install:
 - ./gradlew clean jar
@@ -11,15 +11,15 @@ install:
 #stages:
 #- test
 
-jobs:
-  include:
-    - stage: test
-	    name:"coverage = 0.5"
-		install: skip
-		env:
-	    - COVERAGE=0.5
-	    script:
-		- ./gradlew -p ./monolithic/ui check
+#jobs:
+#  include:
+#    - stage: test
+#	    name:"coverage = 0.5"
+#		install: skip
+#		env:
+#	    - COVERAGE=0.5
+#	    script:
+#		- ./gradlew -p ./monolithic/ui check
 
 
 #after_success:
