@@ -15,9 +15,15 @@ stages:
 jobs:
   include:
     - stage: test
-	  script: ./gradlew test
+	  name:"Test1"
+	  install: skip
+	  script: 
+	  - ./gradlew test
     - stage: test
-	  script: ./gradlew test
+	  name:"Test2"
+	  install: skip
+	  script: 
+	  - ./gradlew test
 #	  script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
 #	- stage: test
 #	  script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/cart check
