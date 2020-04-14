@@ -1,14 +1,9 @@
 language: java
 jdk: oraclejdk9
 
-env:
-- COVERAGE=0.35
-- COVERAGE=0.5
-
 jobs:
   include:
     - stage: build
-	  env: COVERAGE=0.5
 	  install: 
 	  - ./gradlew clean jar
 	  script: 
