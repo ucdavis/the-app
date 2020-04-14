@@ -11,7 +11,8 @@ install:
 jobs:
   include:
     - stage: check
-	  script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui
+	  env: COVERAGE=0.5
+	  script: ./gradlew -p ./monolithic/ui
 
 after_success:
 - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
