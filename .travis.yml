@@ -10,6 +10,7 @@ install:
 
 stages:
 - test
+- deploy
 
 #jobs:
 #  include:
