@@ -1,25 +1,26 @@
 language: java
 jdk: oraclejdk9
 
-#env:
-#- COVERAGE=0.35
-#- COVERAGE=0.5
+env:
+- COVERAGE=0.35
+- COVERAGE=0.5
 
 install:
 - ./gradlew clean jar
 
-#stages:
-#- test
+stages:
+- test
 
-#jobs:
-#  include:
-#    - stage: test
-#	    name:"coverage = 0.5"
-#		install: skip
-	    #script:
-		#- COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
-#	    env:
-#	    - COVERAGE=0.5
+jobs:
+  include:
+    - stage: test
+	    name:"coverage = 0.5"
+		install: skip
+		env:
+	    - COVERAGE=0.5
+	    script:
+		- ./gradlew -p ./monolithic/ui check
+
 
 #after_success:
 #- find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
