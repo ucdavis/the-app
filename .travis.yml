@@ -4,12 +4,10 @@ jdk: oraclejdk9
 install: ./gradlew clean jar
 
 stages:
-- test
 - deploy
+- test
 
 jobs:
   include:
     - stage: test
 	  script: ./gradlew test
-	- stage: deploy
-	  script: echo 'deploy'
