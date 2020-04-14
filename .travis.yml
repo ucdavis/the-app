@@ -17,4 +17,4 @@ jobs:
 	  script:
 	  - ./gradlew -p ./monolithic/ui check
 	  env:
-	  - COVERAGE=0.5
+	  - COVERAGE=0.35
