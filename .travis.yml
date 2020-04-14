@@ -13,7 +13,7 @@ stages:
 - deploy
 
 jobs:
-  include:
+#  include:
 #    - stage: test
 #		name:"Test1"
 #	  install: skip
