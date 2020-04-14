@@ -11,11 +11,11 @@ install:
 stages:
 - test
 
-jobs:
-  include:
-    - stage: test
-	    name:"coverage = 0.5"
-		install: skip
+#jobs:
+#  include:
+#    - stage: test
+#	    name:"coverage = 0.5"
+#		install: skip
 	    #script:
 		#- COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
 #	    env:
