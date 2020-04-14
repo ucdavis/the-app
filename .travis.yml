@@ -5,9 +5,6 @@ env:
 - COVERAGE=0.35
 - COVERAGE=0.5
 
-install:
-- ./gradlew clean jar
-
 stages:
 - test
 - deploy
@@ -16,7 +13,7 @@ jobs:
   include:
     - stage: test
 	  name:"test"
-	  install: skip
+	  install: ./gradlew clean jar
 	  script:
 	  - ./gradlew -p ./monolithic/ui check
 	  env:
