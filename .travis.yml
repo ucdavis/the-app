@@ -3,6 +3,7 @@ jdk: oraclejdk9
 
 env:
 - COVERAGE=0.5 BUILD_TARGET=./monolithic/ui
+- COVERAGE=0.5 BUILD_TARGET=./monolithic/service/cart
 
 install:
 - ./gradlew clean jar
