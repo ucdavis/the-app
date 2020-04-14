@@ -8,8 +8,8 @@ jdk: oraclejdk9
 install:
 - ./gradlew clean jar
 
-stages:
-- test
+#stages:
+#- test
 
 #jobs:
 #  include:
