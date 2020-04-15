@@ -1,5 +1,8 @@
 language: java
-jdk: oraclejdk9
+jdk: 
+- oraclejdk9
+- oraclejdk11
+
 
 env:
 - COVERAGE=0.5 BUILD_TARGET=./monolithic/ui
