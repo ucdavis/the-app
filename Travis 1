@@ -1,0 +1,27 @@
+Worker information
+0.21s0.01s0.00s0.01s
+system_info
+Build system information
+0.03s0.01s0.35s1.63s1.11s0.01s0.05s0.00s0.01s0.01s0.01s0.01s0.01s0.00s0.00s0.03s0.00s0.01s0.34s0.00s0.00s0.00s0.01s0.00s0.06s0.01s1.09s0.00s0.00s0.07s0.00s5.17s0.00s1.21s
+docker_mtu
+docker stop/waiting
+resolvconf
+resolvconf stop/waiting
+install_jdk
+Installing oraclejdk8
+0.00s
+git.checkout
+1.65s$ git clone --depth=50 https://github.com/praveen89j/WEB1066-the-app.git praveen89j/WEB1066-the-app
+0.01s$ export TERM=dumb
+$ java -Xmx32m -version
+java version "1.8.0_151"
+Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)
+$ javac -J-Xmx32m -version
+javac 1.8.0_151
+install
+65.03s$ ./gradlew clean jar
+0.00s$ echo 'testing comming soon'
+testing comming soon
+The command "echo 'testing comming soon'" exited with 0.
+Done. Your build exited with 0.
