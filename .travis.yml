@@ -36,4 +36,4 @@ deploy:
   provider: script
   script: ./script/deploy.sh
   on:
-    all_branches:true
+    all_branches: true
