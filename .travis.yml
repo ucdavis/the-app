@@ -6,17 +6,19 @@ services:
 - docker
 
 env:
-- COVERAGE=0.5 BUILD_TARGET=./monolithic/ui
-- COVERAGE=0.5 BUILD_TARGET=./monolithic/service/cart
-- COVERAGE=0.5 BUILD_TARGET=./monolithic/service/user
+  global:
+  - DOCKER_LOGIN=paulschellenberger
+  - DOCKER_PASSWORD=e7e7b0f6-f166-4656-8e6d-842585da0a6f
 
-- COVERAGE=0.24 BUILD_TARGET=./monolithic/repository/order
-- COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/cart
-- COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/product
-- COVERAGE=0.24 BUILD_TARGET=./monolithic/repository/user
+  matrix:
+  - COVERAGE=0.5 BUILD_TARGET=./monolithic/ui
+  - COVERAGE=0.5 BUILD_TARGET=./monolithic/service/cart
+  - COVERAGE=0.5 BUILD_TARGET=./monolithic/service/user
 
-- DOCKER_LOGIN=paulschellenberger
-- DOCKER_PASSWORD=e7e7b0f6-f166-4656-8e6d-842585da0a6f
+  - COVERAGE=0.24 BUILD_TARGET=./monolithic/repository/order
+  - COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/cart
+  - COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/product
+  - COVERAGE=0.24 BUILD_TARGET=./monolithic/repository/user
 
 install:
 - ./gradlew clean jar
