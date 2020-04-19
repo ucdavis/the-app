@@ -7,7 +7,7 @@ env:
 services:
     - docker
 before_script:
-    - travis encrypt DOCKER_PASSWORD=password --add env.global --com
+    - travis encrypt DOCKER_PASSWORD=password --add env.global --com 
 stages:
     - build
     - test
