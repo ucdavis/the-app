@@ -1,6 +1,13 @@
 dist: trusty
 language: java
 jdk: oraclejdk8
+env:
+    global:
+      - secure: RA8kLNJtvTjQtRnwL-4KQg
+services:
+    - docker
+before_script:
+    - travis encrypt DOCKER_PASSWORD=password --add env.global --com
 stages:
     - build
     - test
@@ -21,7 +28,8 @@ jobs:
             - ./gradlew jacocoTestCoverageVerification
       - stage: deploy
         provider: script
-        script: echo 'WIP'
+        script:  bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
+        --password-stdin ;"
         on:
             all_branches: true
 
