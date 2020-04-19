@@ -4,14 +4,8 @@ jdk: oraclejdk8
 sudo: required	
 services:
     - docker
-env:
-    global:
-        - secure: RA8kLNJtvTjQtRnwL-4KQg
-before_install:
-    - sudo apt-get update
-    - sudo apt-get -y install libxml2-dev
-before_script:
-    - travis encrypt DOCKER_PASSWORD=password --add env.global -—com
+    before_install:
+        -docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" 
 stages:
     - build
     - test
