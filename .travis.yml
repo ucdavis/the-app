@@ -9,14 +9,23 @@ env:
     - COVERAGE=0.057 ./gradlew -p ./monolithic/cart check
     - COVERAGE=0.057 ./gradlew -p ./monolithic/product check
     - COVERAGE=0.057 ./gradlew -p ./monolithic/user check
-
-script:
-    - ./gradlew clean jar 
-after_success:
-    - $COVERAGE 
-deploy:
-    provider: script
-    script: echo 'WIP'
-    on:
-       all_branches: true
+stages:
+    - build
+    - test
+    - deploy
+jobs:
+    include:
+      - stage: build
+        name : build
+        script:
+            - ./gradlew clean jar 
+      - stage: test
+        name: tast
+        script:
+            - $COVERAGE 
+      - deploy:
+        provider: script
+        script: echo 'WIP'
+        on:
+            all_branches: true
 
