@@ -5,7 +5,7 @@ jdk: oraclejdk8
 before_install:
     - pwd
     - ls -la
-    - chmod +x /.gradlew
+    - chmod +x ./gradlew
 
 script:
     - ./.gradlew clean jar 
