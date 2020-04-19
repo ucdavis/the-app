@@ -11,6 +11,7 @@ after_success:
     - ./gradlew jacocoTestCoverageVerification
 deploy:
     provider: script
-    script: bash scripts/deploy.sh
+    script: echo 'WIP'
     on:
-      branch: develop
+       all_branches: true
+
