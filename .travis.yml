@@ -27,7 +27,7 @@ jobs:
       - stage: deploy
         provider: script
         script: 
-            - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            - echo "$DOCKER_LOGIN" | docker login -u "$DOCKER_USERNAME" --password-stdin
         on:
             all_branches: true
 
