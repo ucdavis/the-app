@@ -7,6 +7,8 @@ services:
 env:
     global:
         - secure: RA8kLNJtvTjQtRnwL-4KQg
+before_script:
+    - travis encrypt DOCKER_PASSWORD=password --add env.global —com
 stages:
     - build
     - test
@@ -27,8 +29,7 @@ jobs:
             - ./gradlew jacocoTestCoverageVerification
       - stage: deploy
         provider: script
-        script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
-        --password-stdin ;"
+        script: echo 'WIP'
         on:
             all_branches: true
 
