@@ -13,7 +13,7 @@ env:
 before_script:
     - ./gradlew clean jar 
 script:
-    - $COVERAGE 
+    - COVERAGE 
 deploy:
     provider: script
     script: echo 'WIP'
