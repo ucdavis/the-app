@@ -23,7 +23,7 @@ jobs:
         name: tast
         script:
             - $COVERAGE 
-      - deploy:
+      - stage: deploy
         provider: script
         script: echo 'WIP'
         on:
