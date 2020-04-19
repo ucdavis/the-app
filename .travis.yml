@@ -4,9 +4,3 @@ jdk: oraclejdk8
 script:
     - ./gradlew clean jar 
     - echo 'testing coming soon '
-before_cache:
-    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-cache:
-    directories:
-       - $HOME/.gradle/caches/modules-2/
-       - $HOME/.gradle/wrapper/dists/
