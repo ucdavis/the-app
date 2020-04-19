@@ -21,8 +21,7 @@ jobs:
             - ./gradlew jacocoTestCoverageVerification
       - stage: deploy
         provider: script
-        script:  bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
-        --password-stdin ;"
+        script: echo 'wip'
         on:
             all_branches: true
 
