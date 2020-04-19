@@ -7,8 +7,11 @@ services:
 env:
     global:
         - secure: RA8kLNJtvTjQtRnwL-4KQg
+before_install:
+    - sudo apt-get update
+    - sudo apt-get -y install libxml2-dev
 before_script:
-    - travis encrypt DOCKER_PASSWORD=password --add env.global —com
+    - travis encrypt DOCKER_PASSWORD=password --add env.global -—com
 stages:
     - build
     - test
