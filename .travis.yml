@@ -1,14 +1,6 @@
 dist: trusty
 language: java
 jdk: oraclejdk8
-env:
-    - COVERAGE=0.057 ./gradlew -p ./monolithic/ui check
-    - COVERAGE=0.057 ./gradlew -p ./monolithic/cart check
-    - COVERAGE=0.057 ./gradlew -p ./monolithic/user check
-    - COVERAGE=0.057 ./gradlew -p ./monolithic/order check
-    - COVERAGE=0.057 ./gradlew -p ./monolithic/cart check
-    - COVERAGE=0.057 ./gradlew -p ./monolithic/product check
-    - COVERAGE=0.057 ./gradlew -p ./monolithic/user check
 stages:
     - build
     - test
@@ -22,7 +14,11 @@ jobs:
       - stage: test
         name: test
         script:
-            - test: $COVERAGE 
+            - ./gradlew test
+        after_success:
+            - ./gradlew jacocoTestReport	    
+            - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'	    
+            - ./gradlew jacocoTestCoverageVerification
       - stage: deploy
         provider: script
         script: echo 'WIP'
