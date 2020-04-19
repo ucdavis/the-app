@@ -3,11 +3,6 @@ language: java
 jdk: oraclejdk8
 services:
     - docker
-env:
-    global:
-      - secure: RA8kLNJtvTjQtRnwL-4KQg
-before_script:
-    - travis encrypt DOCKER_PASSWORD=password --add env.global --com 
 stages:
     - build
     - test
