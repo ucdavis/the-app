@@ -10,10 +10,10 @@ env:
     - COVERAGE=0.057 ./gradlew -p ./monolithic/product check
     - COVERAGE=0.057 ./gradlew -p ./monolithic/user check
 
-before_script:
-    - ./gradlew clean jar 
 script:
-    - COVERAGE 
+    - ./gradlew clean jar 
+after_success:
+    - $COVERAGE 
 deploy:
     provider: script
     script: echo 'WIP'
