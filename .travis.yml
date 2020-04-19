@@ -20,11 +20,9 @@ jobs:
         script:
             - ./gradlew clean jar 
       - stage: test
-        name: tast
+        name: test
         script:
-            - echo 'testing'
-        after_success:
-            - $COVERAGE 
+            - test: $COVERAGE 
       - stage: deploy
         provider: script
         script: echo 'WIP'
