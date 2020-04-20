@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\script"
   ],
-  "SelectedNode": "\\gradlew.bat",
+  "SelectedNode": "\\.travis.yml",
   "PreviewInSolutionExplorer": false
 }
