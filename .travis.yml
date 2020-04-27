@@ -9,6 +9,7 @@ services:
 before_install:
   - docker pull seo80/seo80-docker-repo:latest
 
+
 install: skip
 script:
   - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar
