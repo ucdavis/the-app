@@ -12,5 +12,4 @@ before_install:
 
 install: skip
 script:
-  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar
-  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew test
+  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar && ./gradlew test
