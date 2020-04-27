@@ -11,10 +11,5 @@ before_install:
 
 install: skip
 script:
-  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar
-
-after_success:
-  - set -x -v;
-    set -e;
-    echo "Testing coming soon";
-    set +x +v;
+  - docker run --rm microservices-finaltest ./gradlew clean jar
+  - docker run --rm microservices-finaltest ./gradlew test
