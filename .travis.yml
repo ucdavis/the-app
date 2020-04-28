@@ -12,7 +12,4 @@ before_install:
 
 install: skip
 script:
-  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar
-
-after_success:
-  - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "./gradlew test && ./gradlew jacocoTestReport && find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print \$3\" \"\$4\" \"\$5}'"
+  - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "./gradlew clean jar && ./gradlew test && ./gradlew jacocoTestReport && find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print \$3\" \"\$4\" \"\$5}'"
