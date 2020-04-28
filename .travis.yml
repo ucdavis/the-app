@@ -10,5 +10,5 @@ env:
   #-JDK_USED=openjdk9
 
 script:
-  - docker build -t seo80/seo80-docker-repo:jdk$JDK_USED --build-arg JDK_VERSION="openjdk:$JDK_USED"
+  - docker build -t seo80/seo80-docker-repo:jdk$JDK_USED --build-arg JDK_VERSION="openjdk:$JDK_USED" .
   - docker images
