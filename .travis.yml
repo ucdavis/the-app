@@ -25,7 +25,7 @@ before_install:
 
 script:
   - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar
-  - docker run --rm seo80/seo80-docker-repo:latest COVERAGE=$COVERAGE_VALUE ./gradlew -p $GRADLE_CHECK
+  - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "COVERAGE=$COVERAGE_VALUE ./gradlew -p $GRADLE_CHECK"
 
 deploy:
   provider: script
