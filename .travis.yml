@@ -16,7 +16,7 @@ before_install:
 install: skip
 
 before_script:
-  docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "./gradlew clean jar"
+  - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "./gradlew clean jar"
 
 script:
   - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c $GRADLE_TARGET
