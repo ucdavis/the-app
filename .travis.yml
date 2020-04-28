@@ -8,16 +8,16 @@ services:
 
 env:
   global:
-  - COVERAGE_VALUE=0.24
+  - COVERAGE_VALUE=0.5
 
   matrix:
   - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/ui check"
   - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/cart check"
   - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/user check"
-  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/order check"
+  - GRADLE_CHECK="COVERAGE=0.24 ./gradlew -p ./monolithic/repository/order check"
   - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/cart check"
   - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/product check"
-  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/user check"
+  - GRADLE_CHECK="COVERAGE=0.24 ./gradlew -p ./monolithic/repository/user check"
 
 
 before_install:
