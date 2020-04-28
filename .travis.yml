@@ -1,5 +1,4 @@
 language: java
-jdk: openjdk8
 dist: trusty
 
 sudo: require
@@ -7,26 +6,9 @@ services:
   - docker
 
 env:
-  global:
-  - COVERAGE_VALUE=0.5
-
-  matrix:
-  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/ui check"
-  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/cart check"
-  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/user check"
-  - GRADLE_CHECK="COVERAGE=0.24 ./gradlew -p ./monolithic/repository/order check"
-  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/cart check"
-  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/product check"
-  - GRADLE_CHECK="COVERAGE=0.24 ./gradlew -p ./monolithic/repository/user check"
-
-
-before_install:
-  - docker pull seo80/seo80-docker-repo:latest
+  - JDK_USED=9
+  #-JDK_USED=openjdk9
 
 script:
-  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar
-  - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "$GRADLE_CHECK"
-
-deploy:
-  provider: script
-  script: bash echo 'WIP'
+  - docker build -t seo80/seo80-docker-repo:jdk$JDK_USED --build-arg JDK_VERSION="openjdk:$JDK_USED"
+  - docker images

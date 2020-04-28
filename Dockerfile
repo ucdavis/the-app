@@ -1,4 +1,5 @@
-FROM openjdk:8
+ARG JDK_VERSION=openjdk:8
+FROM $JDK_VERSION
 
 ARG user=appuser
 ARG group=appuser
