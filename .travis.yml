@@ -6,20 +6,25 @@ sudo: require
 services:
   - docker
 
-env:
-  - GRADLE_TARGET="./gradlew test && ./gradlew jacocoTestReport && find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print \$3\" \"\$4\" \"\$5}'"
-  - GRADLE_TARGET="./gradlew test jacocoTestCoverageVerification"
-
 before_install:
   - docker pull seo80/seo80-docker-repo:latest
 
 install: skip
 
-script:
-  - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c $GRADLE_TARGET
-
-deploy:
-  - set -x -v;
-    set -e;
-    echo "WIP"
-    set +x +v;
+jobs:
+  include:
+    - stage: "Tests"
+      name: "First tests"
+      install: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "./gradlew test && ./gradlew jacocoTestReport && find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print \$3\" \"\$4\" \"\$5}'"
+  - stage: "Coverage"
+    name: "Coverage tests"
+    install: skip
+    script:
+      - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "./gradlew test jacocoTestCoverageVerification"
+    deploy:
+      - set -x -v;
+        set -e;
+        echo "WIP"
+        set +x +v;
