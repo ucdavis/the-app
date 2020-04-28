@@ -15,4 +15,4 @@ script:
 
 deploy:
   provider: script
-  script: deploy.sh
+  script: bash echo 'WIP'
