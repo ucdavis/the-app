@@ -7,7 +7,10 @@ services:
   - docker
 
 env:
+  global:
   - COVERAGE_VALUE=0.5
+
+  matrix:
   - GRADLE_CHECK="./monolithic/ui check"
   - GRADLE_CHECK="./monolithic/service/cart check"
   - GRADLE_CHECK="./monolithic/service/user check"
