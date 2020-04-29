@@ -7,7 +7,7 @@ services:
 
 env:
   - JDK_USED=9
-  #- JDK_USED=8
+  - JDK_USED=8
 
 before_install:
   - docker build -t seo80/seo80-docker-repo:jdk$JDK_USED --build-arg JDK_VERSION="openjdk:$JDK_USED" .
@@ -35,6 +35,24 @@ jobs:
         - COVERAGE_VALUE=0.5
         - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/ui check"
     - stage: coverage
+      name: "Coverage service-cart-check JAVA 9"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=9
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/cart check"
+    - stage: coverage
+      name: "Coverage service-user-check JAVA 9"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=9
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/user check"
+    - stage: coverage
       name: "Coverage order-check JAVA 9"
       intall: skip
       script:
@@ -43,6 +61,105 @@ jobs:
         - JDK_USED=9
         - COVERAGE_VALUE=0.24
         - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/order check"
+    - stage: coverage
+      name: "Coverage repository-cart-check JAVA 9"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=9
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/cart check"
+    - stage: coverage
+      name: "Coverage product-check JAVA 9"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=9
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/product check"
+    - stage: coverage
+      name: "Coverage repositort-user-check JAVA 9"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=9
+        - COVERAGE_VALUE=0.24
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/user check"
+
+
+    - stage: build-jar
+      name: "Build Jar"
+      install: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED ./gradlew clean jar
+      env:
+        - JDK_USED=8
+    - stage: coverage
+      name: "Coverage ui-check JAVA 8"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=8
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/ui check"
+    - stage: coverage
+      name: "Coverage service-cart-check JAVA 8"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=8
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/cart check"
+    - stage: coverage
+      name: "Coverage service-user-check JAVA 8"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=8
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/user check"
+    - stage: coverage
+      name: "Coverage order-check JAVA 8"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=8
+        - COVERAGE_VALUE=0.24
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/order check"
+    - stage: coverage
+      name: "Coverage repository-cart-check JAVA 8"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=8
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/cart check"
+    - stage: coverage
+      name: "Coverage product-check JAVA 8"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=8
+        - COVERAGE_VALUE=0.5
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/product check"
+    - stage: coverage
+      name: "Coverage repositort-user-check JAVA 8"
+      intall: skip
+      script:
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+      env:
+        - JDK_USED=8
+        - COVERAGE_VALUE=0.24
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/user check"
 
   deploy:
   provider: script
