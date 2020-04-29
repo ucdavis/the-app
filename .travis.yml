@@ -9,19 +9,24 @@ env:
   - JDK_USED=9
   #- JDK_USED=8
 
-script:
-
 stages:
+  - build-image
   - build-jar
   - coverage-test
 
 jobs:
   include:
-    - stage: build-jar
+    - stage: build-image
       name: "Build Jar JAVA 9"
       install: skip
       script:
         - docker build -t seo80/seo80-docker-repo:jdk$JDK_USED --build-arg JDK_VERSION="openjdk:$JDK_USED" .
+      env:
+        - JDK_USED=9
+    - stage: build-jar
+      name: "Build Jar JAVA 9"
+      install: skip
+      script:
         - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED ./gradlew clean jar
       env:
         - JDK_USED=9
@@ -29,7 +34,7 @@ jobs:
       name: "Coverage ui-check JAVA 9"
       intall: skip
       script:
-        - docker images
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
       env:
         - JDK_USED=9
         - COVERAGE_VALUE=0.5
@@ -38,7 +43,7 @@ jobs:
       name: "Coverage order-check JAVA 9"
       intall: skip
       script:
-        - docker images
+        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
       env:
         - JDK_USED=9
         - COVERAGE_VALUE=0.24
