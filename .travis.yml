@@ -6,8 +6,6 @@ services:
   - docker
 
 env:
-  global:
-  - COVERAGE_VALUE=0.5
   - JDK_USED=9
   #- JDK_USED=8
 
@@ -34,6 +32,7 @@ jobs:
         - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
       env:
         - JDK_USED=9
+        - COVERAGE_VALUE=0.5
         - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/ui check"
     - stage: coverage-test
       name: "Coverage order-check JAVA 9"
@@ -42,7 +41,8 @@ jobs:
         - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
       env:
         - JDK_USED=9
-        - GRADLE_CHECK="COVERAGE=0.24 ./gradlew -p ./monolithic/repository/order check"
+        - COVERAGE_VALUE=0.24
+        - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/order check"
 
   deploy:
   provider: script
