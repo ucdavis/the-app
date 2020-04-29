@@ -7,7 +7,7 @@ services:
 
 env:
   - JDK_USED=9
-  - JDK_USED=8
+#  - JDK_USED=8
 
 before_install:
   - docker build -t seo80/seo80-docker-repo:jdk$JDK_USED --build-arg JDK_VERSION="openjdk:$JDK_USED" .
