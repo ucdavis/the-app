@@ -29,7 +29,7 @@ jobs:
       name: "Coverage ui-check JAVA 9"
       intall: skip
       script:
-        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+        - docker images #docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
       env:
         - JDK_USED=9
         - COVERAGE_VALUE=0.5
@@ -38,7 +38,7 @@ jobs:
       name: "Coverage order-check JAVA 9"
       intall: skip
       script:
-        - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
+        - docker images #docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED /bin/bash -c "$GRADLE_CHECK"
       env:
         - JDK_USED=9
         - COVERAGE_VALUE=0.24
