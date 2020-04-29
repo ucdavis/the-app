@@ -6,10 +6,10 @@ services:
   - docker
 
 env:
-  - JDK_USED=9
   - JDK_USED=8
+  - JDK_USED=9
 
-before_install:
+script:
   - docker build -t seo80/seo80-docker-repo:jdk$JDK_USED --build-arg JDK_VERSION="openjdk:$JDK_USED" .
   - docker run --rm seo80/seo80-docker-repo:jdk$JDK_USED ./gradlew clean jar
 
