@@ -7,7 +7,7 @@ services:
 
 env:
   - JDK_USED=9
-#  - JDK_USED=8
+  - JDK_USED=8
 
 before_install:
   - docker build -t seo80/seo80-docker-repo:jdk$JDK_USED --build-arg JDK_VERSION="openjdk:$JDK_USED" .
@@ -88,8 +88,6 @@ jobs:
         - JDK_USED=9
         - COVERAGE_VALUE=0.24
         - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/user check"
-
-
     - stage: build-jar
       name: "Build Jar"
       install: skip
