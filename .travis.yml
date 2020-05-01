@@ -1,5 +1,5 @@
 language: java
-jdk: oraclejdk8
+jdk: openJdk8
 
 script:
   - echo 'testing coming soon'
