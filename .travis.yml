@@ -9,5 +9,5 @@ before_install:
 
 script:
 - if ["$(COVERAGE)" = "0.5"]; then
-     ./gradlew test jacocoTestCoverageVerification
+     $COVERAGE./gradlew test jacocoTestCoverageVerification
   fi;
