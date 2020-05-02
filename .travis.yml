@@ -5,5 +5,6 @@ before_install:
   - ./gradlew assemble
 
 script:
-  - ./gradlew test jacocoTestCoverageVerification
-  - echo 'WIP'
+  #- ./gradlew test jacocoTestCoverageVerification
+  #- echo 'WIP'
+  - COVERAGE=0.35 ./gradlew test jacocoTestCoverageVerification
