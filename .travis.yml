@@ -2,16 +2,23 @@ language: java
 jdk: openjdk8
 env:
   - COVERAGE=0.31
+  - COVERAGE=0.24
+
+
 
 before_install:
   - ./gradlew clean jar
   - ./gradlew assemble
 
 script:
-  - ./gradlew -p ./monolithic/ui check
-  - ./gradlew -p ./monolithic/service/cart check
-  - ./gradlew -p ./monolithic/service/user check
-  - ./gradlew -p ./monolithic/repository/order check
-  - ./gradlew -p ./monolithic/repository/cart check
-  - ./gradlew -p ./monolithic/repository/product check
-  - ./gradlew -p ./monolithic/repository/user check
+  if [$COVERAGE="0.31")];then
+   ./gradlew -p ./monolithic/ui check;
+   ./gradlew -p ./monolithic/service/cart check;
+   ./gradlew -p ./monolithic/service/user check;
+  else
+  if [$COVERAGE="0.24")];then
+    ./gradlew -p ./monolithic/repository/order check
+    ./gradlew -p ./monolithic/repository/cart check
+    ./gradlew -p ./monolithic/repository/product check
+    ./gradlew -p ./monolithic/repository/user check
+  fi;
