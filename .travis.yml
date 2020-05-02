@@ -8,7 +8,5 @@ env:
 before_install:
   - ./gradlew assemble
 
-script:
-  - ./gradlew test jacocoTestCoverageVerification
-  - echo 'WIP'
-  - $COVERAGE ./gradlew test jacocoTestCoverageVerification 
+script:  
+  - $COVERAGE ./gradlew test jacocoTestCoverageVerification
