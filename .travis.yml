@@ -2,10 +2,10 @@ language: java
 jdk: openjdk8
 
 before_install:
-  - gradle assemble
+  - ./gradlew assemble
 
 install:
-  - gradle check
+  - ./gradlew check
 
 script:
-  - ./gradlew test  
+  - ./gradlew test
