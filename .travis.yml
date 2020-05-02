@@ -8,6 +8,6 @@ before_install:
   - ./gradlew assemble
 
 script:
-- if ["$(COVERAGE)" = 0.5]; then
+- if ["$(COVERAGE)" = "0.5"]; then
      ./gradlew test jacocoTestCoverageVerification
   fi;
