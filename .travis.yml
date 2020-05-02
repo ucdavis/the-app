@@ -17,8 +17,8 @@ script:
    ./gradlew -p ./monolithic/service/user check;
   else
   if ["$(COVERAGE)"= 0.24)];then
-    ./gradlew -p ./monolithic/repository/order check
-    ./gradlew -p ./monolithic/repository/cart check
-    ./gradlew -p ./monolithic/repository/product check
-    ./gradlew -p ./monolithic/repository/user check
+    ./gradlew -p ./monolithic/repository/order check;
+    ./gradlew -p ./monolithic/repository/cart check;
+    ./gradlew -p ./monolithic/repository/product check;
+    ./gradlew -p ./monolithic/repository/user check;
   fi;
