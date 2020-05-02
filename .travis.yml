@@ -2,11 +2,11 @@ language: java
 jdk: openjdk8
 
 env:
-  - COVERAGE=0.35
+  - COVERAGE=0.5
 
 
 before_install:
   - ./gradlew assemble
 
 script:
-  - ./gradlew test jacocoTestCoverageVerification $COVERAGE
+  - ./gradlew test jacocoTest$COVERAGEVerification 
