@@ -1,13 +1,10 @@
 language: java
 jdk: openjdk8
 env:
-  - COVERAGE=0.5
   - COVERAGE=0.4
 
 before_install:
   - ./gradlew assemble
 
 script:
-- if ["$(COVERAGE)" = "0.5"]; then
-     $COVERAGE./gradlew test jacocoTestCoverageVerification
-  fi;
+  -  $COVERAGE ./gradlew test jacocoTestCoverageVerification
