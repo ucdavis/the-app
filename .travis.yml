@@ -1,9 +1,10 @@
 language: java
 jdk: openjdk8
 env:
-  - COVERAGE=0.24
+  - COVERAGE=0.31
 
 before_install:
+  - ./gradlew clean jar
   - ./gradlew assemble
 
 script:
