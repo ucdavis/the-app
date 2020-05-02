@@ -5,5 +5,4 @@ before_install:
   - ./gradlew assemble
 
 script:
-  - ./gradlew check
   - ./gradlew test
