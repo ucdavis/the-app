@@ -8,4 +8,4 @@ env:
     secure: HWtSlOlqYSFxZYzfKzAcnrHTbhlhw9P1WNvWhHv+IffWMxkx12MCqukCJ26dl6k2SWveggYYs553OtdX8nTLHZHHiJWthYKlnDoZrx71dBpRHjSSDxiSpGuZ/UwefyHKSqCppYhDyGu9mIyXMd0NTTkj3V6wgTdtVcqLl9Erm3lpOQwhMLifZYJz3kAi5/J5nfyPqNuU2jOjdR/x36F3ks6kkZhT25URgVn6zM0rhzyh+UdR13US5ZjDj3b5/GV0PbCNhh4lJTIlQpfe0ZQDsLPE94g79huIet/7axUJaHE/7y+IbKsQicbBakaYq2xO/z85vOhL9v+82VrcB186/YnGWmcNqWLqAyx/uxBzscmh61Cokrglxrp84FM6c00wD6SRpNEhzT4JWDPsg1uKLo+fnZ5Xj17lJsnRB9Eh5yRSrbe02aYCUl7a+aAS1w+XJCa/PUGfC77CNCu2qNDIbR62A7BkvPpvf/XDNu+kE3Bquv2q7CGUtIIvneExU/06vegjs2A5t5iN3DHDwo/Uro2XsJ/+VeGSYtkFI8K/YA9oQxtTExmoXnPznZnykWkqFxVhwd+9q0xgdEgElFugvi5fCfA7IhbwYPyPb3LbJPJXa1ZyjbY7WovoxWG1FNHCjWFsYdFLJyw6otNFAwvMrX/yMzjregDECDp6kzddpNc=
 
 script:
-- bash -c "echo" \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --Borhen-1351990-stdin"
+- bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --Borhen-1351990-stdin"
