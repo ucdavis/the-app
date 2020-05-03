@@ -1,9 +1,5 @@
 language: java
 jdk: openjdk8
-env:
-  - COVERAGE=0.31
-  - COVERAGE=0.24
-
 stages:
   - Java8
   - Java9
@@ -26,7 +22,7 @@ jobs:
       -  ./gradlew -p ./monolithic/repository/product check;
       -  ./gradlew -p ./monolithic/repository/user check;
       env:
-        - jdk: openjdk8
+        - jdk=openjdk8
     - stage: Java9
       name: "Java9-test"
       install: skip
@@ -39,4 +35,4 @@ jobs:
         -  ./gradlew -p ./monolithic/repository/product check;
         -  ./gradlew -p ./monolithic/repository/user check;
         env:
-          - jdk: openjdk9
+          - jdk=openjdk9
