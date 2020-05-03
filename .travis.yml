@@ -1,6 +1,8 @@
 language: java
 jdk: openjdk8
 jdk: openjdk9
+env:
+    - COVERAGE=0.31
 stages:
   - Java8
   - Java9
