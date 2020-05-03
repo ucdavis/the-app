@@ -5,9 +5,6 @@ env:
   matrix:
     - COVERAGE=0.31
 
-script:
-- bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --Borhen-1351990-stdin"
-
 deploy:
   provider: hub.docker.com
   api_key:
