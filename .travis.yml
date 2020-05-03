@@ -1,32 +1,13 @@
-language: java
-jdk: openjdk8
+sudo: required
+services:
+  - docker
 env:
+  matrix:
     - COVERAGE=0.31
-stages:
-  - Java8
-  - Java9
 before_install:
-   - ./gradlew assemble
-jobs:
- include:
-    - stage: Java8
-      name: "Java8-test"
-      script:
-      - ./gradlew -p ./monolithic/ui check;
-      - ./gradlew -p ./monolithic/service/cart check;
-      - ./gradlew -p ./monolithic/service/user check;
-      - ./gradlew -p ./monolithic/repository/cart check;
-      - ./gradlew -p ./monolithic/repository/product check;
+- docker pull ascdc/jdk8
+- docker build -t borhen_image .
 
-      env:
-      - jdk=openjdk8
-    - stage: Java9
-      name: "Java9-test"
-      script:
-      - ./gradlew -p ./monolithic/ui check;
-      - ./gradlew -p ./monolithic/service/cart check;
-      - ./gradlew -p ./monolithic/service/user check;
-      - ./gradlew -p ./monolithic/repository/cart check;
-      - ./gradlew -p ./monolithic/repository/product check;
-      env:
-      - jdk=openjdk9
+script:
+- bash -c "echo" \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --Borhen-1351990-stdin"
+- docker run --rm borhen_image npm run test
