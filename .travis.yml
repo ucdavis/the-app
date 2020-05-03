@@ -1,20 +1,42 @@
 language: java
-jdk: openjdk8
+
 env:
   - COVERAGE=0.31
   - COVERAGE=0.24
 
-
+stages:
+  - Java8
+  - Java9
 
 before_install:
   - ./gradlew clean jar
   - ./gradlew assemble
 
-script:
-   ./gradlew -p ./monolithic/ui check;
-   ./gradlew -p ./monolithic/service/cart check;
-   ./gradlew -p ./monolithic/service/user check;
-   ./gradlew -p ./monolithic/repository/order check;
-   ./gradlew -p ./monolithic/repository/cart check;
-   ./gradlew -p ./monolithic/repository/product check;
-   ./gradlew -p ./monolithic/repository/user check;
+jobs:
+ include:
+    - stage: Java8
+      name: "Java8-test"
+      install: skip
+      script:
+      - ./gradlew -p ./monolithic/ui check;
+        ./gradlew -p ./monolithic/service/cart check;
+        ./gradlew -p ./monolithic/service/user check;
+        ./gradlew -p ./monolithic/repository/order check;
+        ./gradlew -p ./monolithic/repository/cart check;
+        ./gradlew -p ./monolithic/repository/product check;
+        ./gradlew -p ./monolithic/repository/user check;
+      env:
+        - jdk: openjdk8
+    - stage: Java9
+      name: "Java9-test"
+      install: skip
+      script:
+        - ./gradlew -p ./monolithic/ui check;
+          ./gradlew -p ./monolithic/service/cart check;
+          ./gradlew -p ./monolithic/service/user check;
+          ./gradlew -p ./monolithic/repository/order check;
+          ./gradlew -p ./monolithic/repository/cart check;
+          ./gradlew -p ./monolithic/repository/product check;
+          ./gradlew -p ./monolithic/repository/user check;
+        env:
+          - jdk: openjdk9
