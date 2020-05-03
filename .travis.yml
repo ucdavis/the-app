@@ -1,6 +1,17 @@
-sudo: required
+language: java
+jdk: openjdk8
+env:
+    - COVERAGE=0.31
 services:
   - docker
+before_install:
+- ./gradlew assemble
+script:
+- ./gradlew -p ./monolithic/ui check;
+- ./gradlew -p ./monolithic/service/cart check;
+- ./gradlew -p ./monolithic/service/user check;
+- ./gradlew -p ./monolithic/repository/cart check;
+- ./gradlew -p ./monolithic/repository/product check
 
 deploy:
   provider: hub.docker.com
