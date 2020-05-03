@@ -1,11 +1,12 @@
 language: java
 env:
   jdk=openjdk8
-  jdk=openjdk9
+  jdk=openjdk10
 stages:
   - Java8
   - Java9
-
+before_install:
+   - ./gradlew assemble
 jobs:
  include:
     - stage: Java8
@@ -31,4 +32,4 @@ jobs:
       - ./gradlew -p ./monolithic/repository/product check;
       - ./gradlew -p ./monolithic/repository/user check;
       env:
-      - jdk=openjdk9
+      - jdk=openjdk10
