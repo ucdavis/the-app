@@ -6,10 +6,6 @@ stages:
   - Java8
   - Java9
 
-before_install:
-  - ./gradlew clean jar
-  - ./gradlew assemble
-
 jobs:
  include:
     - stage: Java8
