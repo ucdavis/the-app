@@ -18,25 +18,25 @@ jobs:
       name: "Java8-test"
       install: skip
       script:
-      - ./gradlew -p ./monolithic/ui check;
-        ./gradlew -p ./monolithic/service/cart check;
-        ./gradlew -p ./monolithic/service/user check;
-        ./gradlew -p ./monolithic/repository/order check;
-        ./gradlew -p ./monolithic/repository/cart check;
-        ./gradlew -p ./monolithic/repository/product check;
-        ./gradlew -p ./monolithic/repository/user check;
+      -  ./gradlew -p ./monolithic/ui check;
+      -  ./gradlew -p ./monolithic/service/cart check;
+      -  ./gradlew -p ./monolithic/service/user check;
+      -  ./gradlew -p ./monolithic/repository/order check;
+      -  ./gradlew -p ./monolithic/repository/cart check;
+      -  ./gradlew -p ./monolithic/repository/product check;
+      -  ./gradlew -p ./monolithic/repository/user check;
       env:
         - jdk: openjdk8
     - stage: Java9
       name: "Java9-test"
       install: skip
       script:
-        - ./gradlew -p ./monolithic/ui check;
-          ./gradlew -p ./monolithic/service/cart check;
-          ./gradlew -p ./monolithic/service/user check;
-          ./gradlew -p ./monolithic/repository/order check;
-          ./gradlew -p ./monolithic/repository/cart check;
-          ./gradlew -p ./monolithic/repository/product check;
-          ./gradlew -p ./monolithic/repository/user check;
+        -  ./gradlew -p ./monolithic/ui check;
+        -  ./gradlew -p ./monolithic/service/cart check;
+        -  ./gradlew -p ./monolithic/service/user check;
+        -  ./gradlew -p ./monolithic/repository/order check;
+        -  ./gradlew -p ./monolithic/repository/cart check;
+        -  ./gradlew -p ./monolithic/repository/product check;
+        -  ./gradlew -p ./monolithic/repository/user check;
         env:
           - jdk: openjdk9
