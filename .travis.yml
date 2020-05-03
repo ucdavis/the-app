@@ -4,10 +4,6 @@ services:
 env:
   matrix:
     - COVERAGE=0.31
-before_install:
-- docker pull ascdc/jdk8
-- docker build -t borhen_image .
 
 script:
 - bash -c "echo" \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --Borhen-1351990-stdin"
-- docker run --rm borhen_image npm run test
