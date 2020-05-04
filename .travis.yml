@@ -2,4 +2,4 @@ sudo: required
 services:
   - docker
 script:
-  bash -c "echo \"$(DOCKER_PASSWORD)\" | docker login --username \"$(DOCKER_LOGIN)\" --password-stdin"
+- "echo \"$(DOCKER_PASSWORD)\" | docker login --username \"$(DOCKER_LOGIN)\" --password-stdin"
