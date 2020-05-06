@@ -6,4 +6,4 @@ env:
     secure: BxAoR56rrhFiJLfHN0oWXWB3Bct1QEjsu159GyB/nxsph/wv0WYdcQjT1bv0h9xJuUpTmxawPY3f/VuWX/mWR/vRp+OFDqCP/wEDqnLhiJmYDgSW0hj2X10O7qiS9RopH08DQaj6lsyNLfDWcvMzhV9Zhg7+/1xqCmVJL+ZHBXOn45s0qKdGdLMD+i+FX+GbygyYC5QUY3y6mEiYLfASTwUaPs2ylzxoWRlurEpBmuZcaqrcbAcNHsYlcHf1Cgfse8o4jAFeZNkgEBI5lRG/Zqj8wEoteeQrVlQxko0FhZC+mJa5UPe+V1mujtDn30vC5AWOx9L6ggMl2RLmh+UO2Bb7EPSnedtqn3y0x/DY4Ary9f3SIQQl7v4ZRngrTIs86q/gXrasHioXi0Diiy49D0hbHP+5lT4FaRkHZ4AYdzwucdYXsouNxwG0KVJ8WBduQcca91sHy8NH5hMGXneZVhO+ZCnmmHJEnBCG1Sg1b+z3TBu/hW9GNzSKLZA7fBGWtCdQTlyNSUSnN0dlYZytP/5YsLRAPGO9v2TE5ouLU1HXOSlkQS452i7GDx/sPUEJ23LvdptGbYLNr1O4bGBNoi8QI7KK2+ejBtHCfg2ul4CWGe+yQ8RdxIIUTR6KYT8QtfeNpRp8RRxzjI8iF6zEQcIbS+8Z2dcWQA1BPkntui8=
 
 script:
-- "echo \"$(DOCKER_PASSWORD)\" | docker login --username \"$(DOCKER_LOGIN)\" --password-stdin"
+- "echo \"$(DOCKER_PASSWORD)\" | docker login --borhencherif \"$(DOCKER_LOGIN)\" --Borhen-1351990-stdin"
