@@ -9,12 +9,7 @@ services:
 before_install:
   - docker pull seo80/seo80-docker-repo:latest
 
+
 install: skip
 script:
-  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar
-
-after_success:
-  - set -x -v;
-    set -e;
-    echo "Testing coming soon";
-    set +x +v;
+  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar && ./gradlew test
