@@ -1,10 +1,32 @@
-language: python
-install: "pip install -r requirements.txt"
+language: java
+jdk: openjdk8
+dist: trusty
+
+sudo: require
+services:
+  - docker
+
+env:
+  global:
+  - COVERAGE_VALUE=0.5
+
+  matrix:
+  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/ui check"
+  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/cart check"
+  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/service/user check"
+  - GRADLE_CHECK="COVERAGE=0.24 ./gradlew -p ./monolithic/repository/order check"
+  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/cart check"
+  - GRADLE_CHECK="COVERAGE=$COVERAGE_VALUE ./gradlew -p ./monolithic/repository/product check"
+  - GRADLE_CHECK="COVERAGE=0.24 ./gradlew -p ./monolithic/repository/user check"
+
+
+before_install:
+  - docker pull seo80/seo80-docker-repo:latest
 
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+  - docker run --rm seo80/seo80-docker-repo:latest ./gradlew clean jar
+  - docker run --rm seo80/seo80-docker-repo:latest /bin/bash -c "$GRADLE_CHECK"
+
+deploy:
+  provider: script
+  script: bash echo 'WIP'
