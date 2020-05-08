@@ -1,10 +1,22 @@
-language: python
-install: "pip install -r requirements.txt"
+dist: trusty
+language: java
+jdk: oraclejdk8
+env:
+    - COVERAGE=0.057 ./gradlew -p ./monolithic/ui check
+    - COVERAGE=0.057 ./gradlew -p ./monolithic/cart check
+    - COVERAGE=0.057 ./gradlew -p ./monolithic/user check
+    - COVERAGE=0.057 ./gradlew -p ./monolithic/order check
+    - COVERAGE=0.057 ./gradlew -p ./monolithic/cart check
+    - COVERAGE=0.057 ./gradlew -p ./monolithic/product check
+    - COVERAGE=0.057 ./gradlew -p ./monolithic/user check
 
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+    - ./gradlew clean jar 
+after_success:
+    - $COVERAGE 
+deploy:
+    provider: script
+    script: echo 'WIP'
+    on:
+       all_branches: true
+
