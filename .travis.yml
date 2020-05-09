@@ -4,4 +4,6 @@ jdk: oraclejdk8
 
 script:
   - ./gradlew clean jar
-  - echo 'testing coming soon'
+
+after_script:
+  - ./gradlew test
