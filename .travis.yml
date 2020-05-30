@@ -3,6 +3,7 @@ jdk: oraclejdk8
 
 script:
   - ./gradlew clean jar
+  - echo 'testing coming soon'
   # Run ANSIBLE checks
   # - ANSIBLE0008: Disabled for use of sudo warnings - to address
   # - ANSIBLE0011: Disabled for all tasks which should be named
