@@ -9,18 +9,15 @@ branches:
 before_install:
   - java -version
 
+install:
+  - ./gradlew clean jar
+
 stages:
-  - build
   - tests
   - tests-coverage
+  - deploy
 
 jobs:
-  include:
-    - stage: build
-      name: "Build"
-      script:
-        - ./gradlew clean jar
-
     - stage: tests
       name: "Test"
       script:
@@ -31,6 +28,15 @@ jobs:
       script:
         - ./gradlew jacocoTestReport
         - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+        - ./gradlew test jaccoTestCoverageVerification
+
+    - stage: deploy
+      name: "Deployment"
+      script:
+        - echo 'WIP'
+      deploy:
+        skip_cleanup: true
+
 
 notifications:
   email: false
