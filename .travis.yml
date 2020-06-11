@@ -120,6 +120,6 @@ jobs:
 
 deploy:
   provider: script
-  script: echo "WIP"
+  script: docker --help
   on:
     all_branches: true
