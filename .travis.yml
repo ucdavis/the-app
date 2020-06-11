@@ -1,4 +1,4 @@
-language: jave
+language: java
 jdk: oraclejdk8
 
 script:
