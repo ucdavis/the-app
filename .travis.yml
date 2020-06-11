@@ -1,6 +1,8 @@
 language: java
 jdk: oraclejdk9
 
-script:
+before_script:
   - ./gradlew clean jar
-  - echo "testing coming soon"
+
+script:
+  - ./gradlew test
