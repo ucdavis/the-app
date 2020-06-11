@@ -11,44 +11,44 @@ jobs:
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        COVERAGE=$COVERAGE=0.050
-        $TARGET="ui"
+        COVERAGE=0.050
+        TARGET="ui"
     - stage: test
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        COVERAGE=$COVERAGE=0.140
-        $TARGET="service/cart"
+        COVERAGE=0.140
+        TARGET="service/cart"
     - stage: test
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        COVERAGE=$COVERAGE=0.00
-        $TARGET="service/user"
+        COVERAGE=0.00
+        TARGET="service/user"
     - stage: test
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        COVERAGE=$COVERAGE=0.24
-        $TARGET="repository/order"
+        COVERAGE=0.24
+        TARGET="repository/order"
     - stage: test
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        COVERAGE=$COVERAGE=0.00
-        $TARGET="repository/cart"
+        COVERAGE=0.00
+        TARGET="repository/cart"
     - stage: test
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        COVERAGE=$COVERAGE=0.120
-        $TARGET="repository/product"
+        COVERAGE=0.120
+        TARGET="repository/product"
     - stage: test
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        COVERAGE=$COVERAGE=0.24
-        $TARGET="repository/user"
+        COVERAGE=0.24
+        TARGET="repository/user"
 
 deploy:
   provider: script
