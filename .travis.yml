@@ -1,55 +1,52 @@
 language: java
-jdk:oraclejdk9
-
-stages:
-  - test
+jdk: oraclejdk9
 
 jobs:
   include:
     - stage: test
-      install: ./gradlew clean jar
+      before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
         COVERAGE=0.050
         TARGET="ui"
     - stage: test
-      install: ./gradlew clean jar
+      before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
         COVERAGE=0.140
         TARGET="service/cart"
     - stage: test
-      install: ./gradlew clean jar
+      before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
         COVERAGE=0.00
         TARGET="service/user"
     - stage: test
-      install: ./gradlew clean jar
+      before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
         COVERAGE=0.24
         TARGET="repository/order"
     - stage: test
-      install: ./gradlew clean jar
+      before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
         COVERAGE=0.00
         TARGET="repository/cart"
     - stage: test
-      install: ./gradlew clean jar
+      before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
         COVERAGE=0.120
         TARGET="repository/product"
     - stage: test
-      install: ./gradlew clean jar
+      before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
