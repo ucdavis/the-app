@@ -1,20 +1,54 @@
 language: java
 jdk: oraclejdk9
 
-env:
-  - TARGET="ui"
-  - TARGET="service/cart"
-  - TARGET="service/user"
-  - TARGET="repository/order"
-  - TARGET="repository/cart"
-  - TARGET="repository/product"
-  - TARGET="repository/user"
-
 before_script:
   - ./gradlew clean jar
 
-script:
-  - COVERAGE=0.24 ./gradlew -p ./monolithic/$TARGET check
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        $COVERAGE=0.050
+        $TARGET="ui"
+    - stage: test
+      script:
+        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        $COVERAGE=0.140
+        $TARGET="service/cart"
+    - stage: test
+      script:
+        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        $COVERAGE=0.00
+        $TARGET="service/user"
+    - stage: test
+      script:
+        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        $COVERAGE=0.24
+        $TARGET="repository/order"
+    - stage: test
+      script:
+        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        $COVERAGE=0.00
+        $TARGET="repository/cart"
+    - stage: test
+      script:
+        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        $COVERAGE=0.120
+        $TARGET="repository/product"
+    - stage: test
+      script:
+        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        $COVERAGE=0.24
+        $TARGET="repository/user"
 
 deploy:
   provider: script
