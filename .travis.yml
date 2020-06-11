@@ -1,20 +1,20 @@
 language: java
 jdk: oraclejdk9
 
-target_rep:
-  - "ui"
-  - "service/cart"
-  - "service/user"
-  - "repository/order"
-  - "repository/cart"
-  - "repository/product"
-  - "repository/user"
+env:
+  - TARGET="ui"
+  - TARGET="service/cart"
+  - TARGET="service/user"
+  - TARGET="repository/order"
+  - TARGET="repository/cart"
+  - TARGET="repository/product"
+  - TARGET="repository/user"
 
 before_script:
   - ./gradlew clean jar
 
 script:
-  - COVERAGE=0.24 ./gradlew -p /monolothic/$(target_rep) check
+  - COVERAGE=0.24 ./gradlew -p /monolithic/$(TARGET) check
 
 deploy:
   provider: script
