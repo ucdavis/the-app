@@ -1,11 +1,9 @@
 language: java
-jdk: 
-  - oraclejdk9
-  - oraclejdk10
 
 jobs:
   include:
     - stage: test
+      jdk: oraclejdk9
       before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
@@ -13,6 +11,7 @@ jobs:
         COVERAGE=0.050
         TARGET="ui"
     - stage: test
+      jdk: oraclejdk9
       before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
@@ -20,6 +19,7 @@ jobs:
         COVERAGE=0.140
         TARGET="service/cart"
     - stage: test
+      jdk: oraclejdk9
       before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
@@ -27,6 +27,7 @@ jobs:
         COVERAGE=0.00
         TARGET="service/user"
     - stage: test
+      jdk: oraclejdk9
       before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
@@ -34,6 +35,7 @@ jobs:
         COVERAGE=0.24
         TARGET="repository/order"
     - stage: test
+      jdk: oraclejdk9
       before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
@@ -41,6 +43,7 @@ jobs:
         COVERAGE=0.00
         TARGET="repository/cart"
     - stage: test
+      jdk: oraclejdk9
       before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
@@ -48,6 +51,63 @@ jobs:
         COVERAGE=0.120
         TARGET="repository/product"
     - stage: test
+      jdk: oraclejdk9
+      before_script: ./gradlew clean jar
+      script:
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        COVERAGE=0.24
+        TARGET="repository/user"
+    - stage: test
+      jdk: openjdk10
+      before_script: ./gradlew clean jar
+      script:
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        COVERAGE=0.050
+        TARGET="ui"
+    - stage: test
+      jdk: openjdk10
+      before_script: ./gradlew clean jar
+      script:
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        COVERAGE=0.140
+        TARGET="service/cart"
+    - stage: test
+      jdk: openjdk10
+      before_script: ./gradlew clean jar
+      script:
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        COVERAGE=0.00
+        TARGET="service/user"
+    - stage: test
+      jdk: openjdk10
+      before_script: ./gradlew clean jar
+      script:
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        COVERAGE=0.24
+        TARGET="repository/order"
+    - stage: test
+      jdk: openjdk10
+      before_script: ./gradlew clean jar
+      script:
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        COVERAGE=0.00
+        TARGET="repository/cart"
+    - stage: test
+      jdk: openjdk10
+      before_script: ./gradlew clean jar
+      script:
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
+      env:
+        COVERAGE=0.120
+        TARGET="repository/product"
+    - stage: test
+      jdk: openjdk10
       before_script: ./gradlew clean jar
       script:
         - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
