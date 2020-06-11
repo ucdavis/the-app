@@ -1,9 +1,11 @@
 language: java
 jdk:oraclejdk9
 
-before_script:
+install:
   - ./gradlew clean jar
 
+stages:
+  - test
 
 jobs:
   include:
