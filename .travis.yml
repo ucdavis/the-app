@@ -2,19 +2,19 @@ language: java
 jdk: oraclejdk9
 
 env:
-  - TARGET="/monolithic/ui"
-  - TARGET="/monolithic/service/cart"
-  - TARGET="/monolithic/service/user"
-  - TARGET="/monolithic/repository/order"
-  - TARGET="/monolithic/repository/cart"
-  - TARGET="/monolithic/repository/product"
-  - TARGET="/monolithic/repository/user"
+  - TARGET="ui"
+  - TARGET="service/cart"
+  - TARGET="service/user"
+  - TARGET="repository/order"
+  - TARGET="repository/cart"
+  - TARGET="repository/product"
+  - TARGET="repository/user"
 
 before_script:
   - ./gradlew clean jar
 
 script:
-  - COVERAGE=0.24 ./gradlew -p $TARGET check
+  - COVERAGE=0.24 ./gradlew -p ./monolithic/$TARGET check
 
 deploy:
   provider: script
