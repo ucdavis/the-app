@@ -1,5 +1,7 @@
 language: java
-jdk: oraclejdk9
+jdk:
+  - oraclejdk9
+  - oraclejdk10
 
 before_script:
   - ./gradlew clean jar
@@ -9,45 +11,45 @@ jobs:
   include:
     - stage: test
       script:
-        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        $COVERAGE=0.050
+        COVERAGE=$COVERAGE=0.050
         $TARGET="ui"
     - stage: test
       script:
-        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        $COVERAGE=0.140
+        COVERAGE=$COVERAGE=0.140
         $TARGET="service/cart"
     - stage: test
       script:
-        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        $COVERAGE=0.00
+        COVERAGE=$COVERAGE=0.00
         $TARGET="service/user"
     - stage: test
       script:
-        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        $COVERAGE=0.24
+        COVERAGE=$COVERAGE=0.24
         $TARGET="repository/order"
     - stage: test
       script:
-        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        $COVERAGE=0.00
+        COVERAGE=$COVERAGE=0.00
         $TARGET="repository/cart"
     - stage: test
       script:
-        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        $COVERAGE=0.120
+        COVERAGE=$COVERAGE=0.120
         $TARGET="repository/product"
     - stage: test
       script:
-        - $COVERAGE ./gradlew -p ./monolithic/$TARGET check
+        - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$TARGET check
       env:
-        $COVERAGE=0.24
+        COVERAGE=$COVERAGE=0.24
         $TARGET="repository/user"
 
 deploy:
