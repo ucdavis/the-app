@@ -1,18 +1,20 @@
 language: java
 jdk: oraclejdk9
 
+target_rep:
+  - "ui"
+  - "service/cart"
+  - "service/user"
+  - "repository/order"
+  - "repository/cart"
+  - "repository/product"
+  - "repository/user"
+
 before_script:
   - ./gradlew clean jar
 
 script:
-  - ./gradlew test
-
-after_success:
-  - ./gradlew jacocoTestReport
-  - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
-
-before_deploy:
-  - COVERAGE=0.30 ./gradlew test jacocoTestCoverageVerification
+  - COVERAGE=0.24 ./gradlew -p /monolothic/$(target_rep) check
 
 deploy:
   provider: script
