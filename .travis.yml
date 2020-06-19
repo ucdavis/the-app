@@ -2,17 +2,25 @@ language: java
 jdk :  oraclejdk9
 install: ./gradlew clean jar
 
-script: 
- # echo `testing coming soon`
- ./gradlew test
+env:
+- COVERAGE=0
+- COVERAGE=0.24
+- COVERAGE=0.25
+- COVERAGE=0.35
+- COVERAGE=0.5
 
-after_success:
- - ./gradlew jacocoTestReport
- - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}' 
-before_deploy:
-#test
-- COVERAGE=0.35 
-- ./gradlew test jacocoTestCoverageVerification
+script: 
+
+-$COVERAGE 
+- ./gradlew -p ./monolithic/ui check
+- ./gradlew -p ./monolithic/service/cart check
+- ./gradlew -p ./monolithic/serviceuser check
+
+- ./gradlew -p ./monolithic/repository/order check
+- ./gradlew -p ./monolithic/repository/cart check
+- ./gradlew -p ./monolithic/repository/product check
+- ./gradlew -p ./monolithic/repository/user check
+ 
 deploy:
  provider: script
  script: echo 'WFP'
