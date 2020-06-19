@@ -2,4 +2,6 @@ language: java
 jdk :  oraclejdk9
 install: ./gradlew clean jar
 
-script:  echo `testing coming soon`
+script: 
+ # echo `testing coming soon`
+ ./gradlew test
