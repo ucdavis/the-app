@@ -13,7 +13,7 @@ after_success:
  #./gradlew test jacocoTestCoverageVerification
 deploy:
  provider: script
- script: echo `WFP`
+ script: echo 'WFP'
  on:
    all_branches: true
  
