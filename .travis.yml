@@ -12,9 +12,10 @@ after_success:
 before_deploy:
  ./gradlew test jacocoTestCoverageVerification
 deploy:
- provider: heroku
+ provider: script
+ script: deploy.sh
  on:
    all_branches: true
- run: echo "WIP"
+ 
 
 
