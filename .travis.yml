@@ -10,8 +10,7 @@ env:
 - COVERAGE=0.5
 
 script: 
-
-- COVERAGE= $COVERAGE 
+ 
 - ./gradlew -p ./monolithic/ui check
 - ./gradlew -p ./monolithic/service/cart check
 - ./gradlew -p ./monolithic/service/user check
