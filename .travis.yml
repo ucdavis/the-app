@@ -13,6 +13,7 @@ env:
   global:
   - secure: "+Yhuky9G4jZf9vc9Takps/godHRk1A3xH5K8tKaKHkyUnXaF1/PlLiIyX5VjtqmNa6PD5u61ut9dD0NYeHd6zI47OSv/1WzH1BUJqVz6HoD6w7Wq7pc5DVU5+/9XccajODt1e1K8TFmhe9s0A4wabrJN+9zIFlFTzBeSmTmTkwZ5shIJAaHS2NwA9W4Dhlf4g/CKX1OrSt6q1eOy/Eici/+vPc/NnzBKqyci3Q+L8iXpunn4EsbkVvONVbJKGusC2Sntz1C5VJFIPst4vw6aYmjk90Lq2cIgpMOpAq4W9ztAu2Zqns3KbUmjleJ2M9aT+LJqmejdGb8B5AEri/Nx+LaZ6ICradBuXxRtb/roJ9KV6rrdSt1b/nNXlw/7k1F7iFFnlcAtsAGCfX2UHMkA9F7qVmzSHoXE3S9XVVFBN4uER0NvGAXPehFsezVGhJ4mA0MmPI6Wo9GkV+EeNnv9pTPzRm3x9G36fl6veaejFw/Bxbd4W9FGSXWU4IyoGhcVcLzrHxfT4QLsDUmYj8VMwwK6o4ApiBz6em4j+ZVnp4HT7ZRHkwb3BVbntfE4/g9l2tKLtkeVYQMryvcImeKOIP8Kvz+q8684rZrT6Zj/oQVhsMdPGMl8kux/Sd545jLQ6fta+Guujv2bH5gSB0VOnVz8anE/yEQ7osha1wBZ9wA="
   - secure: ZK6K9g/OyClfN5OVf0mg/dJG/zjbXefCuC9HeoYbCCnxl/LZsz9dT1kvIvfQ3U4dYPpg6wQ2WDZvggLqaDmSGf6gKEvkGTAIu3rEcQ0PYMy20vwgTqlX7cxuEN6M1X3Eo/QiGqwfvw35cOeOSPs2vzRNQ2AMWcMqvFfUP94aiObMIGLyhNIzcr8V88RAgxr3HxoaSbVld/37Q4Cj7orukPefn1aH8FekaVaT/ziuJVmwaNT57w2tR4YYqe6cRdwjJ57ZiONbVpkKELsO22CrXZskigylK8yPYfTwpn3CyKY6lsUQiSikbhJe8eUoMEjKlZEvLDG0Hcb1RYpo3NKeLfkb7iSVA1pw4GJlhjZ+kwy1OGQZaV0osk7NA+/EYhtagCY9S/0aN/CvQaoCZwR3EVY/6h9VYd2FBq86wInTcblGsUsVdQPvzqk9gw+Byoq66fTNLtkB4ENlvehlp/R9towKxjtOzcZ5Eive4LNL44NdsSOfoC1vXLsHq2iwERsZpJGgyVMN8sztEOKtz7Yqyl1UWFdSiyb3UNVAXNLlKuHQhzvOzgAan557zJsz/iLt2JxDvfvljCQmpEcUokHGCJgl39jowxYPSM3FKXM10Nt/4o6IeBAeEA1+QP/nn2fURYz6xBIP8W8vUW0mug+28aAqXWyKigCr6S1oK3YFT2Y=
+  - secure: SYnuy/fSyL/CJLEqYADj87QOnN6dqBO09l7r8RnQ50Z+czAJLgB2xO+f+rU8flxMR2xQDep0nkQTSlueT7gHToFb8xxldlMnYQu5eO1MmsakO1qQHzHz2wL3PR9dQdiSEulJcRXcAgcZUPTvW7+BY07QrUy8G++Y6FKC1uaxlUQ5czx9GMGN11D9tcuHguqvlv1pzsBIpcTZr5palBNa2+XK6+KR0HISUvc+diB3zo6TVYi+y0ei5sN/sK7/9CN2j7/iTcAYJ7VtMBIVbNB1OwhZtGgAuj5dSU/YsRp7Ok3eD3LxarMWrKFsS2QP3OOgGL3TSBGVo5MCRvPY7fh5UWEzuoiW1RwCCPcmpXD1U+S8PSezcS6ASwF+bbS9+0HvBQSvA4poNf6cLTjGDCsuG1bZzvBjoQpPVDSHOnWFfl3G/Ix848iJ0klndnTv3ypnaGybIUEYChtVW6d9ihb7/klPQ3y3lUZTDjJeX0ChJgwaZyXxDk+8VuCGIA5Q9+PjTOsjm7K0pWjzBpuj1PDF/AxAYTCGSvtovwlCmW/lrBzZXddI/EACHwj59nwUZRTV8hiODPBYITkPJQBE4sknDliK3r+AKmV2K+hjLYJzrpg5B5mfMkHQF01pTsgCpyogpyBSs3hheLNkAfnF3FqJsrtozHphF7oP1bM2+QkaUVo=
 script:
 - "./gradlew -p ./monolithic/ui check"
 - "./gradlew -p ./monolithic/service/cart check"
@@ -23,6 +24,7 @@ script:
 - "./gradlew -p ./monolithic/repository/user check"
 deploy:
   provider: script
-  script: bash -c "echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_LOGIN}" --password-stdin"
+  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
+    --password-stdin"
   on:
     all_branches: true
