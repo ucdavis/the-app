@@ -22,9 +22,15 @@ script:
 - "./gradlew -p ./monolithic/repository/cart check"
 - "./gradlew -p ./monolithic/repository/product check"
 - "./gradlew -p ./monolithic/repository/user check"
+
+
 deploy:
   provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
-    --password-stdin"
+  script: 
+  - ./script/deploy.sh 
+
   on:
-    all_branches: true
+  - all_branches: true
+  condition: ./geadlew -p /monolithic/ui packageToContainer
+
+  
