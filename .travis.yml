@@ -124,9 +124,7 @@ jobs:
     - stage: deploy
       name: "Deploy"
         provider: script
-        script:
-          - echo 'WIP'
-          - bash -c "echo \"${DOCKER_PASSWORD\" | docker login --username= \"$DOCKER_LOGIN\" --password-stdin"
+        script: bash -c "echo \"${DOCKER_PASSWORD\" | docker login --username= \"$DOCKER_LOGIN\" --password-stdin"
         on:
           all_branches: true
 after_success:
