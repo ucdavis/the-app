@@ -127,9 +127,9 @@ jobs:
         - COVERAGE=0.0
     - stage: deploy
       name: "Deploy"
-      install: ./gradlew clean jar      
+      install: ./gradlew clean jar
       provider: script
-      script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
+      script: ./gradlew -p ./monolithic/ui packageToContainer && ./script/deploy.sh
       on:
         all_branches: true
 after_success:
