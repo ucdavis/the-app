@@ -127,6 +127,7 @@ jobs:
         - COVERAGE=0.0
     - stage: deploy
       name: "Deploy"
+      install: ./gradlew clean jar      
       provider: script
       script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
       on:
