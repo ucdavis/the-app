@@ -1,10 +1,12 @@
-sudo: enabled
+sudo: required
+services:
+  - docker
 language: java
 os: linux
 dist: trusty
 stages:
-  - build
   - test
+  - deploy
 jobs:
   include:
     - stage: test
@@ -119,10 +121,19 @@ jobs:
         - ./gradlew -p ./monolithic/repository/user check
       env:
         - COVERAGE=0.0
+    - stage: deploy
+      name: "Deploy"
+        provider: script
+        script:
+          - echo 'WIP'
+          - bash -c "echo \"${DOCKER_PASSWORD\" | docker login --username= \"$DOCKER_LOGIN\" --password-stdin"
+        on:
+          all_branches: true
+      
 after_success:
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
 deploy:
-  provider: script
-  script: echo 'WIP'
-  on:
-    all_branches: true
+env:
+  global:
+   - secure: awub3erp2ihuxMRvuBpyHpSrIUtWO5i71lTP++ekftulMuVVod1WAbFAkpaPlyI1N07uBx7MMG+pKSSQtdbPb19QhrQoBtQOBCWizXUU+GacOnpqvfFIMB85yJj3PnSbHqBuJmlps34AVJJ80wHxEEnOzrUe3k+cVMwIlu51BLNZ6ZxrSykaYZizxdikJD6NB92/F93hlKS3VSIc3MfgD3/MN8DPSabQ3wgViQQNKH2CHKbh4j6vZ96aLNul1RPC8syk5zqVHBsNbORAQ/CjeMhnqjTXShhzFD9o+hLcoWw6TJGu6nTj/9696yFFy7HMSZDSg6AYiB3uD3mEb6Olon7hiaCHzyElw5VeUI5oroeoVE81jsfkUAP36+MOSm3W/V5psh/nrn80Ci77pr6jYas7Plsg95LcrW0zjWYp24j39gz5cZPio8J/nXF7CykIHm9tbq1tIoOiMQJDaQM4Uq/4UqiFO3o0CRHQ0N7uky3SZ3KDXebUDEnSJXOxFCWqoWUlBgeZxBdOHg+/vQs++/R9DAYM9klsihysrx6U6rPrFSPVZ6/JmASllynw1Sd3sMtCK4bHmz8A05IEmUuZiDZiVlDQ/JNoumm609MnvoplO+Bn88SmuHFz3Xjh7rq2TYiSt+L0wc6jGQGbT8Lk4Gb6O+MvmkskAJndZQd8tkc=
+  - secure: Od+Dgh/26TNGgMTeYQORg+Ijqle/NA2HNjUaSVOHr8OO3nMHHT+Kdcr1vSqfhKT0dJJgSz0H1Khpf8jrg03EcLbSDJ55EaZ/aIMD67RfDRrtiAW71p5A6yQfim+wt3KFlP+D6XZIgnTEFFlL6RgtCjlb2SfCSVyu4ie2g4wP2q6fK3/10SZN6EVCe4Q0ajVGcPkmljQG+IFGmeoLqRYSriJHfvqD9YU1FKXj6u04ecZSsrPEmwT+rf9RSwFcYJ6jVPEBM8DD9Ra4+1OkVBx7QuXT1bcwCTz8UUKi2cE8kaK3trnC93F0y7GuxZWRp1VxfFB9HmmVNBYHB/1k9/L2dcwOKs9LcA3pR1zroWW1pK/+8hFZJDq8Ap0iV3om2vs8uayKyk3M/3sHwnLM4cWWWQ73Vemri3/tBvP/mv3UUmdcHRSmQPqvzpR8Bot3wZHeZFM0P65XmbTC/4Rc2t0lHkp7KBSJoSZc4kasq+KVPGhxu5BhigIR1oStNqmWgvDO+PSs8zIXVnkmSjY9dInalleQeGcAGUlznKSKO5OrqYH2EkQUVdHngpicZDShFZ9ThI6/aOIwugiaxeKBjKDIS33koZ10nv6Y1o50wjXwTyToWbMwiH0j/fm1BcK02p08s+3WmvMWFs4uhdbk95JeO3EGsOPKTtHD/Hkjd0fIEFc=
