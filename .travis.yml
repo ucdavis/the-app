@@ -120,14 +120,13 @@ jobs:
         - ./gradlew -p ./monolithic/repository/user check
       env:
         - COVERAGE=0.0
-    - stage: deploy
-deploy:
-  provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD\" | docker login --username= \"$DOCKER_LOGIN\" --password-stdin"
-  on:
-    all_branches: true
 after_success:
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+deploy:
+  provider: script
+  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"$DOCKER_LOGIN}\" --password-stdin"
+  on:
+    all_branches: true
 env:
   global:
    - secure: awub3erp2ihuxMRvuBpyHpSrIUtWO5i71lTP++ekftulMuVVod1WAbFAkpaPlyI1N07uBx7MMG+pKSSQtdbPb19QhrQoBtQOBCWizXUU+GacOnpqvfFIMB85yJj3PnSbHqBuJmlps34AVJJ80wHxEEnOzrUe3k+cVMwIlu51BLNZ6ZxrSykaYZizxdikJD6NB92/F93hlKS3VSIc3MfgD3/MN8DPSabQ3wgViQQNKH2CHKbh4j6vZ96aLNul1RPC8syk5zqVHBsNbORAQ/CjeMhnqjTXShhzFD9o+hLcoWw6TJGu6nTj/9696yFFy7HMSZDSg6AYiB3uD3mEb6Olon7hiaCHzyElw5VeUI5oroeoVE81jsfkUAP36+MOSm3W/V5psh/nrn80Ci77pr6jYas7Plsg95LcrW0zjWYp24j39gz5cZPio8J/nXF7CykIHm9tbq1tIoOiMQJDaQM4Uq/4UqiFO3o0CRHQ0N7uky3SZ3KDXebUDEnSJXOxFCWqoWUlBgeZxBdOHg+/vQs++/R9DAYM9klsihysrx6U6rPrFSPVZ6/JmASllynw1Sd3sMtCK4bHmz8A05IEmUuZiDZiVlDQ/JNoumm609MnvoplO+Bn88SmuHFz3Xjh7rq2TYiSt+L0wc6jGQGbT8Lk4Gb6O+MvmkskAJndZQd8tkc=
