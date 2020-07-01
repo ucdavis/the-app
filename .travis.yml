@@ -6,4 +6,4 @@ dist: trusty
 install:
   - ./gradlew clean jar
 script:
-  - ./gradles test
+  - ./gradlew test
