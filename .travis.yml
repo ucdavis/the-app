@@ -1,13 +1,14 @@
 sudo: enabled
 language: java
-jdk: oraclejdk8
+jdk:
+  - oraclejdk8
+  - oraclejdk9
 os: linux
 dist: trusty
-env:
-  - COVERAGE=0.5
 install:
   - ./gradlew clean jar
 stages:
+  - build
   - test
 jobs:
   include:
