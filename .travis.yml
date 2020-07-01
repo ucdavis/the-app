@@ -3,6 +3,8 @@ language: java
 jdk: oraclejdk8
 os: linux
 dist: trusty
+env:
+  - COVERAGE=0.31
 install:
   - ./gradlew clean jar
 script:
