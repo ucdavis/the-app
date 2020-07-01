@@ -1,12 +1,7 @@
 sudo: enabled
 language: java
-jdk:
-  - oraclejdk8
-  - oraclejdk9
 os: linux
 dist: trusty
-install:
-  - ./gradlew clean jar
 stages:
   - build
   - test
@@ -14,49 +9,70 @@ jobs:
   include:
     - stage: test
       name: "Test UI"
-      install: skip
+      jdk:
+        - oraclejdk8
+        - oraclejdk9
+      install: ./gradlew clean jar
       script:
         - ./gradlew -p ./monolithic/ui check
       env:
         - COVERAGE=1.0
     - stage: test
       name: "Test Servce Cart"
-      install: skip
+      jdk:
+        - oraclejdk8
+        - oraclejdk9
+      install: ./gradlew clean jar
       script:
         - ./gradlew -p ./monolithic/service/cart check
       env:
         - COVERAGE=1.0
     - stage: test
       name: "Test Service User"
-      install: skip
+      jdk:
+        - oraclejdk8
+        - oraclejdk9
+      install: ./gradlew clean jar
       script:
         - ./gradlew -p ./monolithic/service/user check
       env:
         - COVERAGE=0.5
     - stage: test
       name: "Test Repository Order"
-      install: skip
+      jdk:
+        - oraclejdk8
+        - oraclejdk9
+      install: ./gradlew clean jar
       script:
         - ./gradlew -p ./monolithic/repository/order check
       env:
         - COVERAGE=0.0
     - stage: test
       name: "Test Repository Cart"
-      install: skip
+      jdk:
+        - oraclejdk8
+        - oraclejdk9
+      install: ./gradlew clean jar
       script:
         - ./gradlew -p ./monolithic/repository/cart check
       env:
         - COVERAGE=1.0
     - stage: test
       name: "Test Repository Product"
-      install: skip
+      jdk:
+        - oraclejdk8
+        - oraclejdk9
+      install: ./gradlew clean jar
       script:
         - ./gradlew -p ./monolithic/repository/product check
       env:
         - COVERAGE=1.0
     - stage: test
       name: "Test Repository User"
-      install: skip
+      jdk:
+        - oraclejdk8
+        - oraclejdk9
+      install: ./gradlew clean jar
       script:
         - ./gradlew -p ./monolithic/repository/user check
       env:
