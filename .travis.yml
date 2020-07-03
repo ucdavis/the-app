@@ -4,3 +4,4 @@ jdk:
 script:
   - ./gradlew clean jar
   - ./gradlew test
+  - ./gradlew jacocoTestReport
