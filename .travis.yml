@@ -10,5 +10,4 @@ after_success:
 before_deploy:
   - ./gradlew test jacocoTestCoverageVerification
 deploy:
-  provider: script
   script: echo "WIP"
