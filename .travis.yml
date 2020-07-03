@@ -5,7 +5,7 @@ jdk:
 #  - COVERAEG_VAR=35
 #  - COVERAEG_VAR=30
 script:
-#  - ./gradlew clean jar
+  - ./gradlew clean jar
 #  - ./gradlew test
 after_success:
 #  - ./gradlew jacocoTestReport
