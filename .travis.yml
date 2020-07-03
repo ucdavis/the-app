@@ -14,4 +14,5 @@ before_deploy:
   - COVERAGE=${COVERAGE_VAR} ./gradlew test jacocoTestCoverageVerification
 deploy:
   provider: script
-  script: bash echo "Work in Progress"
+  script:
+    echo "Work in Progress"
