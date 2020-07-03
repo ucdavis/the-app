@@ -1,5 +1,5 @@
 language: java
 jdk:
-  - oraclejdk10
+  - openjdk8
 script:
   - ./gradlew clean jar
