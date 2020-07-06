@@ -6,13 +6,13 @@ jdk:
   - openjdk9
 
 env:
-  - COVERAGE=0.5 TARGET=ui
-  - COVERAGE=0.5 TARGET=service/cart
-  - COVERAGE=0.5 TARGET=service/user
-  - COVERAGE=0.39 TARGET=repository/order
-  - COVERAGE=0.5 TARGET=repository/cart
-  - COVERAGE=0.5 TARGET=repository/product
-  - COVERAGE=0.31 TARGET=repository/user
+  - COVERAGE=0.057 TARGET=./monolithic/ui
+  - COVERAGE=0.148 TARGET=./monolithic/service/cart
+  - COVERAGE=0.0 TARGET=./monolithic/service/user
+  - COVERAGE=0.36 TARGET=./monolithic/repository/order
+  - COVERAGE=0.0 TARGET=./monolithic/repository/cart
+  - COVERAGE=0.124 TARGET=./monolithic/repository/product
+  - COVERAGE=0.318 TARGET=./monolithic/repository/user
 
 install:
   - "./gradlew clean jar"
