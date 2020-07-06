@@ -1,23 +1,28 @@
 sudo: required
-language: java
 dist: trusty
+language: java
 jdk: oraclejdk8
+
+env:
+  - COVERAGE=0.5 TARGET=ui
+  - COVERAGE=0.5 TARGET=service/cart
+  - COVERAGE=0.5 TARGET=service/user
+  - COVERAGE=0.39 TARGET=repository/order
+  - COVERAGE=0.5 TARGET=repository/cart
+  - COVERAGE=0.5 TARGET=repository/product
+  - COVERAGE=0.31 TARGET=repository/user
 
 install:
   - "./gradlew clean jar"
 
 script:
-  - "./gradlew test"
+  - "COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check"
 
-after_success:
-  - "./gradlew jacocoTestReport"
-  - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}
-
-before_deploy:
-  - "COVERAGE=$COVERAGE ./gradlew test jacocoTestCoverageVerification"
-
-deploy:
-  - provider: script
-    script: echo "WIP"
-    on:
-      all_branches: true
+jobs:
+  include:
+    stage: deploy
+    deploy:
+      - provider: script
+        script: echo "WIP"
+        on:
+          all_branches: true
