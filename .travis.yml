@@ -1,11 +1,13 @@
 sudo: required
 dist: trusty
+services:
+- docker
 language: java
 jdk:
-  - oraclejdk8
-  - oraclejdk9
-
+- oraclejdk8
+- oraclejdk9
 env:
+  matrix:
   - COVERAGE=0.5 TARGET=ui
   - COVERAGE=0.5 TARGET=service/cart
   - COVERAGE=0.5 TARGET=service/user
@@ -13,6 +15,9 @@ env:
   - COVERAGE=0.5 TARGET=repository/cart
   - COVERAGE=0.5 TARGET=repository/product
   - COVERAGE=0.31 TARGET=repository/user
+  global:
+  - secure: sLu2FksY8/yK4Ym7VOoXZYZ/3NADqtKe3XaDd83HL0CWsvmO7DdMiNnp8D2ho6m0a1WH4dxygy/rcGhoQRq7gw4hYzqQYtPTIUOWmmtGDicah4WZUi8GvY61mxE0yR/03SbNPKKvpsIJiNM8arD/hcJDulb7tZBCBCdtwlylQjzt/aSQ5N98c//OtG7r15OJXxwmceqf79YTY+C2iHka1YzVUn21SH+9ynA+4dwzvgA2fsBQkWfcc+GSXQpVH+E00noZosJzgfKkgLUGaYgxg+AKMXNrgB1HvSGm4ZeEVi+nBrqCYFw8FT/Ct7U14Wp9DceBwDU+E93i0JwARe1DpjnIj41JYxr9CovRSwe6fyHxCEdfxJgDClSCmgICzs6t8b8bT2E3YcEYG4e9BF1+gNt0kgF9Nz4abewlvw2j/2QgDyLP60+/u2CWF1Zr7wH56zRr32PZMFtNDBOvolDYZx0P0t95GGa6gRWWT+rj1B62oizeTy0zWHVwva45/DtRRhVBx/f9ODY5N6am4cRsb2gv+jJZcxjmC09uJYXE3F5/rQNuGxgIuKyKWztSSZ0dJkqAgghxViN6Ry5BLEGPPIyrDKwjelkAukC8TG75dMVIQefSoE9oQJItt7596K/7U3m3n0kxLHXlSTdPjOeRDTANlJYbFVLtu0pLnjJ60Bk=
+  - secure: cJ8g5CGnEjFlTZtvdB2dxPPxlAFeFvEkHA7KH52xDDAaMkTH7szcXojs0RL9TZAQxiWVzVZ4j3CaAP0aEOvuwI/4+70EmB5K0sGhCpmdbHwuGgfBKys6kHpQnpTt6lQbaock1lst5c/XWmkUS/BVdJ5ZI2MngzdvsODw4H5IFLEV8vOerOlfr+WnsIJVXXgO1rMOtJr1QIIwkkGBEZCfOsq52dZFZsuMrY1wjbREgreTFLwbm4pl6dPPqrmCkxcqrzNxAhYuotCGR0ICX/Zmm6W+ezoCPBkYit6o1u99KGHKCzuxj68UQLGKKAl9NegATAGF8OWMc45aJ0DDvS2YPKXorDmK7YEho20uijVrn0XCMmrpFSiwICJo1RGW6XNWWRw6kMA5qwmLr5HPV33ulymXoxXPVi8FLyjjNY68VbpHlicBERRNBXOJhCvwaIQTRfTzCIzMen/h05ERssGDgD2HJywLGcgVr+A1FCYNwq85DO/xvXs5oR55AzFlTQNiQGBfO/SfMuSZfe8amtpsh66q9Hw+mu+TAKB1XRmaPGxVMdvzPymeXxDw2PnVq2on2mYdSS33NxJ5m3CRbV0gKDYJywz0mEZfKNTZUsijYPd/DscOxXGQK/QdzTuQMbXW56p54zNWQ5zpwUpss2lGD+5FvnCot3xS5P1/UCDwQhA=
 
 install:
   - "./gradlew clean jar"
@@ -23,8 +28,10 @@ script:
 jobs:
   include:
     stage: deploy
+    before_deploy:
+      - ./gradlew -p ./monolithic/ui packageToContainer
     deploy:
       - provider: script
-        script: echo "WIP"
+        script: ./script/deploy.sh
         on:
-          all_branches: true
+          branch: master
