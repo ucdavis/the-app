@@ -3,6 +3,9 @@ language: java
 dist: trusty
 jdk: oraclejdk8
 
+env:
+  - COVERAGE=0.31
+
 install:
   - "./gradlew clean jar"
 
@@ -14,7 +17,7 @@ after_success:
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}
 
 before_deploy:
-  - "COVERAGE=$COVERAGE ./gradlew test jacocoTestCoverageVerification"
+  - "COVERAGE=${COVERAGE} ./gradlew test jacocoTestCoverageVerification"
 
 deploy:
   - provider: script
