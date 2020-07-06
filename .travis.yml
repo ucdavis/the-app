@@ -1,7 +1,10 @@
+sudo: required
 language: java
+dist: trusty
 jdk: oraclejdk8
 
-install: ./gradlew clean jar
+install:
+  - "./gradlew clean jar"
 
 script:
-  - echo 'testing comming soon'
+  - echo "testing coming soon"
