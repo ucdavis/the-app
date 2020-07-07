@@ -1,6 +1,7 @@
 language: python
 install: "pip install -r requirements.txt"
 
+echo "testing comming soon"
 
 script:
   # Run ANSIBLE checks
