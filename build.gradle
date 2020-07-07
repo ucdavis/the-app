@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
+
 test.onlyIf { !Boolean.getBoolean('skip.tests') }
 
 tasks.withType(JavaCompile) {
@@ -36,6 +37,16 @@ buildscript {
         classpath 'com.sahlbach.gradle:gradle-jetty-eclipse-plugin:1.9.+'
     }
 }
+
+jacocoTestCoverageVerification { 
+    violationRules { 
+        rule { 
+            limit { 
+                minimum = 0.3 
+            } 
+        } 
+    } 
+} 
 
 allprojects {
     apply plugin: 'java'
@@ -212,3 +223,5 @@ subprojects {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.4'
 }
+
+
