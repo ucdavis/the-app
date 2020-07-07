@@ -1,4 +1,2 @@
-language: java
-jdb: oraclejdk8
-
-echo "testing comming soon"
+language: "java"
+jdk: "oraclejdk8"
