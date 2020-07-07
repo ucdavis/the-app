@@ -1,3 +1,4 @@
 language: java
-jdk: oraclejdk14
-script: echo "Success!"
+jdk: oraclejdk11
+
+echo "testing comming soon"
