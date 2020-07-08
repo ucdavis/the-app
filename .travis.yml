@@ -1,12 +1,14 @@
 language: java
-jdk: oraclejdk8
+jdk:
+  - oraclejdk8
+  - oraclejdk9
 dist: trusty
 
 env:
   - COVERAGE=0.057 BUILD_TARGET=./monolithic/ui
   - COVERAGE=0.148 BUILD_TARGET=./monolithic/service/cart
   - COVERAGE=0.0 BUILD_TARGET=./monolithic/service/user
-  - COVERAGE=0.397 BUILD_TARGET=./monolithic/repository/order
+  - COVERAGE=0.362 BUILD_TARGET=./monolithic/repository/order
   - COVERAGE=0.0 BUILD_TARGET=./monolithic/repository/cart
   - COVERAGE=0.124 BUILD_TARGET=./monolithic/repository/product
   - COVERAGE=0.318 BUILD_TARGET=./monolithic/repository/user
