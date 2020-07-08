@@ -1,6 +1,9 @@
 language: java
-jdk: oraclejdk9
+jdk: oraclejdk8
 dist: trusty
+
+env:
+  - COVERAGE=0.3
 
 install:
   - ./gradlew clean jar
