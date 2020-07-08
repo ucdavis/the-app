@@ -19,7 +19,7 @@ install:
   - ./gradlew clean jar
 
 script:
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker login -u="$DOCKER_USER" -p="$DOCKER_PASSWORD"
   - ./gradlew -p $BUILD_TARGET checkls
 
 after_sucess:
