@@ -13,13 +13,13 @@ env:
   - COVERAGE=0.0 BUILD_TARGET=./monolithic/repository/cart
   - COVERAGE=0.124 BUILD_TARGET=./monolithic/repository/product
   - COVERAGE=0.318 BUILD_TARGET=./monolithic/repository/user
-  global:
-    - DOCKER_LOGIN=pochadat
-    - secure: iHzXWXuOsayBRrFRmwkGpTFUt4ME0f9cL8935eQTBVik6N67nHzeTxnTR4xIR8aXfCpqhK2hYTraVp4568iau5HAQLapE1uk0lo9hscva4D49RGOf82NU/y6WPVwhh4LDxML6KBNo0bbODvKv2ai6ZNgJfrcVESnNuCFnYQAS3GXCy6BITAUXjKWyULpARjZU049SW4MuD/DvPFuT22PVNlECwTIqo2JUTbYG2HKqW7jSfzdSBaKw6SZoHZIylDfigMeqGZzWTLZplnOywYdNQdS9JuiILO8lhABnCZwdX6ZcOXg6Y4df2SCjzEk2Nu31oJTY4xmX3J8ZWgkzwLmhr9bdbMMlJo1DGsIDz03d4vnU7lHQjUp4AnvX+bKHj/IMqFgNZoeWQUsGsq7MlHAAGs2ZFpfnuNURGrO+ImIuxasM7yfDhGJR2s1JyN+9JfP+TenqIEXoLAKpE5YxAzlzMkMXe2gewLUwEkRDr+MArN/hhSN1BbCp0RBwhW0k++2mGvWmZcBDkCn8ff0kNBhaES6E1N1YcbX0jb93JIXD6VUzhnEziYAix21J+vn6ps359nDvYR00nnViQX4Ykkx39AKs/7aYEyEazim36GAwNrrVtVZPwlX81sAm1ZnldMQ3hNVN/r+3WmgGObRem0zMXOx8Eo1Wtbf4xGKlCDTa20=
+  
+  
 install:
   - ./gradlew clean jar
 
 script:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - ./gradlew -p $BUILD_TARGET check
 
 after_sucess:
