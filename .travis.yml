@@ -5,7 +5,7 @@ lenguage: java
 jdk: oraclejdk8
 
 install:
-  - "./gradelew clean jar"
+  - "./gradlew clean jar"
 
 script:
   # Run ANSIBLE checks
