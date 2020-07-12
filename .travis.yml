@@ -4,9 +4,6 @@ dist: trusty
 lenguage: java
 jdk: oraclejdk8
 
-env:
-  - COVERAGE=5
-
 install:
   - "./gradlew clean jar"
 
@@ -26,8 +23,8 @@ after_success:
 before_deploy:
   - "./gradlew test jacocoTestCoverageVerification"
 
-deploy:
-  provider: script
-  script: echo 'WIP'
-  on:
-    all_branches: true
+#deploy:
+#  provider: script
+#  script: echo 'WIP'
+#  on:
+#    all_branches: true
