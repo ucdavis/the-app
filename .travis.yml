@@ -26,8 +26,8 @@ after_success:
 before_deploy:
   - "COVERAGE={$COVERAGE} ./gradlew test jacocoTestCoverageVerification"
 
-#deploy:
-#  provider: script
-#  script: echo 'WIP'
-#  on:
-#    all_branches: true
+deploy:
+  provider: script
+  script: echo 'WIP'
+  on:
+    all_branches: true
