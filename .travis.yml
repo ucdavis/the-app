@@ -4,6 +4,9 @@ dist: trusty
 lenguage: java
 jdk: oraclejdk8
 
+env:
+  - COVERAGE=5
+
 install:
   - "./gradlew clean jar"
 
