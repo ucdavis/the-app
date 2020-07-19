@@ -1,9 +1,11 @@
-sudo: enable
+sudo: require
 language: java
 jdk: openjdk8
 before_install:
-  - sudo apt-get update && sudo apt-get install jd 
-script: ./gradlew clean jar
+  - sudo apt-get update && sudo apt-get install jd
+script:
+  - ./gradlew clean jar
+  - echo 'testing comming soon'
 
 #install: "pip install -r requirements.txt"
 
