@@ -1,10 +1,42 @@
-language: python
-install: "pip install -r requirements.txt"
+sudo: require
+language: java
+jdk: openjdk8
+before_install:
+  - sudo apt-get update && sudo apt-get install jd
+befor_script:
+  - ./gradlew clean jar
+stages:
+  -test
+  -deploy
 
-script:
+jobs:
+  include:
+    - stage: test
+      script:
+        - ./gradlew test
+      after_success:
+        - ./gradlew jacocoTestReport
+        - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}';
+
+deploy:
+  provider: script
+  script: echo 'WIP'
+  befor_deploy:
+    - ./gradlew test jacocoTestCoverageVerification
+  on:
+    all_branches: true
+
+
+
+
+
+
+#install: "pip install -r requirements.txt"
+
+#script:
   # Run ANSIBLE checks
   # - ANSIBLE0008: Disabled for use of sudo warnings - to address
   # - ANSIBLE0011: Disabled for all tasks which should be named
   # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
   # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+#  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
