@@ -5,7 +5,13 @@ before_install:
   - sudo apt-get update && sudo apt-get install jd
 script:
   - ./gradlew clean jar
-  - ./gradlew test
+jobs:
+  include:
+    - stage: test
+      script:
+        - ./gradlew test
+
+
 
 
 #install: "pip install -r requirements.txt"
