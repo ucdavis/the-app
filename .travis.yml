@@ -3,9 +3,16 @@ language: java
 jdk: openjdk8
 before_install:
   - sudo apt-get update && sudo apt-get install jd
-script:
+befor_script:
   - ./gradlew clean jar
-  - echo 'testing comming soon'
+jobs:
+  include:
+    - stage: test
+      script:
+        - ./gradlew test
+
+
+
 
 #install: "pip install -r requirements.txt"
 
