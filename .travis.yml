@@ -17,11 +17,12 @@ jobs:
       after_success:
         - ./gradlew jacocoTestReport
         - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}';
-      befor_deploy:
-        - ./gradlew test jacocoTestCoverageVerification
+
 deploy:
   provider: script
-  script: deploy.sh
+  script: echo 'WIP'
+  befor_deploy:
+    - ./gradlew test jacocoTestCoverageVerification
   on:
     all_branches: true
 
