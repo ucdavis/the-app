@@ -1,5 +1,10 @@
+sudo: enable
 language: java
-#jdk: oraclejdk8
+jdk: oraclejdk8
+before_install:
+  - sudo apt-get update && sudo apt-get install -y java-yaml
+script: ./gradlew clean jar
+
 #install: "pip install -r requirements.txt"
 
 #script:
