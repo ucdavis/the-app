@@ -1,4 +1,4 @@
-sudo: enable
+sudo: require
 language: java
 jdk: openjdk8
 before_install:
@@ -6,6 +6,7 @@ before_install:
 script:
   - ./gradlew clean jar
   - ./gradlew test
+
 
 #install: "pip install -r requirements.txt"
 
