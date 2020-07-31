@@ -11,7 +11,7 @@ after_script:
   
 
 before_deploy:
-  - ./gradlew test jacocoTestCoverageVerification
-  
+  - COVERAGE=0.35 ./gradlew test jacocoTestCoverageVerification
+
 deploy:
   - echo 'WIP'
