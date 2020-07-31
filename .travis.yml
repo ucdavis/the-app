@@ -1,5 +1,10 @@
 language: java
-jdk: oraclejdk9
+jdk: 
+  - oraclejdk8
+  - oraclejdk9
+
+env:
+  - NODE_VERSION=8-jessie
 
 script: 
   - ./gradlew clean jar
@@ -11,12 +16,14 @@ stages:
 jobs:
   include:
     - stage: test
+      script: jdk_switcher use oraclejdk9
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/ui check
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/service/cart check
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/service/user check
       script: find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
 
     - stage: check
+      script: jdk_switcher use oraclejdk9
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/repository/order check
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/repository/cart check
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/repository/product check
