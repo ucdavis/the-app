@@ -1,38 +1,39 @@
 sudo: required
 services:
   - docker
-
-  language: java
+language: java
 
 jdk: 
   - oraclejdk9
 
 script: 
   - ./gradlew clean jar
-  - 
-
+  
 stages: 
-  - test
-  - check
+  - test_check
 
 jobs:
   include:
-    - stage: test
+    - stage: test_check
       script: jdk_switcher use oraclejdk9
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/ui check
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/service/cart check
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/service/user check
-      script: find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
-
-    - stage: check
-      script: jdk_switcher use oraclejdk9
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/repository/order check
       script: COVERAGE=0.5 ./gradlew -P ./monolithic/repository/cart check
       script: COVERAGE=0.35 ./gradlew -P ./monolithic/repository/product check
       script: COVERAGE=0.25 ./gradlew -P ./monolithic/repository/user check
+      script: find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
 env:
   global:
-    secure: 5W6V1ga/wMhIOLDW9Cqjqzd7GdFKpCw0lBEVdvmZhwUvbBGopuHiEK0tqc3+vBF5WH+liPo73Ixu/bQeQwKqnkSrhk7N73hgEymtKOzVIfbmKKo/ixUK9es7SzV/4sAX8alAVkZxgVo/rIrpAcoZY5DT/fac3gXRlI63WtkP9mkj+H50ECBESDa6ZdTLDrSJ5GW3kYsts70yO5bZe2T4a01bFGVvMQEqGRZF2S6kt+BPwO+vSwmobXG9B2egUTHJaLstZpajaTY143RDIKCCrSXK1IYhLuUGlthcEsSi85qA346HXpOXrcBUkZSOuZtfbjlIW48udRUBLq4zi3qsJgljgKu7I8nJ9lpkKmhvuZuTuJTtkv9NjbuOuQy9Er8riwRN9xI+Tp9+httKExS3xEEdpYd0DLEbsobZ4rH0p27T/FeZQR+YdJ6fOeHXtdvxk/xyi+/JTkR9jqF2+en30TZ9nF2VNWL3pjhDSdNHqx1gq6yLP/4fG9DAvV1cKALW8Dp0dyfKheTLCr5e/nTr30wtX7mZPL2ubjZG2aThWB5MvhBxqI4/ODCmp1WuKgXGdkOuyMXavWvoCSCtNzVRyCYwCqNcBeH9QzxXEDXMxi9Vl99IAFOM4al2kCgOL1LoxlbbK/VVleubULnDUzUTpooZxF1dCDwx8W5nHqkjjZg=
+  - secure: 5W6V1ga/wMhIOLDW9Cqjqzd7GdFKpCw0lBEVdvmZhwUvbBGopuHiEK0tqc3+vBF5WH+liPo73Ixu/bQeQwKqnkSrhk7N73hgEymtKOzVIfbmKKo/ixUK9es7SzV/4sAX8alAVkZxgVo/rIrpAcoZY5DT/fac3gXRlI63WtkP9mkj+H50ECBESDa6ZdTLDrSJ5GW3kYsts70yO5bZe2T4a01bFGVvMQEqGRZF2S6kt+BPwO+vSwmobXG9B2egUTHJaLstZpajaTY143RDIKCCrSXK1IYhLuUGlthcEsSi85qA346HXpOXrcBUkZSOuZtfbjlIW48udRUBLq4zi3qsJgljgKu7I8nJ9lpkKmhvuZuTuJTtkv9NjbuOuQy9Er8riwRN9xI+Tp9+httKExS3xEEdpYd0DLEbsobZ4rH0p27T/FeZQR+YdJ6fOeHXtdvxk/xyi+/JTkR9jqF2+en30TZ9nF2VNWL3pjhDSdNHqx1gq6yLP/4fG9DAvV1cKALW8Dp0dyfKheTLCr5e/nTr30wtX7mZPL2ubjZG2aThWB5MvhBxqI4/ODCmp1WuKgXGdkOuyMXavWvoCSCtNzVRyCYwCqNcBeH9QzxXEDXMxi9Vl99IAFOM4al2kCgOL1LoxlbbK/VVleubULnDUzUTpooZxF1dCDwx8W5nHqkjjZg=
+  - secure: tvwf8kQ4R6nU2ziHGlaAABapUGcW/TnbbFxVLEC+fOOQQHZnid0ZPq7VETftVTtVnp9K+Y4anCy2i6ib9tQ3ZBKKBIjaj3q/uvKnvv2lMxeXvB+jGKSqyIAtc9mD5ywQfooc3UVhGsukZfKwrsY1rce5gq8yZqHNr5cwNF57/pzVcICmm8l4n+D1za6sI+i//F5/7sF5D0FsaFDw2I6b/0mj9wnBSCp7aAPwzL8YDwAS0+H6dhQbfcvA4g6MVEL1qqgDbCqxycogQaCLUO9TDcFoH3Ui/dfO+sriGB6N5sPvuO3UQ4WAzHVAVeRJBCj6oVQdTM/67XanWpBQDlJgbx8HjMSDLCcvEWuFdGUatL9dHWK2zw7TP4Y6FGPjKK6ru8o6L8d5lGY2jDd/nJxhvu1qvaP+wETDUEfL8hh1MHTYLgZnHeosC76RWnltcBLxIgYsG+IlLR1R8LGzMPumgMrWJFGRLqY3LTBZMEKvy24dSJMkSoBTy0iZqdH5bksY5n5ga4sKw7eQ1yZ+NNpmI29JvqsmT5aRQFnZDNlKzYl2oJk72imNomPBH81nltYpkHvHwUrudjhV3oobfEIXvTtJVmPmkvw+VO9G9jAfp6V82mQTL6MkqXTEOqJrCrLAo6XfdpRlsqKvS1M96vzy1sULQPz5ORGvGazLXwDq1Hg=
+
+before_deploy: ./gradlew -p ./monolithic/ui packageToContainer
 
 deploy:
-  bash -c "echo \"${DOCKER_PASSWORD}" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
+  provider: script
+  script: bash scripts/deploy.sh 
+  on:
+    branch: master
+    condition: $MY_ENV = super_awesome
