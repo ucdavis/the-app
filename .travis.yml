@@ -52,12 +52,12 @@ jobs:
       - COMPONENT=monolithic/repository/product
 
     - stage: test_check
-    name: "Building and Testing ./monolithic/repository/user"
-    script:
-    - COVERAGE=0.5 ./gradlew -P ./$COMPONENT check
-    env:
-    - COMPONENT=monolithic/repository/user
-    
+      name: "Building and Testing ./monolithic/repository/user"
+      script:
+      - COVERAGE=0.5 ./gradlew -P ./$COMPONENT check
+      env:
+      - COMPONENT=monolithic/repository/user
+      
     
       # script: COVERAGE=0.5 ./gradlew -P ./monolithic/ui check
       # script: COVERAGE=0.5 ./gradlew -P  ./monolithic/service/cart check
