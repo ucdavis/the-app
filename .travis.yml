@@ -76,7 +76,7 @@ before_deploy: ./gradlew -p ./monolithic/ui packageToContainer
 
 deploy:
   provider: script
-  script: bash scripts/deploy.sh 
+  script: bash script/deploy.sh 
   on:
     branch: master
     condition: $COMPONENT=monolithic/ui
