@@ -5,4 +5,4 @@ jdk:
 install:
   - ./gradlew clean jar
 script:
-  - echo "test coming soon"
+  - ./gradlew test
