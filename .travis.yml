@@ -39,6 +39,3 @@ before_deploy: ./gradlew -p ./monolithic/ui packageToContainer
 deploy:
   provider: script
   script: bash -c "echo \"${DOCKER_PASSWORD}" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
-  on:
-    branch: master
-    condition: $MY_ENV = super_awesome
