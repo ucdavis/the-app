@@ -18,13 +18,13 @@ jobs:
   include:
     - stage: test_check
       script: 
-      - COVERAGE=0.5 ./gradlew -P ./monolithic/ui check
-      - COVERAGE=0.5 ./gradlew -P  ./monolithic/service/cart check
-      - COVERAGE=0.5 ./gradlew -P ./monolithic/service/user check
-      - COVERAGE=0.5 ./gradlew -P ./monolithic/repository/order check
-      - COVERAGE=0.5 ./gradlew -P ./monolithic/repository/cart check
-      - COVERAGE=0.35 ./gradlew -P ./monolithic/repository/product check
-      - COVERAGE=0.25 ./gradlew -P ./monolithic/repository/user check
+      - COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
+      - COVERAGE=0.5 ./gradlew -p  ./monolithic/service/cart check
+      - COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
+      - COVERAGE=0.5 ./gradlew -p ./monolithic/repository/order check
+      - COVERAGE=0.5 ./gradlew -p ./monolithic/repository/cart check
+      - COVERAGE=0.35 ./gradlew -p ./monolithic/repository/product check
+      - COVERAGE=0.25 ./gradlew -p ./monolithic/repository/user check
     
     #   name: "Building and Testing "
     #   script:
