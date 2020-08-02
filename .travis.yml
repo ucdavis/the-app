@@ -19,53 +19,53 @@ jobs:
     - stage: test_check
       name: "Building and Testing "
       script:
-      - COVERAGE=0.5 ./gradlew -P ./$COMPONENT check
+      - COVERAGE=0.5 ./gradlew -p ./$COMPONENT check
       env:
       - COMPONENT=monolithic/ui
 
     - stage: test_check
       name: "Building and Testing ./monolithic/service/cart"
       script:
-      - COVERAGE=0.5 ./gradlew -P ./$COMPONENT check
+      - COVERAGE=0.5 ./gradlew -p ./$COMPONENT check
       env:
       - COMPONENT=monolithic/service/cart
 
     - stage: test_check
       name: "Building and Testing ./monolithic/repository/order"
       script:
-      - COVERAGE=0.5 ./gradlew -P ./$COMPONENT check
+      - COVERAGE=0.5 ./gradlew -p ./$COMPONENT check
       env:
       - COMPONENT=monolithic/repository/order
 
     - stage: test_check
       name: "Building and Testing ./monolithic/repository/cart"
       script:
-      - COVERAGE=0.5 ./gradlew -P ./$COMPONENT check
+      - COVERAGE=0.5 ./gradlew -p ./$COMPONENT check
       env:
       - COMPONENT=monolithic/repository/cart
 
     - stage: test_check
       name: "Building and Testing ./monolithic/repository/product"
       script:
-      - COVERAGE=0.5 ./gradlew -P ./$COMPONENT check
+      - COVERAGE=0.5 ./gradlew -p ./$COMPONENT check
       env:
       - COMPONENT=monolithic/repository/product
 
     - stage: test_check
-    name: "Building and Testing ./monolithic/repository/user"
-    script:
-    - COVERAGE=0.5 ./gradlew -P ./$COMPONENT check
-    env:
-    - COMPONENT=monolithic/repository/user
+      name: "Building and Testing ./monolithic/repository/user"
+      script:
+      - COVERAGE=0.5 ./gradlew -p ./$COMPONENT check
+      env:
+      - COMPONENT=monolithic/repository/user
     
     
-      # script: COVERAGE=0.5 ./gradlew -P ./monolithic/ui check
-      # script: COVERAGE=0.5 ./gradlew -P  ./monolithic/service/cart check
-      # script: COVERAGE=0.5 ./gradlew -P ./monolithic/service/user check
-      # script: COVERAGE=0.5 ./gradlew -P ./monolithic/repository/order check
-      # script: COVERAGE=0.5 ./gradlew -P ./monolithic/repository/cart check
-      # script: COVERAGE=0.35 ./gradlew -P ./monolithic/repository/product check
-      # script: COVERAGE=0.25 ./gradlew -P ./monolithic/repository/user check
+      # script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
+      # script: COVERAGE=0.5 ./gradlew -p  ./monolithic/service/cart check
+      # script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
+      # script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/order check
+      # script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/cart check
+      # script: COVERAGE=0.35 ./gradlew -p ./monolithic/repository/product check
+      # script: COVERAGE=0.25 ./gradlew -p ./monolithic/repository/user check
     
 env:
   global:
