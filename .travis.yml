@@ -18,14 +18,15 @@ jobs:
   include:
     - stage: test_check
       script: 
-      - COVERAGE=0.5 ./gradlew -P ./monolithic/ui check
+      - COVERAGE=0.5 ./gradlew -P ./monolithic/$UI_COMPONENT check
       - COVERAGE=0.5 ./gradlew -P  ./monolithic/service/cart check
       - COVERAGE=0.5 ./gradlew -P ./monolithic/service/user check
       - COVERAGE=0.5 ./gradlew -P ./monolithic/repository/order check
       - COVERAGE=0.5 ./gradlew -P ./monolithic/repository/cart check
       - COVERAGE=0.35 ./gradlew -P ./monolithic/repository/product check
       - COVERAGE=0.25 ./gradlew -P ./monolithic/repository/user check
-      
+      env:
+        - UI_COMPONENT=ui
 
     
     #   name: "Building and Testing "
@@ -77,7 +78,7 @@ before_deploy: ./gradlew -p ./monolithic/ui packageToContainer
 
 deploy:
   provider: script
-  script: bash scripts/deploy.sh 
+  script: bash script/deploy.sh 
   on:
     branch: master
-    condition: $COMPONENT=monolithic/ui
+    condition: $UI_COMPONENT
