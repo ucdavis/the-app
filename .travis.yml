@@ -3,4 +3,4 @@ jdk: oraclejdk8
 
 ./gradlew clean jar
 
-echo 'testing coming soon'
+echo 'testing coming soon-'
