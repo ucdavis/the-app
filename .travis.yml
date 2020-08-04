@@ -4,6 +4,7 @@ install:
   - ./gradlew clean jar
 stages:
   - tests
+  
 jobs:
   include:
     - stage: tests
