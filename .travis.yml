@@ -1,95 +1,98 @@
 dist: trusty
 language: java
+jdk: echo $JDK_VERSION
+env:
+  - JDK_VERSION=oraclejdk8
+  - JDK_VERSION=oraclejdk9
 install:
   - ./gradlew clean jar
-stages:
-  - tests
-  
-jobs:
-  include:
-    - stage: tests
-      name: "ui 8"
-      jdk: oraclejdk8
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
-    - stage: tests
-      name: "ui 9"
-      jdk: oraclejdk9
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
-    - stage: tests
-      name: "service/cart 8"
-      jdk: oraclejdk8
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
-    - stage: tests
-      name: "service/cart 9"
-      jdk: oraclejdk9
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
-    - stage: tests
-      name: "service/user 8"
-      jdk: oraclejdk8
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
-    - stage: tests
-      name: "service/user 9"
-      jdk: oraclejdk9
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
-    - stage: tests
-      name: "repository/order 8"
-      jdk: oraclejdk8
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
-    - stage: tests
-      name: "repository/order 9"
-      jdk: oraclejdk9
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
-    - stage: tests
-      name: "repository/cart 8"
-      jdk: oraclejdk8
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
-    - stage: tests
-      name: "repository/cart 9"
-      jdk: oraclejdk9
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
-    - stage: tests
-      name: "repository/product 8"
-      jdk: oraclejdk8
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
-    - stage: tests
-      name: "repository/product 9"
-      jdk: oraclejdk9
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
-    - stage: tests
-      name: "repository/user 8"
-      jdk: oraclejdk8
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
-    - stage: tests
-      name: "repository/user 9"
-      jdk: oraclejdk9
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
-deploy:
-  echo "WIP"
+# stages:
+#   - tests
+# jobs:
+#   include:
+#     - stage: tests
+#       name: "ui 8"
+#       jdk: oraclejdk8
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
+#     - stage: tests
+#       name: "ui 9"
+#       jdk: oraclejdk9
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
+#     - stage: tests
+#       name: "service/cart 8"
+#       jdk: oraclejdk8
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
+#     - stage: tests
+#       name: "service/cart 9"
+#       jdk: oraclejdk9
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
+#     - stage: tests
+#       name: "service/user 8"
+#       jdk: oraclejdk8
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
+#     - stage: tests
+#       name: "service/user 9"
+#       jdk: oraclejdk9
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
+#     - stage: tests
+#       name: "repository/order 8"
+#       jdk: oraclejdk8
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
+#     - stage: tests
+#       name: "repository/order 9"
+#       jdk: oraclejdk9
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
+#     - stage: tests
+#       name: "repository/cart 8"
+#       jdk: oraclejdk8
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
+#     - stage: tests
+#       name: "repository/cart 9"
+#       jdk: oraclejdk9
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
+#     - stage: tests
+#       name: "repository/product 8"
+#       jdk: oraclejdk8
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
+#     - stage: tests
+#       name: "repository/product 9"
+#       jdk: oraclejdk9
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
+#     - stage: tests
+#       name: "repository/user 8"
+#       jdk: oraclejdk8
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
+#     - stage: tests
+#       name: "repository/user 9"
+#       jdk: oraclejdk9
+#       install: skip
+#       script:
+#         - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
+# deploy:
+#   echo "WIP"
