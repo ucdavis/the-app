@@ -1,106 +1,113 @@
 dist: trusty
+services:
+  - docker
 language: java
 stages:
-  - tests
+- tests
 jobs:
   include:
-    - stage: tests
-      name: "ui 8"
-      jdk: oraclejdk8
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
-    - stage: tests
-      name: "ui 9"
-      jdk: oraclejdk9
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
-    - stage: tests
-      name: "service/cart 8"
-      jdk: oraclejdk8
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
-    - stage: tests
-      name: "service/cart 9"
-      jdk: oraclejdk9
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
-    - stage: tests
-      name: "service/user 8"
-      jdk: oraclejdk8
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
-    - stage: tests
-      name: "service/user 9"
-      jdk: oraclejdk9
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
-    - stage: tests
-      name: "repository/order 8"
-      jdk: oraclejdk8
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
-    - stage: tests
-      name: "repository/order 9"
-      jdk: oraclejdk9
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
-    - stage: tests
-      name: "repository/cart 8"
-      jdk: oraclejdk8
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
-    - stage: tests
-      name: "repository/cart 9"
-      jdk: oraclejdk9
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
-    - stage: tests
-      name: "repository/product 8"
-      jdk: oraclejdk8
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
-    - stage: tests
-      name: "repository/product 9"
-      jdk: oraclejdk9
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
-    - stage: tests
-      name: "repository/user 8"
-      jdk: oraclejdk8
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
-    - stage: tests
-      name: "repository/user 9"
-      jdk: oraclejdk9
-      install:
-        - ./gradlew clean jar
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
+  - stage: tests
+    name: ui 8
+    jdk: oraclejdk8
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
+  - stage: tests
+    name: ui 9
+    jdk: oraclejdk9
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
+  - stage: tests
+    name: service/cart 8
+    jdk: oraclejdk8
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
+  - stage: tests
+    name: service/cart 9
+    jdk: oraclejdk9
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
+  - stage: tests
+    name: service/user 8
+    jdk: oraclejdk8
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
+  - stage: tests
+    name: service/user 9
+    jdk: oraclejdk9
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
+  - stage: tests
+    name: repository/order 8
+    jdk: oraclejdk8
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
+  - stage: tests
+    name: repository/order 9
+    jdk: oraclejdk9
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
+  - stage: tests
+    name: repository/cart 8
+    jdk: oraclejdk8
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
+  - stage: tests
+    name: repository/cart 9
+    jdk: oraclejdk9
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
+  - stage: tests
+    name: repository/product 8
+    jdk: oraclejdk8
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
+  - stage: tests
+    name: repository/product 9
+    jdk: oraclejdk9
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
+  - stage: tests
+    name: repository/user 8
+    jdk: oraclejdk8
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
+  - stage: tests
+    name: repository/user 9
+    jdk: oraclejdk9
+    install:
+    - "./gradlew clean jar"
+    script:
+    - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
 deploy:
-  echo "WIP"
+  - provider: script
+  - script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-sdtin"
+env:
+  global:
+  - secure: V6UQS8Lm+JieK/zpgNLtR2MZY71GuVBg+rAex+e+YMx+gm1aFGprTegHJGwdURC9TwqkyqS6uiqEVmwjcp64VUptxAEE2TF3QXw+d5bQ2uRPLezTxGDXs3mSMv7X1mBhPaAFMRc9JFU/j0ULncPBvP3IpHpjrD/8f6RN953VnCb5iHdwlvKn3krQzciFqhhPrKQbjedtceGjitDGyTCE7GPiBUIEXWaQ37gma0DJSPjGqa+Zmi6ApH5pSPCyF2h6WlYRgLHTIsAxKoohtSOfE23qi+42/VH8Uhy+b8hjmj26NISKEd4yR4R5T727F5BQw88QMAkkx8LAJaY1VR4klqJFuFBLgi7ywyxmchYAf8JBFcZGq0bTQ+bVfpbPgSAAHP5yv1POHRrM1tW9NhiiotmvaVNaMcakFQUQk5yFhitq94DqcGlMFK3EPNqPBeuact8TwgBYBciqs2Kg6Kv9hb7i0W58bKI0jvAKXtgbTuvsxbgWKTwoJp1+EhujPF3UVBqf+VkcXstEMrMgUZNGf7d1v2V/rMkW1FwyP77zZhTi0uey1A2MZiKm7crjW0wNPL8CXeivVVQnzCF5hduiqzmrj4oiuDfYdAosJJ618mQSMNlzNrof/5dxzrOv9npg00TiLb7CJLZPx1LKSyjSJniP9fAjfXUaoj69PPUbO/k=
+  - secure: RxbcnSf8rEuJ4aVVZ01hnzd5/qyJb23MDPYzmUwXvM9MJFY9qUt+IGCGO8C3YFuCermU6gff9F5zb/4yBxl4LffhMMLesrGFj7j3vppVayKRRlX890dhAqdCJTE2SFtAIxT2rUSEcg3gpXM8YN//Ahkuj6ox5FTgQOyamNG7UZDPdOsgUzL8rzMEUfaOiVou191UMesPaSMLeppyevNPH9odlrQ3LaB7wugl2Tv27J0GkUn2WACz9I2jYHT3Az+wk9GbDbUPG53uBap0F5j9RReSzXr8GozZPKdBikZbgDKC2jBJlynB8dPTsFJFz6tzsJU+orNowzEu4gnHcFEEA3AfLwsuprv8DXVfMTHrI8UinGh+yXpIRS9wOb0/IeBGV7zVdL4tZ0OdGNMv4xGrGYl77uAsDkXNJVituunkvE3dHump4c47JXvAEUrukUdXLMiAUQk/xrR2YzAK+qYJznyBLPk2NHZY7UwKDDOtkgp1inPaDpxiUppKlm33anN1RKlicVAjtlBmZDEaAI4CJiaE3JQOA4TecbFyp/pu7lAsTvmsMNVd0U45oZAlqb/9eaka/7vWBCd2rl2negglc/0wT/jWBJFwomQU+fWwduXuhqKTofvoY03+Gl/VrITvtKiHLJ8ZjJyDknKkPsQdr/1MddlqgrIToExx/PA13Dc=
