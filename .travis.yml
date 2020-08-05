@@ -22,9 +22,9 @@ install:
 script:
   - COVERAGE="$COVERAGE" ./gradlew -p "./${RELPATH}" check
 after_success:
-  - set -e
+  - set -e;
     if [ "${RELPATH}" = "monolithic/ui"  && "${jdk}" = "oraclejdk8"]; then
-      ./gradlew -p ./monolithic/ui packageToContainer
+      ./gradlew -p ./monolithic/ui packageToContainer;
     fi;
 deploy:
   provider: script
