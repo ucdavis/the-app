@@ -4,6 +4,7 @@ services:
 language: java
 stages:
 - tests
+- deploy
 jobs:
   include:
   - stage: tests
