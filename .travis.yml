@@ -2,46 +2,16 @@ dist: trusty
 language: java
 jdk:
   - oraclejdk8
+env:
+  - RELPATH=monolithic/ui
+  - RELPATH=monolithic/service/cart
+  - RELPATH=monolithic/service/user
+  - RELPATH=monolithic/repository/order
+  - RELPATH=monolithic/repository/cart
+  - RELPATH=monolithic/repository/product
+  - RELPATH=monolithic/repository/user
 install:
   - ./gradlew clean jar
-stages:
-  - tests
-jobs:
-  include:
-    - stage: tests
-      name: "ui"
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/ui check
-    - stage: tests
-      name: "service/cart"
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/cart check
-    - stage: tests
-      name: "service/user"
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/service/user check
-    - stage: tests
-      name: "repository/order"
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/order check
-    - stage: tests
-      name: "repository/cart"
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/cart check
-    - stage: tests
-      name: "repository/product"
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/product check
-    - stage: tests
-      name: "repository/user"
-      install: skip
-      script:
-        - COVERAGE="$COVERAGE" ./gradlew -p ./monolithic/repository/user check
-deploy:
-  echo "WIP"
+script:
+  - COVERAGE="$COVERAGE" ./gradlew -p "./${RELPATH}" check
+deploy: echo "WIP"
