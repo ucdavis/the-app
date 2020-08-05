@@ -1,4 +1,6 @@
 dist: trusty
+services:
+  - docker
 language: java
 jdk:
   - oraclejdk8
