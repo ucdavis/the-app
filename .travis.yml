@@ -21,6 +21,11 @@ install:
   - ./gradlew clean jar
 script:
   - COVERAGE="$COVERAGE" ./gradlew -p "./${RELPATH}" check
+after_success:
+  - ./gradlew -p ./monolithic/ui packageToContainer
 deploy:
   provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
+  script: bash script/deploy.sh
+  on:
+    branch: master
+    condition: RELPATH=monolithic/ui && jdk=oraclejdk8
