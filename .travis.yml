@@ -28,8 +28,11 @@ install:
 script:
   - COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check
 
+before_deploy:
+  - ./gradlew -p ./monolithic/ui packageToContainer
+
 deploy:
   provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD}" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
-  # on: 
-  #   all_braches: true
+  script: ./script/deploy.sh
+  on:
+    branch : master
