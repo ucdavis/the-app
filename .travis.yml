@@ -40,5 +40,5 @@ jobs:
         provider: script
         script: bash script/deploy.sh $DOCKER_PASSWORD $DOCKER_LOGIN
         on:
-          branch : master
+          branch : step10_docker_deploy
           condition: $TARGET = ui
