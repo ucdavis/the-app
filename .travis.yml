@@ -33,10 +33,12 @@ script:
 
 before_deploy:
   - ./gradlew -p ./monolithic/ui packageToContainer
-
-deploy:
-  provider: script
-  script: ./script/deploy.sh
-  on:
-    branch : master
-    condition: COVERAGE=0.5 TARGET=ui
+jobs:
+  include:
+    - stage: deploy 
+      deploy:
+        provider: script
+        script: bash script/deploy.sh $DOCKER_PASSWORD $DOCKER_LOGIN
+        on:
+          branch : master
+          condition: $TARGET = ui
