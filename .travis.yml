@@ -1,5 +1,8 @@
 sudo: required
 
+services:
+  - docker
+
 language: java
 
 dist: trusty
@@ -36,3 +39,4 @@ deploy:
   script: ./script/deploy.sh
   on:
     branch : master
+    condition: $TARGET=ui
