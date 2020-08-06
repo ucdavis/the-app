@@ -39,4 +39,4 @@ deploy:
   script: ./script/deploy.sh
   on:
     branch : master
-    condition: $TARGET=ui
+    condition: COVERAGE=0.5 TARGET=ui
