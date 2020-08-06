@@ -4,16 +4,18 @@ language: java
 
 dist: trusty
 
-jdk: oraclejdk8
+jdk: 
+ - oraclejdk8
+ - oraclejdk9
 
 env:
   - COVERAGE=0.5 TARGET=ui
   - COVERAGE=0.5 TARGET=service/cart
   - COVERAGE=0.5 TARGET=service/user
-  - COVERAGE=0.39 TARGET=repository/order
+  - COVERAGE=0.35 TARGET=repository/order
   - COVERAGE=0.5 TARGET=repository/cart
   - COVERAGE=0.5 TARGET=repository/product
-  - COVERAGE=0.31 TARGET=repository/user
+  - COVERAGE=0.33 TARGET=repository/user
 
 install: 
   - ./gradlew clean jar
