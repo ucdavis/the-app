@@ -6,20 +6,23 @@ jdk:
   - oraclejdk9
 
 env:
-  - COVERAGE=0.31
+  - COVERAGE=0.5 CODE=./monolithic/ui
+  - COVERAGE=0.5 CODE=./monolithic/service/cart
+  - COVERAGE=0.5 CODE=./monolithic/service/user
+
+  - COVERAGE=0.5 CODE=./monolithic/repository/order
+  - COVERAGE=0.5 CODE=./monolithic/repository/cart
+  - COVERAGE=0.5 CODE=./monolithic/repository/product
+  - COVERAGE=0.5 CODE=./monolithic/repository/user
 
 install:
   - ./gradlew clean jar
 
 script:
-  - ./gradlew test
+  - COVERAGE=$COVERAGE ./gradlew -p $CODE check
 
 after_success:
-  - ./gradlew jacocoTestReport
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
-
-before_deploy:
-  - COVERAGE=$COVERAGE ./gradlew test jacocoTestCoverageVerification
 
 deploy:
   provider: script
