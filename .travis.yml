@@ -6,7 +6,7 @@ jdk:
   - oraclejdk9
 
 env:
-  - COVERAGE=0.35
+  - COVERAGE=0.31
 
 install:
   - ./gradlew clean jar
