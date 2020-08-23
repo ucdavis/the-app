@@ -10,10 +10,10 @@ env:
   - COVERAGE=0.5 CODE=./monolithic/service/cart
   - COVERAGE=0.5 CODE=./monolithic/service/user
 
-  - COVERAGE=0.5 CODE=./monolithic/repository/order
+  - COVERAGE=0.3 CODE=./monolithic/repository/order
   - COVERAGE=0.5 CODE=./monolithic/repository/cart
   - COVERAGE=0.5 CODE=./monolithic/repository/product
-  - COVERAGE=0.5 CODE=./monolithic/repository/user
+  - COVERAGE=0.3 CODE=./monolithic/repository/user
 
 install:
   - ./gradlew clean jar
