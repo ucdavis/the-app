@@ -22,9 +22,11 @@ script:
 - COVERAGE=$COVERAGE ./gradlew -p $CODE check
 after_success:
 - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+before_deploy:
+  - ./gradlew -p ./monolithic/ui packageToContainer
+  - chmod +x ./script/deploy.sh
 deploy:
   provider: script
-  script: bash -c "echo \"${DOCKER_PASS}\" | docker login --username \"${DOCKER_LOGIN}\"
-    --password-stdin"
+  script: ./script/deploy.sh
   on:
-    all_branches: true
+    branches: master
