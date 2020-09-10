@@ -1,5 +1,5 @@
-language: java
 jdk: oraclejdk8
- script: 
- - ./gradlew clean jar
- - ./gradlew assemble 
+language: java
+script: 
+  - "./gradlew clean jar"
+  - "./gradlew assemble"
