@@ -1,4 +1,6 @@
 language: java8
 jdk:
   - oraclejdk8
- script: ./gradlew assemble 
+ script: 
+ - ./gradlew clean jar
+ - ./gradlew assemble 
