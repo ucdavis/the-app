@@ -4,3 +4,4 @@ dist: trusty
 script: 
   - "./gradlew clean jar"
   - "echo 'test coming soon'"
+
