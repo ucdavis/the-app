@@ -13,6 +13,7 @@ env:
   - COVERAGE=0.5 ./gradlew -p ./monolithic/repository/product check
   - COVERAGE=0.5 ./gradlew -p ./monolithic/repository/user check
 jdk: oraclejdk8
+jdk: oraclejdk9
 language: java
 script: 
   - "./gradlew clean jar"
