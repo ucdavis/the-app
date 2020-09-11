@@ -3,7 +3,7 @@ after_success:
   - "./gradlew jacocoTestReport"
   - "find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3\" \"$4\" \"$5}'"
   - "./gradlew test jacocoTestCoverageVerification"
-  - "if [ $COVERAGE< 0.35 ]; then exit 1 ; fi ;"
+  - "if [ $COVERAGE< 0.35 ]; then exit 5 ; fi ;"
 dist: trusty
 env: 
   - COVERAGE= 0.35 
