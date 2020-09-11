@@ -23,5 +23,5 @@ script:
 - "./gradlew clean jar"
 deploy : 
 provider : script
-script : bash -c "echo \"${DOCKER_PASSWORD}\" | DOCKER LOGIN --username \"${DOCKER_LOGIN}\" --password-stdin
+script : bash -c "echo \"${DOCKER_PASSWORD}\" | DOCKER LOGIN --username \"${DOCKER_LOGIN}\" --password-stdin"
 
