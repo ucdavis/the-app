@@ -6,7 +6,7 @@ after_success:
   - "if [ $COVERAGE < 0.35 ] then exit 5  fi "
 dist: trusty
 env: 
-  - COVERAGE=0.35 ./gradlew test jacocoTestCoverageVerification
+  - COVERAGE=0.3 ./gradlew test jacocoTestCoverageVerification
 jdk: oraclejdk8
 language: java
 script: 
