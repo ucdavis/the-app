@@ -1,4 +1,4 @@
---- 
+
 after_success: 
   - "./gradlew jacocoTestReport"
   - "find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3\" \"$4\" \"$5}'"
@@ -6,9 +6,10 @@ after_success:
   - "if [ $COVERAGE< 0.35 ]; then exit 1 ; fi ;"
 dist: trusty
 env: 
-  - "COVERAGE= 0.35 ./gradlew test jacocoTestCoverageVerification"
+  - COVERAGE= 0.35 
 jdk: oraclejdk8
 language: java
 script: 
   - "./gradlew clean jar"
   - "./gradlew test"
+  - "./gradlew test jacocoTestCoverageVerification"
