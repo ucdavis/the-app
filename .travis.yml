@@ -3,4 +3,4 @@ jdk: oraclejdk8
 dist: trusty
 script: 
   - "./gradlew clean jar"
-  - "./gradlew assemble"
+  - "echo 'test coming soon'"
