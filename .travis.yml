@@ -7,6 +7,7 @@ env:
   matrix:
   - COVERAGE=0.3 ./gradlew test jacocoTestCoverageVerification
   - COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
+  - COVERAGE=0.5 ./gradlew -p ./monolithic/ui packageToContainer
   - COVERAGE=0.5 ./gradlew -p ./monolithic/service/cart check
   - COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
   - COVERAGE=0.5 ./gradlew -p ./monolithic/repository/order check
@@ -22,10 +23,8 @@ language: java
 script:
 - "./gradlew clean jar"
 deploy : 
-provider : script
+provider : 
 script : 
 - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
-- COVERAGE=0.5 ./gradlew -p ./monolithic/ui packageToContainer
-- docker tag zutherb/monolithic-shop:latest sabrimarz/public_ci:latest
-- docker push sabrimarz/monolothic-shop:latest
-- chmod +x ./script/deploy.sh
+- docker tag zutherb/monolithic-shop:latest $DOCKER_LOGIN/public_ci:latest
+- docker push $DOCKER_LOGIN/monolothic-shop:latest
