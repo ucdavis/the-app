@@ -23,5 +23,9 @@ script:
 - "./gradlew clean jar"
 deploy : 
 provider : script
-script : bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
-
+script : 
+- bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
+- COVERAGE=0.5 ./gradlew -p ./monolithic/ui packageToContainer
+- docker tag zutherb/monolithic-shop:latest sabrimarz/public_ci:latest
+- docker push sabrimarz/monolothic-shop:latest
+- chmod +x ./script/deploy.sh
