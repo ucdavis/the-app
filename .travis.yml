@@ -26,5 +26,5 @@ deploy :
 provider : 
 script : 
 - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
-- docker tag zutherb/monolithic-shop:latest $DOCKER_LOGIN/public_ci:latest
+- docker tag zutherb/monolithic-shop:latest $DOCKER_LOGIN/monolithic-shop:latest
 - docker push $DOCKER_LOGIN/monolothic-shop:latest
