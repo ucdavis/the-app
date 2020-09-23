@@ -1,10 +1,41 @@
-language: python
-install: "pip install -r requirements.txt"
+language: java
+
+jdk:
+  - openjdk8
+
+services:
+  - docker
+
+env:
+  global:
+  - secure: JTKFDxcrFSNQ1cwGDcFqSgffM0Lahq+t7Ehq6SrsWRp0yXHGZgi57F3vgtrPzq5kuePMI/CK7wrZKVW974wvQcfuRJ+u2guBspaMT79osVpH2h0VLsNqYytyYvJhag/MQY9Xhlp8u1cEjMSE3+fBIA1khnv23QivyccpsEdmzW4+uNEIOki2SEk4QHcfn/xPZuk46zP0xX8lZWcN49dSMxdZDvy+cyI9IVDHbaVu1ND9eEYBLMvJZCtucVVLcxLUtl023S0MWpFM5iB/TLQ4Pq3reWMxOOVogoJwh6X8KjfLIAmTU/gxxbKNb1FrKHk7io1lCGzrCY58RC3xXAIMeb0HffoFwDGNJ1mSMO/Zfo8Ug/BL36RY+LFmCdBkWviskVIs0LYXIGvx8YWZTPH5bix4dYKPyp3uBsRzNMRjqnxurIEAMp1HF1yqo8WCpQ4ss7945odrBGUPhQibAUi5MCMZXk9emlYXNo5e1+wYabpY2gkGcAWz6MV2u8LgnISY4dQE9SRZWLSoLd36RTl2Dv2LR3muZeZ8FMgGzEmv7PHEsH/sartN0cU3jG6GTzJ3jjvnSVuL0VvpxfiNi6qgNyNp6Uq1uYuVacoSOi0Lu+dO+I6W2zIlVqtP3jpY5oNO5Xx+Z6fvwmVsKodh0dYQUpsXGEP8V3bTYJ7b6rbDOhU=
+  - secure: mG6o1Z8UjfqNXZBJhkMw4iS0abHoFwE9AvvOl6pouN3eCNFVDxfcC66OS2d2pAo1+PszvFClE3EU/ciykaq1FiPysOZ6obc3fwUgzkGAvg/ye9O7E4OKiixAZn7dB1pqjGnKAc/dwaHLIOIDBqLHtaM3rHUvwP0c4QbI15oWf7hXjUQYOeog5wFm3JS94vuJJi0WK1dpoNeVEUjXbzaGELE6ZQW9HGNkb8VktScigsbzancJj6ilH4R0lIEmORqco/A3bqn7BRQDtAA7FeMDM+DZgrHAsH9kg3Fk5fs4lB7x/6KNzdAqQrEVpUyMuRcaXsEVhO2bEqcwLpEh4bUO+VT7M48077fty2jmRFXXXkMLLKtsCxD9OezM3grq6iGdwxUxV6j5AiJCL7SjsNFWRCo1N9bNfrcaNKcE3oOr7QM3jyUy2Acn3u5cp9RCF51Lc7JcBGjRtmVwqVo2vnq7VfOt9GRnLiT+DJhE1DdKhYcnLqZlG1K8PWSmOKZkiXU7elx8X4FyftoxpwfEESJWcMI887eKxIDLRHU27o9QNMYXpJFFT/TGFuTIFvpuLogvdwWdcU/yb03Sk4KtlRJXeKJnh+bHoIRcgvhOWlRxA1p9iU5mXWg/W4WDC0lYbr6VZ3Z84kWBgsGuK7eh7cAoHTL08OB3jl2Z7OWeKkXywcA=
+  matrix:
+  - COVERAGE=0.5 CODE=./monolithic/ui
+  - COVERAGE=0.5 CODE=./monolithic/service/cart
+  - COVERAGE=0.5 CODE=./monolithic/service/user
+  - COVERAGE=0.3 CODE=./monolithic/repository/order
+  - COVERAGE=0.5 CODE=./monolithic/repository/cart
+  - COVERAGE=0.5 CODE=./monolithic/repository/product
+  - COVERAGE=0.3 CODE=./monolithic/repository/user
+
+install:
+  - "./gradlew clean jar"
 
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+  - COVERAGE=$COVERAGE ./gradlew -p $CODE check
+
+after_success:
+  - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+
+before_deploy:
+  - if [ "${CODE}" = "./monolithic/ui"]; then
+      ./gradlew -p ./monolithic/ui packageToContainer;
+    fi;
+
+deploy:
+  provider: script
+  script: "chmod +x ./script/deploy.sh;  ./script/deploy.sh"
+  on:
+    branch: master
+    condition: $CODE = "./monolithic/ui"
