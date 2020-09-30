@@ -1,12 +1,13 @@
 sudo: required
-  
+
 language: java
 
 jdk:
   - openjdk8
   - oraclejdk9
-
+  
 env:
+  matrix:
   - COVERAGE=0.5 TARGET=ui
   - COVERAGE=0.5 TARGET=service/cart
   - COVERAGE=0.5 TARGET=service/user
@@ -14,19 +15,16 @@ env:
   - COVERAGE=0.5 TARGET=repository/cart
   - COVERAGE=0.5 TARGET=repository/product
   - COVERAGE=0.31 TARGET=repository/user
-
-
+  global:
+    - secure: Ik2tVsQY5TBiyf4/kWMyEXFSItWH2q514bLpVmE6n+a8g05nUY3aJa/+dVb3OXTztegfsI1wDJ1YBmREvoAdyHiLQp0plsc5HoxM/AuA+sAZt5KCUv2gcpZNW6GR4iwtz/ChFTufnVsonLgBFJr3XsLyJjemkAKFWKrUr2XFT61zR8LaLTf7RvCRqMWwu915ndIHy32pNGy+5Gm3uqDE07qSMpcbyGHLgrebUuyd9+j2CfXY/7ou2x5adJCil2+cxTMKj64qxQsR7C8fT4R2t/oncn8EP72WkAP5uJ1c4jR6zcf6XhdfhlB1GC7XIxGkX/Ix0pX3eJwkn76Xue7XHHZOrWo58VOvyFt+Yo7CKAtKaFJaHsXTszhd98qwrbZDQHYLdlfb6VtOZaBQmBsI3W3FQpMBqan1qmpLFnHq2hgmmTk8akgZsOZ2EVbDwln/+vbZm4Kqq8PIJsidCCRLECJo0xfFEokSO/qXAA9OV3nrZuniC8VhLMO/R+lMnEILIm6JJIpJm9LLFaTo7iYSs34uaUlaEqGL9GS9b2XkTS6XgKOrANX6BxEDl5Fbpb44bmFbh2gLRxSVcXBV/UURknBMfQVU9/v4S1Lb7W92bq8T6mFBCOa8a5/3slwpQe4HqSCmdHJPDwLdfRkwE6CCrbiTfh4uATnjDWd2LxEiFIE=
+    - secure: MiCl9ylWKW/Gs1rMSgdbE//7EW1jKkw4nIk4wlVEqf3MXxzv3YqBTvC2qIv78788nDuHMGV5Yfm5dVfmAYas+U7xlzp3w/sqx2lzOgow+2PBKWNiysvAS4sXi+ZDn2/iTtxPitZKuLBKxscNMu2ydkLxWzW9NCg7xSihE3RYK49Mj6XM+hkrnxseup8DLxJW1c8mSrxLbrgLjf3MwO1AsNm7208c/BNwjA5mpMiLMLoP/QF+m6m7hfI0bIG+DKQQgbYXWQm49VcP2Y6ae3ZSGj8jeyfDTU5N6f36OBOXyEUM+hsH2yaptHHw8i2ru4cu4rfYD5lVoueC67JeA5X32vhxOFTjc4IubFr6ZcV7IhL9fYEP+VtNKHmOJkWzIWatpn0aiy1jKtirbSJQIDokVNzCWkMn81Os4V+K9nEn8xIvgn5qgATfPTrjhMZJymJ/9J610HJJ/g3IOaC7gy+pzESRiqfCGcm35ShZpybJX3UvMeqJaKFYc7BBwt9gHFqnGZW7o7l1AaBe+GdtbkQaIHD7ISOdUZxFFY7mv1vAG1XHlHcHO50HqeCN8y/2Gc2qvEjvC45VyHPbIU/gKCYLv1zwzUhUCx43pDr8SplwhluRSJURVInw4ZaDJJ/ciHTM5ib+X+SxwZassp54nIbItZPfYtSQPg8YNr0HRjLEnnc=
+    
 install:
   - ./gradlew clean jar
-
+  
 script:
   - COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check
-
-
-
-jobs:
-  include:
-    - stage: deploy
-      deploy:
-        - provider: script
-          script: echo "WIP"
+  
+deploy:
+  provider: script
+  script: bash -c "echo \"${DOCKER_PASSWORD}" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
