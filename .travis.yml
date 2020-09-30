@@ -2,6 +2,9 @@ sudo: required
 
 language: java
 
+services:
+  - docker
+
 jdk:
   - openjdk8
   - oraclejdk9
@@ -24,7 +27,16 @@ install:
   
 script:
   - COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check
-  
-deploy:
-  provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD}" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
+
+before_deploy:
+  - ./gradlew -p ./monolithic/ui packageToContainer
+
+jobs:
+  include:
+    - stage: deploy 
+      deploy:
+        provider: script
+        script: bash .script/deploy.sh $DOCKER_PASSWORD $DOCKER_LOGIN
+        on:
+          branch : step10
+          condition: $TARGET = ui
