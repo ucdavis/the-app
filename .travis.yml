@@ -2,4 +2,4 @@ language: java
 jdk: openjdk8
 
 script:
-  - COVERAGE=0.25 ./gradlew test jacocoTestCoverageVerification
+  - COVERAGE=0.1 ./gradlew test jacocoTestCoverageVerification
