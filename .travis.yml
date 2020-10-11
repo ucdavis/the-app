@@ -1,7 +1,8 @@
 language: java
 jdk: openjdk8
 
-install: .gradlew clean jar
+install:
+  - .gradlew clean jar
 
 script:
   - echo "Testing coming soon!"
