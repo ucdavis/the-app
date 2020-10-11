@@ -1,5 +1,5 @@
 language: java
-jdk: openjdk8
+jdk: openjdk9
 
 install:
   - ./gradlew clean jar
