@@ -6,7 +6,7 @@ script:
   - COVERAGE=0.5 ./gradlew -p ./monolithic/service/cart check
   - COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
 
-  - COVERAGE=0.39 ./gradlew -p ./monolithic/repository/order check
+  - COVERAGE=0.40 ./gradlew -p ./monolithic/repository/order check
   - COVERAGE=0.5 ./gradlew -p ./monolithic/repository/cart check
   - COVERAGE=0.5 ./gradlew -p ./monolithic/repository/product check
-  - COVERAGE=0.32 ./gradlew -p ./monolithic/repository/user check
+  - COVERAGE=0.31 ./gradlew -p ./monolithic/repository/user check
