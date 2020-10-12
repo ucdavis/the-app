@@ -2,7 +2,7 @@ language: java
 jdk: openjdk9
 
 env:
-  - COVERAGE = 0.35
+  - COVERAGE = 0.3
 
 install:
   - ./gradlew clean jar
