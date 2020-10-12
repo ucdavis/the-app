@@ -5,13 +5,13 @@ env:
   global:
     - COVERAGE=0.3
   jobs:
-    - COVERAGE=0.1 FEATURE=ui
-    - COVERAGE=0.1 FEATURE=service/cart
-    - COVERAGE=0.1 FEATURE=service/user
-    - COVERAGE=0.35 FEATURE=repository/order
-    - COVERAGE=0.1 FEATURE=repository/cart
-    - COVERAGE=0.1 FEATURE=repository/product
-    - COVERAGE=0.35 FEATURE=repository/user
+    - COVERAGE=0.05 FEATURE=ui
+    - COVERAGE=0.15 FEATURE=service/cart
+    - COVERAGE=0.05 FEATURE=service/user
+    - COVERAGE=0.4 FEATURE=repository/order
+    - COVERAGE=0.05 FEATURE=repository/cart
+    - COVERAGE=0.15 FEATURE=repository/product
+    - COVERAGE=0.34 FEATURE=repository/user
 
 
 install:
