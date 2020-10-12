@@ -11,7 +11,7 @@ env:
     - COVERAGE=0.35 FEATURE=repository/order
     - COVERAGE=0 FEATURE=repository/cart
     - COVERAGE=0.1 FEATURE=repository/product
-    - COVERAGE=0.33 FEATURE=repository/user
+    - COVERAGE=0.3 FEATURE=repository/user
 
 
 install:
