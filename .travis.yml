@@ -18,7 +18,7 @@ install:
   - ./gradlew clean jar
 
 script:
-  - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$FFEATURE check
+  - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$FEATURE check
 
 after_success:
   - find . -name jacocoTestReport.csv | xargs cat | awk -F',' '{print $3" "$4" "$5}'
