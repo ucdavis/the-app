@@ -10,6 +10,9 @@ jobs:
     - stage: test
       script: echo "testing coming soon"
     - stage: deploy
+      branches:
+        only:
+        - ci-pipelines
       script:
         - ./gradlew clean jar
         - ./gradlew assemble
