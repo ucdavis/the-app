@@ -2,8 +2,9 @@ language: java
 jdk: oraclejdk8
 dist: trusty
 
-install:
-  - ./gradlew clean jar
+env:
+  - GRADLE_COMMAND=clean jar
+  - GRADLE_COMMAND=test
 
 script:
-  - echo 'testing coming soon'
+  - ./gradlew $GRADLE_COMMAND
