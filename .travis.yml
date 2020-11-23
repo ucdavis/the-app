@@ -2,9 +2,6 @@ language: java
 jdk: oraclejdk8
 dist: trusty
 
-env:
-  - GRADLE_COMMAND=clean jar
-  - GRADLE_COMMAND=test
-
 script:
-  - ./gradlew $GRADLE_COMMAND
+  - ./gradlew clean jar
+  - ./gradlew test
