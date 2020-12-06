@@ -4,8 +4,6 @@ env:
   - COVERAGE=.35
 script:
   - ./gradlew clean jar
-
-after_success:
   - echo 'testing'
   - ./gradlew test
   - ./gradlew jacocoTestReport
