@@ -1,6 +1,7 @@
 language: java
 jdk: openjdk10
-
+env:
+  - COVERAGE=.35
 script:
   - ./gradlew clean jar
 
@@ -8,10 +9,9 @@ after_success:
   - echo 'testing'
   - ./gradlew test
   - ./gradlew jacocoTestReport
-  - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
 
 before_deploy:
   - ./gradlew test jacocoTestCoverageVerification
-  
+
 deploy:
   -echo 'WIP'
