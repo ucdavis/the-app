@@ -1,11 +1,16 @@
 language: java
 jdk: openjdk10
-    openjdk9
+
 os: linux
+
+services:
+  - docker
 
 env:
   - COVERAGE=.10
+
 script:
+  - travis encrypt DOCKER_PASSWORD="secretvalue" --ad env.global --com
   - ./gradlew clean jar
 
 jobs:
