@@ -1,7 +1,7 @@
 language: java
 jdk: openjdk10
 env:
-  - COVERAGE=.35
+  - COVERAGE=.1
 script:
   - ./gradlew clean jar
   - echo 'testing'
