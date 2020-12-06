@@ -7,8 +7,6 @@ script:
   - echo 'testing'
   - ./gradlew test
   - ./gradlew jacocoTestReport
-
-before_deploy:
   - ./gradlew test jacocoTestCoverageVerification
 
 deploy:
