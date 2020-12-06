@@ -1,13 +1,21 @@
 language: java
 jdk: openjdk10
+os: linux
+
 env:
-  - COVERAGE=.0
+  - COVERAGE=.10
 script:
   - ./gradlew clean jar
-  - echo 'testing'
-  - ./gradlew test
-  - ./gradlew jacocoTestReport
-  - ./gradlew test jacocoTestCoverageVerification
 
-deploy:
-  -echo 'WIP'
+jobs:
+  include:
+    - stage: test
+      script: ./gradlew -p ./monolithic/ui check
+      script: ./gradlew -p ./monolithic/service/cart check
+      script: ./gradlew -p ./monolithic/service/user check
+      script: ./gradlew -p ./monolithic/repository/order check
+      script: ./gradlew -p ./monolithic/repository/cart check
+      script: ./gradlew -p ./monolithic/repository/product check
+      script: ./gradlew -p ./monolithic/repository/user check
+    - stage: deploy
+      script: echo 'WIP'
