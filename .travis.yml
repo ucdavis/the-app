@@ -1,6 +1,3 @@
 language: java
 jdk: openjdk10
-
-script:
-  - ./gradlew clean jar
-  - echo 'testing coming soon'
+- echo 'testing coming soon'
