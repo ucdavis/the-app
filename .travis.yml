@@ -5,4 +5,4 @@ script:
   - ./gradlew clean jar
 
 after_success:
-  - echo 'testing coming soon'
+  - echo 'testing coming soon '
