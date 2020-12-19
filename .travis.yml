@@ -3,6 +3,6 @@ jdk: openjdk10
 
 script:
   - ./gradlew clean jar
-
 after_success:
-  - echo 'testing coming soon '
+  - echo 'testing'
+  - ./gradlew test
