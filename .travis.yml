@@ -15,4 +15,4 @@ cache:
 
 script:
   - ./gradlew clean jar
-  - echo 'testing coming soon'
+  - ./gradlew test
