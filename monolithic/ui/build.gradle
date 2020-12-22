@@ -150,7 +150,7 @@ war {
 
 docker {
     maintainer = 'Bernd Zuther <bernd.zuther@codecentric.de>'
-    baseImage = 'jeanblanchard/tomcat:9'
+    baseImage = 'wegenenverkeer/tomcat7-java8'
 }
 
 task packageToContainer(type: Docker) {
