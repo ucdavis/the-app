@@ -25,4 +25,4 @@ script:
 - COVERAGE=$COVERAGE ./gradlew -p $TEST_FOLDER check
 deploy:
 - provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \${DOCKER_LOGIN}\" --password-stdin"
+  script: bash -c script/deploy.sh
