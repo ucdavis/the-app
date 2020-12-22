@@ -26,3 +26,6 @@ script:
 deploy:
 - provider: script
   script: bash -c script/deploy.sh
+  on:
+    #branch: master
+    condition: "$TEST_FOLDER=./monolithic/ui"
