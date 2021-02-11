@@ -13,4 +13,4 @@ before_install:
 
 
 script:
-  - echo `testing coming soon`
+  - ./gradelw test
