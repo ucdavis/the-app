@@ -13,4 +13,4 @@ before_install:
 
 
 script:
-  - ./gradelw test
+  - ./gradlew test
