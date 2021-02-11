@@ -1,7 +1,14 @@
 language: java
 jdk: oraclejdk8
 
-install:
+# the below travis configuration is needed in order to get oraclejdk8 running
+# If not specifying the distribution, travis will through the following error:
+#     Expected feature release number in range of 9 to 17, but got: 8
+# A google show up the solution for and origin of the issue: https://travis-ci.community/t/error-installing-oraclejdk8-expected-feature-release-number-in-range-of-9-to-14-but-got-8/3766/8
+
+dist: trusty
+
+before_install:
   - ./gradlew clean jar
 
 
