@@ -13,8 +13,81 @@ before_install:
 
 
 script:
-  - ./gradlew test
-  - COVERAGE=0.00 ./gradlew test jacocoTestCoverageVerification
+  - echo "Not running ./gradlew test in favor to the following check test"
+
+stages:
+  - check
+
+jobs:
+  include:
+    - stage: "check"
+      name: "$COMPONENT check"
+      install: skip
+      script:
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT check
+      env:
+        - NEEDED_COV=0.5
+        - COMPONENT="ui"
+
+    - stage: "check"
+      name: "$COMPONENT $ITEM check"
+      install: skip
+      script:
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+      env:
+        - NEEDED_COV=0.5
+        - COMPONENT="service"
+        - ITEM="cart"
+
+    - stage: "check"
+      name: "$COMPONENT $ITEM check"
+      install: skip
+      script:
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+      env:
+        - NEEDED_COV=0.5
+        - COMPONENT="service"
+        - ITEM="user"
+
+    - stage: "check"
+      name: "$COMPONENT $ITEM check"
+      install: skip
+      script:
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+      env:
+        - NEEDED_COV=0.5
+        - COMPONENT="repository"
+        - ITEM="order"
+
+    - stage: "check"
+      name: "$COMPONENT $ITEM check"
+      install: skip
+      script:
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+      env:
+        - NEEDED_COV=0.5
+        - COMPONENT="repository"
+        - ITEM="cart"
+
+    - stage: "check"
+      name: "$COMPONENT $ITEM check"
+      install: skip
+      script:
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+      env:
+        - NEEDED_COV=0.5
+        - COMPONENT="repository"
+        - ITEM="product"
+
+    - stage: "check"
+      name: "$COMPONENT $ITEM check"
+      install: skip
+      script:
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+      env:
+        - NEEDED_COV=0.5
+        - COMPONENT="repository"
+        - ITEM="user"
 
 after_success:
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
