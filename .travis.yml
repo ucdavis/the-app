@@ -24,7 +24,7 @@ jobs:
       name: "$COMPONENT check"
       install: skip
       script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT check
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT check
       env:
         - NEEDED_COV=0.5
         - COMPONENT="ui"
@@ -33,7 +33,7 @@ jobs:
       name: "$COMPONENT $ITEM check"
       install: skip
       script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
         - NEEDED_COV=0.5
         - COMPONENT="service"
@@ -43,7 +43,7 @@ jobs:
       name: "$COMPONENT $ITEM check"
       install: skip
       script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
         - NEEDED_COV=0.5
         - COMPONENT="service"
@@ -53,7 +53,7 @@ jobs:
       name: "$COMPONENT $ITEM check"
       install: skip
       script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
         - NEEDED_COV=0.5
         - COMPONENT="repository"
@@ -63,7 +63,7 @@ jobs:
       name: "$COMPONENT $ITEM check"
       install: skip
       script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
         - NEEDED_COV=0.5
         - COMPONENT="repository"
@@ -73,7 +73,7 @@ jobs:
       name: "$COMPONENT $ITEM check"
       install: skip
       script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
         - NEEDED_COV=0.5
         - COMPONENT="repository"
@@ -83,7 +83,7 @@ jobs:
       name: "$COMPONENT $ITEM check"
       install: skip
       script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolotic/$COMPONENT/$ITEM check
+        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
         - NEEDED_COV=0.5
         - COMPONENT="repository"
