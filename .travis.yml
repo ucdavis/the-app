@@ -1,10 +1,20 @@
-language: python
-install: "pip install -r requirements.txt"
+language: java
+jdk: oraclejdk8
+
+# the below travis configuration is needed in order to get oraclejdk8 running
+# If not specifying the distribution, travis will through the following error:
+#     Expected feature release number in range of 9 to 17, but got: 8
+# A google show up the solution for and origin of the issue: https://travis-ci.community/t/error-installing-oraclejdk8-expected-feature-release-number-in-range-of-9-to-14-but-got-8/3766/8
+
+dist: trusty
+
+before_install:
+  - ./gradlew clean jar
+
 
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+  - ./gradlew test
+
+after_success:
+  - ./gradlew jacocoTestReport
+  - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
