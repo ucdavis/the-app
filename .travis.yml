@@ -26,7 +26,7 @@ jobs:
       script:
         - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT check
       env:
-        - NEEDED_COV=0.5
+        - NEEDED_COV=1
         - COMPONENT="ui"
 
     - stage: "check"
@@ -35,7 +35,7 @@ jobs:
       script:
         - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
-        - NEEDED_COV=0.5
+        - NEEDED_COV=1
         - COMPONENT="service"
         - ITEM="cart"
 
@@ -45,7 +45,7 @@ jobs:
       script:
         - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
-        - NEEDED_COV=0.5
+        - NEEDED_COV=1
         - COMPONENT="service"
         - ITEM="user"
 
@@ -55,7 +55,7 @@ jobs:
       script:
         - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
-        - NEEDED_COV=0.5
+        - NEEDED_COV=1
         - COMPONENT="repository"
         - ITEM="order"
 
@@ -65,7 +65,7 @@ jobs:
       script:
         - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
-        - NEEDED_COV=0.5
+        - NEEDED_COV=1
         - COMPONENT="repository"
         - ITEM="cart"
 
@@ -75,7 +75,7 @@ jobs:
       script:
         - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
-        - NEEDED_COV=0.5
+        - NEEDED_COV=1
         - COMPONENT="repository"
         - ITEM="product"
 
@@ -85,11 +85,12 @@ jobs:
       script:
         - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
       env:
-        - NEEDED_COV=0.5
+        - NEEDED_COV=1
         - COMPONENT="repository"
         - ITEM="user"
 
-after_success:
+# Generates the test coverage report regarless of the test result (failed or succeeded)
+after_script:
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
 
 
