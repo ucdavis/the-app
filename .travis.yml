@@ -93,6 +93,6 @@ after_script:
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
 
 deploy:
-  on: 8_docker_deployment
+  on: master
   provider: script
   script: bash -c "echo \"${DOCKER_PASSWORD}\"|docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
