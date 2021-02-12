@@ -1,98 +1,20 @@
 language: java
 jdk: oraclejdk8
+
+# the below travis configuration is needed in order to get oraclejdk8 running
+# If not specifying the distribution, travis will through the following error:
+#     Expected feature release number in range of 9 to 17, but got: 8
+# A google show up the solution for and origin of the issue: https://travis-ci.community/t/error-installing-oraclejdk8-expected-feature-release-number-in-range-of-9-to-14-but-got-8/3766/8
+
 dist: trusty
 
-
-env:
-  global:
-    - secure: O9+kCXnXFT+NwzsF+iEAGEqKs4d+w8iWujplvU+xMVAdidaDyf5Nc1Vow2orhEJGTgZjC+mf88Rxp0or1RBTVsfe+NQ7TUXeFpE2ZpcvV0Y/ibDPDr9AV6WyQ4QN0VDJCmKUy2y8rrhin4Nse6K8A5QL7a8ZN61/sUHibjirv8vb9s8io53UvddhOmXOvteppURQhWghyfLJE34baHNsnmXkQxsxiyORimSrkyXy4G6fNpy6wIo11GoEVaINF/LVxW4dd1rtlNTljIFFbXTQuJcGpncwQluFuFUZRzewdSumrNp5pp7h9VujePmJfmzjZ2OkYBs4NnkgFEp/roqrV0W3SF5G9vBvUTVXkcGh9vFzOomp5fX085gyTjbnGRn/oVvCMcxri4mhkgWo0Qh6JARVFmFtK89zUYcxxA7+f5G8cHa3uPqhaFHfxvd5nBzwyMylFN4Qw3m4OXl7AOMB744vW+PQE2QspLBxdi0cr3t8hs+UsgNt6rT26eLQ/gRWTCu+v8ZjAYUF1Si4MWicSPOzi4F062Oc+Z4ajMohLonzPq6IyRxU9cgkN1DFMPgBx8ifhMexSLiALBPG59hnoODdSULQIRe3VWj15AxjNxiQIQmSr1ij0o7XaoTAz00pPF3qOQsg9UiCQhgOS3pjc67dISLMnvEI2ex6OxlXUls=
-    - secure: MR7hM4LpczhRSLkv7CgtlipTulCHSpIL9JR/jN/2GulLpDPEeZeOSENeasFQCtM1fWnHobLKpGnIMLKyhOW/BCN5UyCnf9z5tFb2jzpgoGx192pnUCHMW/p/9JFyAbbKF3O5ikAQvCHkjhlag1KfbrBY2d9OWnL6KmI2ZNzcq5DQv+7gLkIBnXI8CtQxUrKxItKbq4CHLqBOXGtpw94UJqSfVpPXfC0vls1FJTfj11s2whdZ8LNkT+Mrwn5tw211RXwd5lzFsb/ldo8JzvqK0qIGSBgRZzwuHQiToQL1aaGIfoqIaeJvDdWLw5xWpm0VZsxyHH1mBHTZ9xO/4oWKYRlhsJXhNcw6wmSfeyDlR0mTn2cFsoeqxhJENpxFeoN0w7YCFuvzoX4QWAJPyZ3h4eo3a0jK5i0rvRcrDyu/EE3XbdLxHx/O18OLc2S2t727ojrE7IAEzhreS1yKpmm2t4hot5lEKy5+/JcadXtFeXE49d0njJ9GNibH+IF16ndmruaNYwjS77Vz5T1JY+tysB16xNgY2pGZouNxCaeBl7otzNKue81pHG9AG6kptOswOlxH4ecgvP0vMRRIp1CxhQWWcCG5G8DhvUNPts3Yh5cJXX6hi7OuZwBZmfGJfb9RGGDN9DMb/xw2RtDjal3qZU2oKeVY91m5bSntteAvqtw=
-
-
 before_install:
-  - "./gradlew clean jar"
+  - ./gradlew clean jar
+
 
 script:
-  - echo "Not running ./gradlew test in favor to the following check test"
+  - ./gradlew test
 
-stages:
-  - check
-jobs:
-  include:
-    - stage: check
-      name: "$COMPONENT check"
-      install: skip
-      script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT check
-      env:
-        - NEEDED_COV=0.5
-        - COMPONENT="ui"
-
-    - stage: check
-      name: "$COMPONENT $ITEM check"
-      install: skip
-      script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
-      env:
-        - NEEDED_COV=0.5
-        - COMPONENT="service"
-        - ITEM="cart"
-
-  - stage: check
-      name: "$COMPONENT $ITEM check"
-      install: skip
-      script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
-      env:
-        - NEEDED_COV=0.5
-        - COMPONENT="service"
-        - ITEM="user"
-
-  - stage: check
-      name: "$COMPONENT $ITEM check"
-      install: skip
-      script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
-      env:
-        - NEEDED_COV=0.39
-        - COMPONENT="repository"
-        - ITEM="order"
-
-  - stage: check
-      name: "$COMPONENT $ITEM check"
-      install: skip
-      script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
-      env:
-        - NEEDED_COV=0.5
-        - COMPONENT="repository"
-        - ITEM="cart"
-
-  - stage: check
-      name: "$COMPONENT $ITEM check"
-      install: skip
-      script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
-      env:
-        - NEEDED_COV=0.5
-        - COMPONENT="repository"
-        - ITEM="product"
-
-  - stage: check
-      name: "$COMPONENT $ITEM check"
-      install: skip
-      script:
-        - COVERAGE=$NEEDED_COV ./gradlew -p ./monolithic/$COMPONENT/$ITEM check
-      env:
-        - NEEDED_COV=0.31
-        - COMPONENT="repository"
-        - ITEM="user"
-
-# Generates the test coverage report regarless of the test result (failed or succeeded)
-after_script:
+after_success:
+  - ./gradlew jacocoTestReport
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
-
-deploy:
-  on: master
-  provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD}\"|docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
