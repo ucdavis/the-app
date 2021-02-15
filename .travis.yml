@@ -8,4 +8,4 @@ install:
   - gradle assemble
 script:
   - echo "testing coming soon"
-  - ./gradlew check
+  - gradle check
