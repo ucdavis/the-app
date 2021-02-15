@@ -1,7 +1,8 @@
 language: java
 jdk:
   - oraclejdk8
-install: "gradle assemble"
+install:
+  - gradle assemble
 
 script:
   - echo "testing coming soon"
