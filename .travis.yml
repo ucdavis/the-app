@@ -2,10 +2,10 @@ dist: trusty
 language: java
 jdk:
   - oraclejdk8
+before_install:
+  - ./gradlew clean jar
 install:
   - gradle assemble
-
 script:
   - echo "testing coming soon"
   - ./gradlew check
-  - ./gradlew clean jar
