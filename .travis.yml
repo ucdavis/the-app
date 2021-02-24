@@ -1,5 +1,9 @@
-language: python
-install: "pip install -r requirements.txt"
+language: java
+jdk: oraclejdk8
+
+./gradlew clean jar
+
+echo 'testing coming soon'
 
 script:
   # Run ANSIBLE checks
