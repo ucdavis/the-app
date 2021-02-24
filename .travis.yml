@@ -11,4 +11,4 @@ script:
   #- find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
   ./gradlew clean jar
   #echo 'testing coming soon'
-  ./gradlew test 
+  ./gradlew test
