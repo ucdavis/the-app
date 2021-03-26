@@ -1,6 +1,9 @@
 language: python
 install: "pip install -r requirements.txt"
 
+echo 'testing coming soon'
+
+
 script:
   # Run ANSIBLE checks
   # - ANSIBLE0008: Disabled for use of sudo warnings - to address
