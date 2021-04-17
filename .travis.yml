@@ -3,3 +3,6 @@ jdk: oraclejdk8
 
 install:
   - ./gradlew clean jar
+
+script:
+  - echo ‘testing coming soon’
