@@ -16,7 +16,7 @@ install:
   - ./gradlew clean jar
 
 script:
-  - ./gradlew $BUILD_TARGET 
+  - ./gradlew test $BUILD_TARGET
 
 deploy:
   provider: script
