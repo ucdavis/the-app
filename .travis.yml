@@ -15,7 +15,7 @@ after success:
   - COVERAGE=0.35 ./gradlew test jacocoTestCoverageVerification
 
 after failure:
-  - echo "errored"
+  - echo "error"
 
 deploy:
   provider: script
