@@ -1,9 +1,11 @@
 language: java
 jdk:
   - oraclejdk8
+  - oraclejdk9
 dist: trusty
 
 env:
+  matrix:
   - COVERAGE=0.05 BUILD_TARGET=./monolithic/ui
   - COVERAGE=0.14 BUILD_TARGET=./monolithic/service/cart
   - COVERAGE=0.0 BUILD_TARGET=./monolithic/service/user
