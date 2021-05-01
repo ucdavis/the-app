@@ -20,11 +20,13 @@ env:
 install:
 - "./gradlew clean jar"
 script:
-- docker login --password "${DOCKER_PASSWORD}" --username "${DOCKER_LOGIN}";
 - "./gradlew -p $BUILD_TARGET check"
+before deploy:
+  - "./gradlew -p ./monolithic/ui packageToContainer"
 deploy:
   provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\"
-    --password-stdin ;"
+  script: "./script/deploy.sh"
   on:
-    all_branches: true
+    branch: master
+    condition: $BUILD_TARGET=./monolithic/ui
+
