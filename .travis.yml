@@ -1,9 +1,10 @@
 language: java
 jdk:
-  - oraclejdk8
-  - oraclejdk9
+- oraclejdk8
+- oraclejdk9
 dist: trusty
-
+services:
+  - docker
 env:
   matrix:
   - COVERAGE=0.05 BUILD_TARGET=./monolithic/ui
@@ -13,15 +14,16 @@ env:
   - COVERAGE=0.0 BUILD_TARGET=./monolithic/repository/cart
   - COVERAGE=0.12 BUILD_TARGET=./monolithic/repository/product
   - COVERAGE=0.31 BUILD_TARGET=./monolithic/repository/user
-
+  global:
+  - secure: FW4pDfoF0PEU2s8g6iISmyXttk7G0gPpruzynbOEhw9ZsQ5THKVf6j/l4Oc91hmbNbABnpYv8n48OWYuWP+ACdMGmDVe0CaLPFlB5l60E6Yg7tF2G4qbLgqAeJtMA0zZF1oE+dibKaO7eYVwQioeX6CyOOVucDk9fpbydOiDGr/pn7x0qaJlSTWJeDoiR+ooI9qM5DwtY6yrF9VxLinDhGO4FqAQAvxP58g3C7zh66yEcn3UwaESBMYz71bQYD449o3sGNRnqdJj51DAL18cN6uDU1frmI7Htz3cmEmZXfiYmhnN+RtpyOKinCx+5Qu7FeA5J4djxkt+itDBa092Hen54PdeoWO1hmstciQdxip/QdNtXE6gpEFhxXVu35eP75kjgGTJd/X5U6/2EvlPVPdqlkGcnVNjlHaeBZ/xqB/c7a6fw5VJ8suVNhlyIbMv11WYMCEBZmA+HwDY4As+u/DNMXum795lFnbXiCaYKfNoAGY0Q21TyaOzzXRnA+vQkoCchlucq08KNuwZUBJlbca09UXAJU83wkkrJ+2Ag/C3XC86YEtMVKKzV4pBrkFI3QfZDqNAtvbgt5YDfP4fR3GhOEg5jrmymf9wYcF5EzEw53QsbBeRLV2FkZeVW3ZNzjGlyc3xt3+p3HYVK2dv4W+bdkntQNeXdC0bpvrCSs8=
+  - secure: KqRwS2UIyTsI78zlv4XTGru9kh4ICP+zLqzBHpbBXdAMJIeN/cdRLK9OVAQRZim10Qs5sUSt+VEw0tcomVITUmcrtfopVSXJg/g8jMuy66Ixr+1d7IwwpMsZe/3wMCuL71YvtDqMMkZTTXFe6r3PDW5dt68X/R6hLWXUiqNXjINrbBJObXYYs3q41rn/X4zgdmz9aoCuXy9eT3ljNQJdOh9XKv02vX98gCb4jgxpCI77/vk36GQbSxzqNDbRciIstIRbw6/knbIOTJR3vq7LR3I+UzLLF3C77qiHQgWhkmnaE+jHPLcTxF7UcI5PMQCp5xbSOh8T+TZhtT8Q5D2aRL2VLh/Xr0f+DWDjV48tfi07UlehHKwPQfu26yQjXb7Bg5KHgnJOyrCzcHTgTRS2TtVYCtV3bAINR/xXqI86RVg6xzWFbQ35MCfIOdD/dTFCI4dLre/V/srRusWL7Ttmdk7dou+n8ek3bWyaqKGTYBxrWAkXypDXDeRF2c708Z88urGxNuZ22oSJiYI2qsJ6cZWx8a0GNH+BNENBY51Sy08eN0BNX8On+UrncYzDPEcuDFTWWVm5ylZu0+yGNe97B2sacXY5pASd62lv6l0dB1RbqxB9I98ImhGQjHwgiSDbXIsW82j+6HCyX8FBcoY37ensN+JvwKIQdJw2ETKaV5k=
 install:
-  - ./gradlew clean jar
-
+- "./gradlew clean jar"
 script:
-  - ./gradlew -p $BUILD_TARGET check
-
+- docker login --password "${DOCKER_PASSWORD}" --username "${DOCKER_LOGIN}";
+- "./gradlew -p $BUILD_TARGET check"
 deploy:
   provider: script
-  script: echo 'WIP'
+  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin ;"
   on:
     all_branches: true
