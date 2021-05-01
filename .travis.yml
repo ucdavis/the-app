@@ -20,6 +20,7 @@ env:
 install:
 - "./gradlew clean jar"
 script:
+- docker login --password "${DOCKER_PASSWORD}" --username "${DOCKER_LOGIN}";
 - "./gradlew -p $BUILD_TARGET check"
 before deploy:
   - "./gradlew -p ./monolithic/ui packageToContainer"
