@@ -1,10 +1,23 @@
-language: python
-install: "pip install -r requirements.txt"
+language: java
+jdk:
+  - oraclejdk9
+
+before_install:
+  # execute all of the commands which need to be executed
+  # before installing dependencies
+  - pwd
+  - ls -la
+
+install:
+  # install all of the dependencies you need here
+  - ./gradlew clean jar
+
+# For having the whole cycle
+# before_script:
+  # execute all of the commands which need to be executed
+  # before running actual tests
+
 
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+  # execute all of the commands which should make the build pass or fail
+  - ./gradlew test
