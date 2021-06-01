@@ -1,14 +1,23 @@
 language: java
-jdk: oraclejdk9
-dist: trusty
+jdk:
+  - oraclejdk9
 
-# Just to have a look where we are
 before_install:
+  # execute all of the commands which need to be executed
+  # before installing dependencies
   - pwd
   - ls -la
 
 install:
+  # install all of the dependencies you need here
   - ./gradlew clean jar
 
+# For having the whole cycle
+# before_script:
+  # execute all of the commands which need to be executed
+  # before running actual tests
+
+
 script:
-  - echo 'testing coming soon'
+  # execute all of the commands which should make the build pass or fail
+  - ./gradlew test
