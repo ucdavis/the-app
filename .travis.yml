@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - oraclejdk10
+  - openjdk10
 
 # Just to have a look where we are
 before_install:
