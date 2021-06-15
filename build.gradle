@@ -28,7 +28,7 @@ buildscript {
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:1.1.8.RELEASE"
-        classpath "de.gesellix:gradle-debian-plugin:14"
+        classpath "de.gesellix:gradle-debian-plugin:2021-04-05T21-19-00"
         classpath "com.moowork.gradle:gradle-grunt-plugin:0.6"
         classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:1.0.2"
         classpath 'se.transmode.gradle:gradle-docker:1.2'
