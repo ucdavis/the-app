@@ -1,9 +1,9 @@
 language: java
 jdk: openjdk8
 
-install:
+script:
   - ./gradlew clean jar
 
-script:
+after_success:
   #- echo 'testing coming soon'
   - ./gradlew test
