@@ -1,7 +1,8 @@
 language: java
-jdk: oraclejdk9
+jdk: openjdk8
 
-script:
+install:
   - ./gradlew clean jar
-  #- echo 'testing coming soon'
-  - ./gradle test
+  
+script:
+  - echo 'testing coming soon'
