@@ -1,7 +1,8 @@
 language: java
 jdk:
   - openjdk8
-
+services:
+  - docker
 
 env:
   matrix:
@@ -13,9 +14,12 @@ script:
 after_success:
   - ./gradlew -p $TARGET check
 
+before_deploy:
+  - ./gradlew -p ./monolithic/ui packageToContainer
+
 deploy:
   provider: script
-  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
+  script: ./script/deploy.sh
   on:
-    tags: true
-    all_branches: true
+    condition: "$TARGET == './monolithic/ui'"
+    branch: master
