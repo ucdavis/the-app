@@ -1,16 +1,11 @@
 language: java
 jdk:
   - openjdk8
-  - openjdk9
+
 
 env:
-  - COVERAGE=0.5 TARGET=./monolithic/ui
-  - COVERAGE=0.5 TARGET=./monolithic/service/cart
-  - COVERAGE=0.5 TARGET=./monolithic/service/user
-  - COVERAGE=0.3 TARGET=./monolithic/repository/order
-  - COVERAGE=0.5 TARGET=./monolithic/repository/cart
-  - COVERAGE=0.5 TARGET=./monolithic/repository/product
-  - COVERAGE=0.3 TARGET=./monolithic/repository/user
+  matrix:
+    - COVERAGE=0.5 TARGET=./monolithic/ui
 
 script:
   - ./gradlew clean jar
@@ -20,7 +15,7 @@ after_success:
 
 deploy:
   provider: script
-  script: echo 'WIP'
+  script: bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
   on:
     tags: true
     all_branches: true
