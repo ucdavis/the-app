@@ -9,14 +9,13 @@ services:
 
 env: 
  matrix:
-   - COVERAGE=0.5 .gradlew -p ./monolithic/ui check
-   - COVERAGE=0.5 .gradlew -p ./monolithic/service/cart check
-   - COVERAGE=0.5 .gradlew -p ./monolithic/service/user check
-
-   - COVERAGE=0.35 .gradlew -p ./monolithic/repository/order check
-   - COVERAGE=0.5 .gradlew -p ./monolithic/repository/cart check
-   - COVERAGE=0.5 .gradlew -p ./monolithic/repository/product check
-   - COVERAGE=0.33 .gradlew -p ./monolithic/repository/user check
+  - COVERAGE=0.5 CODE=./monolithic/ui
+  - COVERAGE=0.5 CODE=./monolithic/service/cart
+  - COVERAGE=0.5 CODE=./monolithic/service/user
+  - COVERAGE=0.3 CODE=./monolithic/repository/order
+  - COVERAGE=0.5 CODE=./monolithic/repository/cart
+  - COVERAGE=0.5 CODE=./monolithic/repository/product
+  - COVERAGE=0.3 CODE=./monolithic/repository/user
 
 global:
   - secure: 4V6V1ga/wMhIOLDW9Cqjqzd7GdFKpCw0lBEVdvmZhwUvbBGopuHiEK0tqc3+vBF5WH+liPo73Ixu/bQeQwKqnkSrhk7N73hgEymtKOzVIfbmKKo/ixUK9es7SzV/4sAX8alAVkZxgVo/rIrpAcoZY5DT/fac3gXRlI63WtkP9mkj+H50ECBESDa6ZdTLDrSJ5GW3kYsts70yO5bZe2T4a01bFGVvMQEqGRZF2S6kt+BPwO+vSwmobXG9B2egUTHJaLstZpajaTY143RDIKCCrSXK1IYhLuUGlthcEsSi85qA346HXpOXrcBUkZSOuZtfbjlIW48udRUBLq4zi3qsJgljgKu7I8nJ9lpkKmhvuZuTuJTtkv9NjbuOuQy9Er8riwRN9xI+Tp9+httKExS3xEEdpYd0DLEbsobZ4rH0p27T/FeZQR+YdJ6fOeHXtdvxk/xyi+/JTkR9jqF2+en30TZ9nF2VNWL3pjhDSdNHqx1gq6yLP/4fG9DAvV1cKALW8Dp0dyfKheTLCr5e/nTr30wtX7mZPL2ubjZG2aThWB5MvhBxqI4/ODCmp1WuKgXGdkOuyMXavWvoCSCtNzVRyCYwCqNcBeH9QzxXEDXMxi9Vl99IAFOM4al2kCgOL1LoxlbbK/VVleubULnDUzUTpooZxF1dCDwx8W5nHqkjjyT=
@@ -28,7 +27,7 @@ install:
 
 
 script:
-  - COVERAGE=${COVERAGE} 
+  - COVERAGE=$COVERAGE ./gradlew -p $CODE check
 
 after_success:
   - ./gradlew jacocoTestReport
@@ -42,4 +41,3 @@ before _deploy:
 deploy:
  - provider: script
    script: bash -c "echo \"${DOCKER_PASSWORD}" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
-
