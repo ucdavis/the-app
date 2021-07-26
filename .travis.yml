@@ -7,6 +7,9 @@ install:
  - "./gradlew clean jar"
 
 
+env: 
+ - COVERAGE=0.35
+
 script:
   - ./gradlew test
   
@@ -17,7 +20,7 @@ after_success:
 
  
 before _deploy:
- - ./gradlew test jacocoTestCoverageVerification
+ - COVERAGE=$COVERAGE ./gradlew test jacocoTestCoverageVerification
 
 deploy:
  - provider: script
