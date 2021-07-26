@@ -2,6 +2,7 @@ language: java
 
 jdk: 
  - oraclejdk8
+ - oraclejdk9
 
 env: 
    - COVERAGE=0.5 .gradlew -p ./monolithic/ui check
@@ -14,6 +15,7 @@ env:
    - COVERAGE=0.33 .gradlew -p ./monolithic/repository/user check
 
 install: 
+
  - "./gradlew clean jar"
 
 
@@ -33,5 +35,3 @@ deploy:
  - provider: script
    script: echo "WIP"
 
-   on: 
-     all_branches: true
