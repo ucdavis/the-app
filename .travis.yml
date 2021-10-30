@@ -14,6 +14,10 @@ env:
   - COVERAGE=0.5 .gradlew -p ./monolithic/repository/product check
   - COVERAGE=0.33 .gradlew -p ./monolithic/repository/user check
 
+global:
+  - secure: xxxxxxxxxxxxx
+  - secure: xxxxxxxxxxxxx
+
 install: 
  - "./gradlew clean jar"
  
@@ -32,3 +36,4 @@ before _deploy:
 deploy:
  - provider: script
    script: echo "WIP"
+   script: bash -c "echo \"${DOCKER_PASSWORD}" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
