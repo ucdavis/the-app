@@ -2,13 +2,20 @@ language: java
 
 jdk: 
  - oraclejdk8
+ 
+env: 
+  - COVERAGE=0.5 .gradlew -p ./monolithic/ui check
+  - COVERAGE=0.5 .gradlew -p ./monolithic/service/cart check
+  - COVERAGE=0.5 .gradlew -p ./monolithic/service/user check
+
+  - COVERAGE=0.35 .gradlew -p ./monolithic/repository/order check
+  - COVERAGE=0.5 .gradlew -p ./monolithic/repository/cart check
+  - COVERAGE=0.5 .gradlew -p ./monolithic/repository/product check
+  - COVERAGE=0.33 .gradlew -p ./monolithic/repository/user check
 
 install: 
  - "./gradlew clean jar"
  
-env: 
- - COVERAGE=0.35
-
 echo `testing coming soon`
 
 script:
