@@ -3,6 +3,8 @@ language: java
 jdk:
   - openjdk8
 
+install:
+  - ./gradlew clean jar
+
 script:
-  - ./gradew clean jar
   - echo 'testing coming soon'
