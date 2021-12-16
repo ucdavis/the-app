@@ -8,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "de.gesellix:gradle-debian-plugin:14"
+        classpath "de.gesellix:gradle-debian-plugin:2021-04-05T21-19-00"
     }
 }
 
