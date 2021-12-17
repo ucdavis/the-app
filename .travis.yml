@@ -1,8 +1,8 @@
 language: java
 
 jdk:
-  - openjdk8
-  - openjdk9
+  - oraclejdk8
+  - oraclejdk9
 
 env:
   - COVERAGE=0.5 TARGET=ui
