@@ -29,7 +29,7 @@ script:
 - COVERAGE=${COVERAGE} ./gradlew -p ./monolithic/$TARGET check
 
 deploy:
-- provider: script
+  provider: script
   script: bash -c "echo \"${DOCKER_PASSWORD}" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
-  on:
-    all_branches: true
+  # on:
+  #   all_branches: true
