@@ -17,4 +17,4 @@ before_deploy:
 
 deploy:
  - provider: script
-   script: bash echo "WIP"
+   script: echo "WIP"
