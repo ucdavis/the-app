@@ -1,31 +1,25 @@
 dist: trusty
 language: java
-jdk: oraclejdk8
+jdk:
+  - oraclejdk8
+  - oraclejdk9
+env:
+  - COVER=0.5 CHECK=./monolithic/ui
+  - COVER=0.5 CHECK=./monolithic/service/cart
+  - COVER=0.5 CHECK=./monolithic/service/user
+  - COVER=0.3 CHECK=./monolithic/repository/order
+  - COVER=0.5 CHECK=./monolithic/repository/cart
+  - COVER=0.5 CHECK=./monolithic/repository/product
+  - COVER=0.3 CHECK=./monolithic/repository/user
 
 install:
   - ./gradlew clean jar
 
 script:
-  - ./gradlew check
+  - COVERAGE=0.3 ./gradlew check
   - ./gradlew jacocoTestReport
   - find . -name jacocoTestReport.csv | xargs cat | awk -F ',' '{print $3" "$4" "$5}'
-
-jobs:
-  include:
-  - name: Test UI
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
-  - name: Test service/cart
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/cart check
-  - name: Test service/user
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
-  - name: Test repository/order
-    script: COVERAGE=0.3 ./gradlew -p ./monolithic/repository/order check
-  - name: Test repository/cart
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/cart check
-  - name: Test repository/product
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/product check
-  - name: Test repository/user
-    script: COVERAGE=0.3 ./gradlew -p ./monolithic/repository/user check
+  - COVERAGE=$COVER ./gradlew -p $CHECK check
 
 before_deploy:
   - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
