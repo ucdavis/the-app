@@ -1,10 +1,31 @@
-language: python
-install: "pip install -r requirements.txt"
+dist: trusty
+language: java
+jdk:
+  - oraclejdk8
+  - oraclejdk9
+env:
+  - COVER=0.5 CHECK=./monolithic/ui
+  - COVER=0.5 CHECK=./monolithic/service/cart
+  - COVER=0.5 CHECK=./monolithic/service/user
+  - COVER=0.3 CHECK=./monolithic/repository/order
+  - COVER=0.5 CHECK=./monolithic/repository/cart
+  - COVER=0.5 CHECK=./monolithic/repository/product
+  - COVER=0.3 CHECK=./monolithic/repository/user
+
+install:
+  - ./gradlew clean jar
 
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+  - COVERAGE=0.3 ./gradlew check
+  - ./gradlew jacocoTestReport
+  - find . -name jacocoTestReport.csv | xargs cat | awk -F ',' '{print $3" "$4" "$5}'
+  - COVERAGE=$COVER ./gradlew -p $CHECK check
+
+before_deploy:
+  - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
+
+deploy:
+ - provider: script
+   script: echo "WIP"
+   on:
+     all_branches: true
