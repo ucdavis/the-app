@@ -6,14 +6,29 @@ install:
   - ./gradlew clean jar
 
 script:
-  - ./gradlew test
-
-after_success:
+  - ./gradlew check
   - ./gradlew jacocoTestReport
-  - find . -name jacocoTestReport.csv | xargs cat| awk -F',' '{print $3" "$4" "$5}'
+  - find . -name jacocoTestReport.csv | xargs cat | awk -F ',' '{print $3" "$4" "$5}'
+
+jobs:
+  include:
+  - name: Test UI
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/ui check
+  - name: Test service/cart
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/cart check
+  - name: Test service/user
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
+  - name: Test repository/order
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
+  - name: Test service/user
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
+  - name: Test service/user
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
+  - name: Test service/user
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
 
 before_deploy:
- - COVERAGE=$COVERAGE_THRESHOLD ./gradlew test jacocoTestCoverageVerification
+  - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
 
 deploy:
  - provider: script
