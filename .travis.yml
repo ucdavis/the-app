@@ -19,13 +19,13 @@ jobs:
   - name: Test service/user
     script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
   - name: Test repository/order
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
-  - name: Test service/user
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
-  - name: Test service/user
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
-  - name: Test service/user
-    script: COVERAGE=0.5 ./gradlew -p ./monolithic/service/user check
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/order check
+  - name: Test repository/cart
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/cart check
+  - name: Test repository/product
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/product check
+  - name: Test repository/user
+    script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/user check
 
 before_deploy:
   - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
