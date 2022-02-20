@@ -5,7 +5,7 @@ jdk:
 #- oraclejdk9
 env:
   matrix:
-  - COVER=0.5 CHECK=./monolithic/ui
+#  - COVER=0.5 CHECK=./monolithic/ui
   - COVER=0.5 CHECK=./monolithic/service/cart
 #  - COVER=0.5 CHECK=./monolithic/service/user
 #  - COVER=0.3 CHECK=./monolithic/repository/order
@@ -30,5 +30,5 @@ deploy:
   on:
 #    branch: master
     all_branches: true
-    condition: $CHECK=./monolithic/ui
+    condition: env(CHECK) = ./monolithic/ui
   script: echo "Would deploy ./monolithic/ui package"
