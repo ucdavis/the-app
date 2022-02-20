@@ -24,6 +24,7 @@ script:
   - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
 before_deploy:
   - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USERNAME}\" --password-stdin"
+  - gradlew -p ./monolithic/ui packageToContainer
 deploy:
 - provider: script
   on:
