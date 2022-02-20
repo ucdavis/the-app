@@ -23,7 +23,7 @@ script:
 
 before_deploy:
   - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
-  - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USERNAME}\" --password-stdin
+  - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USERNAME}\" --password-stdin"
 
 deploy:
  - provider: script
