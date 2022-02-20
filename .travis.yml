@@ -28,7 +28,6 @@ before_deploy:
 deploy:
 - provider: script
   on:
-#    branch: master
     all_branches: true
-    condition: env(CHECK) = ./monolithic/ui
+    condition: $CHECK == "./monolithic/ui"
   script: echo "Would deploy ./monolithic/ui package"
