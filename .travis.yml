@@ -30,5 +30,5 @@ deploy:
   on:
 #    branch: master
     all_branches: true
-    condition: $CHECK="./monolithic/ui"
+    condition: $CHECK=./monolithic/ui
   script: echo "Would deploy ./monolithic/ui package"
