@@ -1,9 +1,10 @@
 dist: trusty
 language: java
 jdk:
-  - oraclejdk8
-  - oraclejdk9
+- oraclejdk8
+- oraclejdk9
 env:
+  matrix:
   - COVER=0.5 CHECK=./monolithic/ui
   - COVER=0.5 CHECK=./monolithic/service/cart
   - COVER=0.5 CHECK=./monolithic/service/user
@@ -11,21 +12,20 @@ env:
   - COVER=0.5 CHECK=./monolithic/repository/cart
   - COVER=0.5 CHECK=./monolithic/repository/product
   - COVER=0.3 CHECK=./monolithic/repository/user
-
+  global:
+    secure: EgVlLuffR/kKy+Q8HitaoPO4NKwJqfzeMm4nJsN+quUhzw64Fe++KZHh8BfPP8Idg8iB15c3B43BPoCBy9jfsuU3NxkH9/a6wEOHA4x8Ugt6u58dhkBFxbVhMsMxCL05z7vlipTtJ4XmEn7KMDTAiR34xdG094ChcDjxLFmP427VVTiINLAfPFZq3dGN0IgS8UVuWdbG8xsbKSbDZbpM5FFvI8aHvKaO2QVAJOXTlhA3hU+hNe6Ep5g09IPG3lSP4Ceti4sq8FN+3oeDQFg8+Fepo0Sg0gIAKgBewDvP6sqD8yrTn0p+6nWXx/oW1ChKU/kCRsM9/0dVmu7+IpkR/otggRr4aBSbke+kWuLZIeS5pHBOTLzPgSMy9aOKcW7IZi2FwxGFJIKhDcpglMA42ulnYiGwH+JAL2C49wOdYZqSA0xS6gJI7+PtiRFaiALPzG8EirZG8YETAoQCzQtRKknWPt26nolGaIIcBbqpofjNWm5p7eiA6YoQ4ZimrlYxoRdb4R3FPnxg++6Vq2g8w4xM3pHcZeMwatI1o+VgxtAC4Gj8XZj1xNmC6Xn8k9K2mmwmE0u5JIWmQCMx0CjHGWIY+smwWi2ArCrnGssh2zhnH6kOXVh9xv1tsE/Qwlk0C1sesCWuQDNpjrNwZW2a38Tj4u8QPkd26l+KUW3HImY=
 install:
   - ./gradlew clean jar
-
 script:
   - COVERAGE=0.3 ./gradlew check
   - ./gradlew jacocoTestReport
   - find . -name jacocoTestReport.csv | xargs cat | awk -F ',' '{print $3" "$4" "$5}'
   - COVERAGE=$COVER ./gradlew -p $CHECK check
-
 before_deploy:
   - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
-
+  - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USERNAME}\" --password-stdin"
 deploy:
- - provider: script
-   script: echo "WIP"
-   on:
-     all_branches: true
+  - provider: script
+  on:
+    all_branches: true
+  script: echo "WIP"
