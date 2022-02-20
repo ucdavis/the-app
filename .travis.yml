@@ -5,7 +5,7 @@ jdk:
 #- oraclejdk9
 env:
   matrix:
-#  - COVER=0.5 CHECK=./monolithic/ui
+  - COVER=0.5 CHECK=./monolithic/ui
   - COVER=0.5 CHECK=./monolithic/service/cart
 #  - COVER=0.5 CHECK=./monolithic/service/user
 #  - COVER=0.3 CHECK=./monolithic/repository/order
