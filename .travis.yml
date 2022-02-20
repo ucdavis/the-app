@@ -30,4 +30,4 @@ deploy:
   on:
     all_branches: true
     condition: $CHECK == "./monolithic/ui"
-  script: echo "Would deploy ./monolithic/ui package"
+  script: ./script/deploy.sh
