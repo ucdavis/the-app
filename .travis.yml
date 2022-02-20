@@ -24,10 +24,8 @@ script:
   - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
 before_deploy:
   - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USERNAME}\" --password-stdin"
-  - ./gradlew -p 
 deploy:
 - provider: script
   on:
-    branch: master
-    condition: env(CHECK) = "./monolithic/ui"
-  script: echo "Would deploy to ./monolithic/ui"
+    all_branches: true
+  script: echo "WIP"
