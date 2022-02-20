@@ -27,5 +27,6 @@ before_deploy:
 deploy:
 - provider: script
   on:
-    all_branches: true
-  script: echo "WIP"
+    branch: master
+    condition: $CHECK="./monolithic/ui"
+  script: echo "Would deploy ./monolithic/ui package"
