@@ -4,4 +4,4 @@ dist: xenial
 before_install:
   - ./gradlew clean jar
 script:
-  - echo 'testing coming soon'
+  - ./gradlew test
