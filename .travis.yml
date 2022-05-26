@@ -7,4 +7,4 @@ jdk: openjdk8
 # - ./gradlew clean jar
 
 script:
-- echo `testing coming soon´
+- echo testing coming soon
