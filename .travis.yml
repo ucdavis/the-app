@@ -1,10 +1,11 @@
 language: java
 jdk: openjdk8
 
-# I probably don't need this because Travis is doing a validation automatically:
-# https://docs.travis-ci.com/user/languages/java/#gradle-dependency-management
-# install:
-# - ./gradlew clean jar
+stages:
+  - test
 
-script:
-- ./gradlew test
+jobs:
+  include:
+    - stage: test
+    - install: skip
+    - script: ./gradlew test
