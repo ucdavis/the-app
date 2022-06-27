@@ -6,7 +6,7 @@ install:
   - ./gradlew clean jar
 
 script:
-  - echo 'testing coming soon'
+  - ./gradlew test
   # Run ANSIBLE checks
   # - ANSIBLE0008: Disabled for use of sudo warnings - to address
   # - ANSIBLE0011: Disabled for all tasks which should be named
