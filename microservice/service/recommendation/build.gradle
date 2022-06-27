@@ -4,11 +4,11 @@ buildscript {
     repositories {
         mavenCentral()
         maven {
-            url "http://dl.bintray.com/gesellix/gradle-plugins"
+            url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
-        classpath "de.gesellix:gradle-debian-plugin:14"
+        classpath "de.gesellix:gradle-debian-plugin:2022-04-24T14-15-00"
     }
 }
 
