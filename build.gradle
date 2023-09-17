@@ -39,7 +39,7 @@ buildscript {
 
 allprojects {
     apply plugin: 'java'
-
+    apply plugin: 'de.gesellix.debian'
     sourceCompatibility = org.gradle.api.JavaVersion.VERSION_1_8
     targetCompatibility = org.gradle.api.JavaVersion.VERSION_1_8
 
@@ -208,8 +208,6 @@ subprojects {
             "com.lordofthejars:nosqlunit-mongodb:$nosqlunitVersion",
     ]
 }
-
-apply(plugin = "de.gesellix.debian")
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.4'
