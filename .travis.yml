@@ -21,9 +21,8 @@ env:
   - COVER=0.5 CHECK=./monolithic/repository/cart CI_NODE_INDEX=4
   - COVER=0.5 CHECK=./monolithic/repository/product CI_NODE_INDEX=5
   - COVER=0.3 CHECK=./monolithic/repository/user CI_NODE_INDEX=6
-install:
+before_install:
   - ./gradlew clean jar
-  
 
 script:
   - COVERAGE=$COVER ./gradlew -p $CHECK check
