@@ -10,16 +10,17 @@ jdk:
 - oraclejdk8
 - oraclejdk9
 env:
-  matrix:
-  - COVER=0.5 CHECK=./monolithic/ui
-  - COVER=0.5 CHECK=./monolithic/service/cart
-  - COVER=0.5 CHECK=./monolithic/service/user
-  - COVER=0.3 CHECK=./monolithic/repository/order
-  - COVER=0.5 CHECK=./monolithic/repository/cart
-  - COVER=0.5 CHECK=./monolithic/repository/product
-  - COVER=0.3 CHECK=./monolithic/repository/user
   global:
     secure: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcnNhAAAAAwEAAQAAAQEAmzOmhbCPVz/+/3bqtxq2/uBnaU2S245g9Cl5yf6KOnogQQzx1ZrfRku/odrukAE5QrOOptk9JM5M5ZuQvbz08wmpahEaG/znygOminjhu2OUOA6qPJNFRoUD6nYFdIk5b/yHpNtcHEBaDZSNHvulKbhgYI/Q+lpg5zOZVr2eG9xMJ+whWQPvK62b7+txeFszndWDUg3kNqHZo/70C5BLTFJ1hlp5d4SDmzbsDau9T3rQ0i1EZjcSs+sP2hCxqJiDYK/41Y5ZiTfuSBpRKJVh0RqFgVtgsQ23yXU4XExLym/xa5jmRUie8nhKDg5PdXfC3CoOlCBBGpstkF+Y1uxJ2QAAA9jkeAts5HgLbAAAAAdzc2gtcnNhAAABAQCbM6aFsI9XP/7/duq3Grb+4GdpTZLbjmD0KXnJ/oo6eiBBDPHVmt9GS7+h2u6QATlCs46m2T0kzkzlm5C9vPTzCalqERob/OfKA6aKeOG7Y5Q4Dqo8k0VGhQPqdgV0iTlv/Iek21wcQFoNlI0e+6UpuGBgj9D6WmDnM5lWvZ4b3Ewn7CFZA+8rrZvv63F4WzOd1YNSDeQ2odmj/vQLkEtMUnWGWnl3hIObNuwNq71PetDSLURmNxKz6w/aELGomINgr/jVjlmJN+5IGlEolWHRGoWBW2CxDbfJdThcTEvKb/FrmOZFSJ7yeEoODk91d8LcKg6UIEEamy2QX5jW7EnZAAAAAwEAAQAAAQEAjvj83UlyMukkaohM3xMAIznsachpklLOI/8VT6xqAEbC8coP+jvqlWJwjZUWkZhe/IBW2INlXUOi+R3fL7sjV8S9yZUpnUDU8nd8czG6mRq5zw5LavQsLDObEOFaUymavPxApPDjIK9zhfEkM7eURiOwvSOfWxHpFPOmvY5+WaCfFMw3rLv6YahYtjtRVs5xI4IvCYOh9m2EAbKXLara5b9lhorsRrVQFxWYjz2t2j3CYXy9Zw7GHOQVSNes4/n/en98mCOCLuLWTIW1NjicnajDvNdOw6Lx66rXR1scSvw+xGTiaZ7sCWZD8S+OmH81blag+bGjFvHAW4S0WCzSEQAAAIEAuBqQjA3DQt7LLpStGVsk1Sz4HpvQlqX42CidivEalCIQTSz0DKkSMcgYarhh4awVIDXP/DwdEUqnG6Gxmtz1E+wlShW8Jv3RXpZIgH3aFUewBisia3qHsak0sny/NARLop99vEn2vNkZpPDpu50LiJma+nNxCDAbgdg5Lg5xJjoAAACBAM6+iOKTRBGIvuRK+i9BuFA+no2epjYIitcyLAYbu5U66zafp6bng83pr9/u7+99gdq05YTrDB6SfV6od5r39AJWBbShsO7jQCYbmgKy4ABXOdvdqC0BqeJ6mGMKYFDuqAcihQBbjHxaAKFbXMxvmy3VSGac/7E11q2yVJVeLhJdAAAAgQDALYE7C6GV0v0xM/SBGdMHUksJCbJWYl3YpI1sQSSTMXIwU9Z+I7uHriL5MBI6wQaQ3hc47bgKZdlnVzSYMdYy0qexMVmXtEH08hl0akKsNdgxba67+i6FkQZvZjBVy7QhhoRaEeBfzqlXWIitt+Myg4ZnRQX0gDsIHrYv02VVrQAAAB5tdWhhbW1lZCBtYWdkeUBERVNLVE9QLU1GTTFWN0sBAgM=
+    - CI_NODE_TOTAL=7
+  matrix:
+  - COVER=0.5 CHECK=./monolithic/ui CI_NODE_INDEX=0
+  - COVER=0.5 CHECK=./monolithic/service/cart CI_NODE_INDEX=1
+  - COVER=0.5 CHECK=./monolithic/service/user CI_NODE_INDEX=2
+  - COVER=0.3 CHECK=./monolithic/repository/order CI_NODE_INDEX=3
+  - COVER=0.5 CHECK=./monolithic/repository/cart CI_NODE_INDEX=4
+  - COVER=0.5 CHECK=./monolithic/repository/product CI_NODE_INDEX=5
+  - COVER=0.3 CHECK=./monolithic/repository/user CI_NODE_INDEX=6
 install:
   - ./gradlew clean jar
 
