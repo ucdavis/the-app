@@ -8,3 +8,63 @@ script:
   # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
   # - ANSIBLE0013: Disabled - few uses of shell commands - to address
   - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+Major Phases of Build, Testing, and Deployment
+A typical Travis CI build process consists of the following sequential steps:
+
+Configuration: Reading the .travis.yml file to determine the build environment, dependencies, scripts, and deployment targets.
+Cloning the Repository: Fetching the code from the specified GitHub repository.
+Installing Dependencies: Installing required software packages, libraries, or tools.
+Building the Project: Compiling the code into an executable or deployable artifact.
+Running Tests: Executing unit, integration, or other types of tests to verify code correctness.
+Deployment (Optional): Deploying the built artifact to a staging or production environment.
+Travis CI Flow Control
+Stages: Break down the build process into multiple stages (install, build, test, deploy) for better organization and control.
+Jobs: Define multiple jobs within a stage to execute different tasks in parallel or sequentially.
+Conditional Execution: Use if conditions to execute steps based on specific criteria (e.g., branch, environment).
+Matrix Builds: Run the same job with different configurations (e.g., different language versions, OS).
+Matrix or Parallel Execution
+Matrix Builds: Define a matrix of configurations and Travis CI will run the job for each combination.
+Parallel Jobs: Specify multiple jobs within a stage to run concurrently.
+Environment Configurations
+Global Environment Variables: Set environment variables at the top level of .travis.yml to be accessible to all jobs.
+Job-Specific Environment Variables: Define environment variables within individual jobs for specific configurations.
+Environment Overrides: Use the env key to specify different environment variables for different scenarios.
+Hiding and Encrypting Sensitive Data
+Environment Variables: Store sensitive information as encrypted environment variables.
+Travis CI Encryption: Use the travis encrypt command to encrypt values before committing them to the repository.
+Scheduled Builds
+Cron-like Syntax: Define schedules using cron-like expressions to trigger builds at specific intervals.
+Build Branches: Specify which branches should be included in scheduled builds.
+Docker Integration
+Docker Build: Use docker build to create Docker images.
+Docker Push: Push Docker images to a registry (e.g., Docker Hub).
+Deployment with Docker: Deploy applications using Docker containers to cloud platforms.
+Example .travis.yml snippet:
+
+YAML
+language: python
+
+stages:
+  - install
+  - build
+  - test
+  - deploy
+
+jobs:
+  include:
+    - stage: install
+      script: pip install -r requirements.txt
+    - stage: build
+      script: python setup.py bdist_wheel
+    - stage: test
+      script: python -m unittest discover tests
+    - stage: deploy
+      if: branch = master
+      script:
+        - docker build -t my-image .
+        - docker push my-image
+Use code with caution.
+
+Note: This is a simplified example and might require additional configurations based on your project's specific needs.
+
+By effectively utilizing these features, you can create robust and efficient continuous integration pipelines with Travis CI.
