@@ -1,10 +1,17 @@
-language: python
-install: "pip install -r requirements.txt"
+# Specify the language and version
+language: java
+jdk:
+  - openjdk8
 
+# Remove old Ansible or other irrelevant steps
+# You can remove any old sections that are no longer needed, like the following:
+# before_install:
+#   - <any old steps>
+
+# Specify the build script
 script:
-  # Run ANSIBLE checks
-  # - ANSIBLE0008: Disabled for use of sudo warnings - to address
-  # - ANSIBLE0011: Disabled for all tasks which should be named
-  # - ANSIBLE0012: Disabled (should not change if nothings needs doing) - to address
-  # - ANSIBLE0013: Disabled - few uses of shell commands - to address
-  - find vagrant/provision -name "*.yml" -exec ansible-lint -x ANSIBLE008,ANSIBLE0011,ANSIBLE0012,ANSIBLE0013  {} +
+  # Step to compile the project and build jar files
+  - mvn clean package
+
+  # Placeholder command since tests are not ready
+  - echo "Tests not ready yet"
